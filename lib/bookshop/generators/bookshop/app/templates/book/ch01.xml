@@ -8,7 +8,7 @@
     <title>Which Editor Should I Use?</title>
 
     <para>Bookshop is built with coding in mind. At BlueHead Publishing we
-		prefer to use a standard text editor rather than rely on the bells & whistles of
+		prefer to use a standard text editor rather than rely on the bells &#38; whistles of
 		a full-blown XML Editor. We like our validation, testing, and other functionality to
 		be independent of the choice of editor. Hence that all happens on the command
 		line.</para>

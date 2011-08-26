@@ -24,14 +24,14 @@ module Bookshop
       
       case build
       when 'pdf'
-        puts "Deleting any old pdf builds"
+        puts "Deleting any old builds"
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         puts "File Deleted"
         puts "Building new pdf at builds/pdf/book.pdf"
         cmd = %x[java -jar tools/java/fop.jar -xml book/book.xml -xsl stylesheets/fo-stylesheet.xsl builds/pdf/book.pdf]
       
       when 'epub'
-        puts "Deleting your old epub build"
+        puts "Deleting any old builds"
         File.delete("builds/epub/book.epub") if File::exists?( "builds/epub/book.epub" )
         puts "File Deleted"
         
@@ -44,7 +44,7 @@ module Bookshop
       
       # fix this
       when 'mobi'
-        puts "Deleting your old epub build"
+        puts "Deleting any old builds"
         File.delete("builds/mobi/book.*") if File::exists?( "builds/mobi/book.*" )
         puts "File Deleted"
         
@@ -72,21 +72,21 @@ module Bookshop
         
       when 'all'        
         puts "Building pdf..."
-        puts "Deleting any old pdf builds"
+        puts "Deleting any old builds"
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         puts "File Deleted"
         puts "Building new pdf at builds/pdf/book.pdf"
         cmd = %x[java -jar tools/java/fop.jar -xml book/book.xml -xsl stylesheets/fo-stylesheet.xsl builds/pdf/book.pdf]
 
         puts "Building epub..."
-        puts "Deleting any old epub builds"
+        puts "Deleting any old builds"
         File.delete("builds/epub/book.epub") if File::exists?( "builds/epub/book.epub" )
         puts "File Deleted"
         puts "Building new pdf at builds/epub/book.epub"
         cmd = %x[tools/xsl/epub/bin/dbtoepub -v book/book.xml -o builds/epub/book.epub]
 
         puts "Building mobi..."
-        puts "Deleting your old epub build"
+        puts "Deleting any old builds"
         File.delete("builds/mobi/book.*") if File::exists?( "builds/mobi/book.*" )
         puts "File Deleted"
         puts "Building new epub at builds/mobi/book.epub"
