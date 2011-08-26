@@ -1,0 +1,20 @@
+0.0.3:
+    Core Changes
+				Added Java toolsets, including all necessary .jars for working with Docbook and
+						bookshop
+
+				Updated documentation to include information on how to setup java tools and Classpaths on various systems
+				
+				Added MIT-LICENSE
+				
+				Application Generator now has dynamically generated dates and content
+				
+				Added epub build command
+				
+				Added pdf build command
+				
+				Significant rework of Command Line Interface and 'help' dialogues
+				
+				
+		Bug Fixes
+				(none as this was a substantial rework)

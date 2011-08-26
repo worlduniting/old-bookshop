@@ -1,0 +1,33 @@
+Here are some things that we do for readability in our sources but
+which actually are incorrect, and which might need to processing when
+transforming our Docbook XML into other formats:
+
+1.  Our <screen> and <programlisting> tags begin with a single stray
+    newline.  We do this:
+
+           <screen>
+       This is the first line.
+       This is the second line.
+       </screen>
+
+    but should do this:
+
+           <screen>This is the first line.
+       This is the second line.
+       </screen>
+
+2.  We have space between our footnote anchors and the text to which
+    they apply.  We do this:
+
+       Body text.
+       <footnote>
+         <para>This is footnote text.</para>
+       </footnote>
+       More body text.
+
+    but should do this:
+
+       Body text.<footnote>
+         <para>This is footnote text.</para>
+       </footnote>
+       More body text.

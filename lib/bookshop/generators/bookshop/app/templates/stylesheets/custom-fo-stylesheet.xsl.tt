@@ -1,0 +1,91 @@
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'>
+
+  <!-- Here live locale-specific customizations to the FO base stylesheet -->
+
+
+  <!-- xsltproc can't support these extensions
+  <xsl:param name="use.extensions">1</xsl:param>
+  <xsl:param name="callouts.extension">1</xsl:param>
+  <xsl:param name="linenumbering.extension">1</xsl:param>
+  <xsl:param name="tablecolumns.extension">1</xsl:param>
+  <xsl:param name="textinsert.extension">1</xsl:param>
+  -->
+
+	<xsl:param name="draft.mode">yes</xsl:param>
+	<xsl:param name="draft.watermark.image">images/draft.png</xsl:param>
+
+  <!-- Page related Settings -->
+  <xsl:param name="page.margin.inner">1.5cm</xsl:param>
+  <xsl:param name="page.margin.outer">1.5cm</xsl:param>
+  <xsl:param name="title.margin.left">0pt</xsl:param>
+  <xsl:param name="body.start.indent">0pt</xsl:param>
+  <xsl:param name="body.end.indent">0pt</xsl:param>
+
+  <!-- Custom font settings -->
+  <xsl:param name="title.font.family">sans-serif,SimHei</xsl:param>
+  <xsl:param name="body.font.family">serif,SimSun</xsl:param>
+  <xsl:param name="sans.font.family">sans-serif,SimHei</xsl:param>
+  <xsl:param name="dingbat.font.family">serif,SimSun</xsl:param>
+  <xsl:param name="monospace.font.family">monospace,FangSong,SimSun</xsl:param>
+
+  <!-- Admonitions and callouts settings -->
+  <xsl:param name="admon.textlabel" select="0" />
+  <xsl:param name="admon.graphics" select="1" />
+  <xsl:param name="admon.graphics.path">images/</xsl:param>
+  <xsl:param name="admon.graphics.extension">.png</xsl:param>
+  <xsl:param name="callout.graphics" select="1" />
+  <xsl:param name="callout.graphics.extension">.png</xsl:param>
+
+  <xsl:param name="variablelist.as.blocks" select="1" />
+
+  <!-- uncomment to enable auto-numbering of sections -->
+  <!-- xsl:param name="section.autolabel" select="1" / -->
+
+  <!-- Uncomment for Breaking long lines 
+	<xsl:param name="hyphenate.verbatim">0</xsl:param>
+  <xsl:attribute-set name="monospace.verbatim.properties"
+                     use-attribute-sets="verbatim.properties monospace.properties">
+    <xsl:attribute name="wrap-option">wrap</xsl:attribute>
+    <xsl:attribute name="hyphenation-character">&#x25BA;</xsl:attribute>
+  </xsl:attribute-set>
+	-->
+	
+  <!-- Uncomment to Colourize links in output
+  <xsl:attribute-set name="xref.properties">
+    <xsl:attribute name="color">
+      <xsl:choose>
+        <xsl:when test="self::ulink">blue</xsl:when>
+        <xsl:when test="self::xref">blue</xsl:when>
+        <xsl:when test="self::uri">blue</xsl:when>
+        <xsl:otherwise>red</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:attribute-set>
+	-->
+
+	<!-- Uncomment to set Section Title attributes
+	<xsl:attribute-set name="section.title.level1.properties">
+	  <xsl:attribute name="font-weight">bold</xsl:attribute>
+	  <xsl:attribute name="font-style">italic</xsl:attribute>
+		<xsl:attribute name="font-size">14pt</xsl:attribute>
+	</xsl:attribute-set>
+	-->
+
+	<!-- Uncommment to set Component Title attributes - Chapter Titles
+	<xsl:attribute-set name="component.title.properties">
+	  <xsl:attribute name="font-weight">bold</xsl:attribute>
+	  <xsl:attribute name="font-style">italic</xsl:attribute>
+		<xsl:attribute name="font-size">14pt</xsl:attribute>
+		<xsl:attribute name="color">blue</xsl:attribute>
+	</xsl:attribute-set>
+	-->
+
+	<!-- Uncomment to set Sidebar Properties
+  <xsl:attribute-set name="sidebar.properties" use-attribute-sets="formal.object.properties">
+    <xsl:attribute name="border-style">solid</xsl:attribute>
+    <xsl:attribute name="border-width">.1mm</xsl:attribute>
+    <xsl:attribute name="background-color">#EEEEEE</xsl:attribute>
+  </xsl:attribute-set>
+	-->
+
+</xsl:stylesheet>

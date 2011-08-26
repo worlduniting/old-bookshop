@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="picking_an_xml_editor">
+  <title>Picking an Editor</title>
+
+  <sect1 id="which_xml_editor_should_i_use">
+    <title>Which Editor Should I Use?</title>
+
+    <para>Bookshop is built with coding in mind. At BlueHead Publishing we
+		prefer to use a standard text editor rather than rely on the bells & whistles of
+		a full-blown XML Editor. We like our validation, testing, and other functionality to
+		be independent of the choice of editor. Hence that all happens on the command
+		line.</para>
+		
+		<para>You can use whichever one you like. We recommend TextMate, but if you
+		are a die-hard terminal coder then by all means use Vim or Emacs.</para>
+		
+		<para>There is a fairly complete list of authoring tools available on the
+			<ulink
+	    url="http://wiki.docbook.org/topic/DocBookAuthoringTools">DocBook
+	    wiki</ulink>. Here are some options:</para>
+
+
+    <variablelist>
+      <varlistentry>
+        <term><ulink
+        url="http://www.oxygenxml.com/download_oxygenxml_author.html">TextMate</ulink></term>
+
+        <listitem>
+          <para>We're a big fan. Some of our reasons:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Simple, clean, and to the point.</para>
+            </listitem>
+
+            <listitem>
+              <para>TextMate 'Bundles' provide extra functionality for coding happiness</para>
+            </listitem>
+
+            <listitem>
+              <para>Code completion and snippets</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+
+      <varlistentry>
+        <term><ulink
+        url="http://www.oxygenxml.com/download_oxygenxml_author.html">oXygen
+        XML Author</ulink></term>
+
+        <listitem>
+          <para>O'Reilly recommends the oXygen XML Author. Some reasons they list are:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Validation on the fly</para>
+            </listitem>
+
+            <listitem>
+              <para>Built-in SVN client</para>
+            </listitem>
+
+            <listitem>
+              <para>Both text editor and word processing–type views</para>
+            </listitem>
+
+            <listitem>
+              <para>Now supports <ulink role="orm:hideurl"
+              url="http://www.oxygenxml.com/xinclude_support.html"><literal>XInclude</literal>s</ulink>
+              by default</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><ulink url="http://www.xmlmind.com/xmleditor/">XMLmind XML
+        Editor (XXE)</ulink></term>
+
+        <listitem>
+          <para>The production editors at O’Reilly continue to favor XXE for
+          its word processor–like interface and ease of use. Some of the
+          advantages of using XXE include:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Validation on the fly</para>
+            </listitem>
+
+            <listitem>
+              <para>GUI interface is similar to other popular word-processing
+              programs</para>
+            </listitem>
+
+            <listitem>
+              <para>O’Reilly-customized CSS and keyboard shortcuts, which may
+              enhance the manuscript writing process</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>More details on using XXE can be found in O’Reilly’s “XXE
+          Tutorial” (<filename
+          role="keep-together">xxe_tutorial.pdf</filename>).<remark> [Add a
+          link to this document once it’s live.]</remark></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><ulink url="http://www.pinkjuice.com/howto/vimxml/">Vim with key
+        bindings</ulink></term>
+
+        <listitem>
+          <para>The <ulink url="http://www.pinkjuice.com/howto/vimxml/">“Vim
+          as XML Editor” tutorial</ulink> helps you customize <ulink
+          url="http://www.vim.org/">Vim</ulink> so it can function as an XML
+          editor. Vim lets you map keys to execute frequently used key
+          sequences or to invoke functions and commands, which means you can
+          map DocBook element entries to key bindings. The advantages of using
+          Vim with key bindings are that you don’t have to learn a new editor
+          if you already know Vim; it’s fast and available for many platforms;
+          and it offers a vast range of functionality for text editing. The
+          disadvantages are that it offers no validation on the fly, no
+          WYSIWYG view, and no tree view. More resources <ulink
+          url="http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_%28Part_1%29">here</ulink>
+          and <ulink
+          url="http://vimdoc.sourceforge.net/htmldoc/map.html">here</ulink>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><ulink url="http://www.thaiopensource.com/nxml-mode/">Emacs nXML
+        mode</ulink></term>
+
+        <listitem>
+          <para>nXML mode is an XML editing module for the Emacs text editor.
+          Like Vim with key bindings, the big advantage is that all your
+          favorite Emacs text editing commands can be used with nXML mode
+          without restriction, saving you from having to learn a new editor.
+          It shares some downsides with Vim: no WYSIWYG view and no tree view.
+          However, nXML does provide a mechanism for <ulink
+          url="http://www.xmlhack.com/read.php?item=2061#id5374822">identifying
+          validity errors</ulink> (though if you’re using
+          <literal>XInclude</literal>s, enabling validation on the fly
+          requires some <ulink
+          url="http://www.xmlhack.com/read.php?item=2061#id5374990">extra
+          config</ulink>) as well as customizable <ulink
+          url="http://www.xmlhack.com/read.php?item=2061#id5374990">syntax
+          highlighting</ulink>. Get more information on nXML mode <ulink
+          url="http://www.emacswiki.org/cgi-bin/wiki?UsingNxmlModeWithDocBook">here</ulink>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The choice of editor is yours, but we urge you to use an XML editor
+    that will help you maintain valid DocBook 4.5 as you go. <ulink
+    url="http://www.sagehill.net/docbookxsl/ToolsSetup.html#Validation">Validation</ulink>
+    is not difficult (see <xref linkend="validating_your_xml" />). Please keep
+    in mind that invalid documents will not be accepted into
+    Production.</para>
+  </sect1>
+
+  <sect1>
+    <title>Will What I See in the XML Editor Mirror the PDF? Other Electronic
+    <phrase role="keep-together">Formats</phrase>?</title>
+
+    <para>DocBook markup specifies the structure and semantics of your
+    document, but not the appearance. DocBook isn’t a WYSIWYG format, so it
+    will display differently in your XML editor than it will after rendering
+    to PDF and other formats downstream. This not only means that fonts and
+    formatting will display differently, but line breaks may differ as
+    well.</para>
+
+    <para>The O’Reilly toolchains that transform your DocBook into its final
+    form (both print and downstream electronic formats) rely on semantic XML
+    tags that you apply to the elements of your text. For PDFs, those tags are
+    processed in combination with <phrase
+    role="keep-together">customized</phrase> XSL-FO stylesheets and a
+    commercial FO to PDF processor to render your content into a PDF. (The
+    XSL-FO stylesheets are similar to a CSS stylesheet for HTML, in that they
+    set up how each element and attribute in your book will look when rendered
+    as a PDF.) See <xref linkend="triggering_pdf_builds" /> for more
+    information. Downstream digital channels (such as <ulink
+    role="orm:hideurl"
+    url="http://my.safaribooksonline.com/?portal=oreilly">Safari Books
+    Online</ulink> and <ulink role="orm:hideurl"
+    url="http://oreilly.com">oreilly.com</ulink>) use the XML tags analogously
+    (but via different toolchains) to transform or render your content for
+    their own presentation formats.</para>
+  </sect1>
+</chapter>

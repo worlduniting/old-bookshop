@@ -1,0 +1,9 @@
+Description:
+    The 'bookshop new' command creates a new Bookshop project with a default
+    directory structure and configuration at the path you specify.
+
+Example:
+    bookshop new ~/Projects/NewBookProject
+
+    This generates a skeletal Bookshop installation in ~/Projects/NewBookProject.
+    See the README in the newly created application to get going.

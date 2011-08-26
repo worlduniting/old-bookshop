@@ -1,0 +1,160 @@
+== Welcome to bookshop
+
+bookShop is an OSS ruby-based framework for docbook toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their DocBook-to-Output flows, by favoring convention over configuration, setting them up with best practices from the get-go.
+
+bookshop hopes to simplify the process by:
+* providing a Ruby Gem to make working with DocBook as easy as 'sudo gem install bookshop'
+* pulling all the DocBook tools together into one place (DocBook DTD, XSL Stylesheets, XSLT Processor, XSL-FO Processor)
+* giving the developer a set of scripts to automate the redundant stuff
+* providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
+* providing an extendable framework for other developers to add their own custom templates (and hopefully provide them for the community)
+
+== Getting Started
+
+Some Useful Links For Docs, Info, Resources to help use use bookshop, or contribute as a developer to this gem.
+
+http://www.delicious.com/blueheadpublishing/bookshop
+
+=== System Requirements
+
+* Ruby v1.8.7 or v1.9.2 http://www.ruby-lang.org/en/downloads/
+* Rubygems v1.3.6 http://docs.rubygems.org/read/chapter/3
+* Java v1.6 http://www.java.com/
+
+=== Install bookshop
+
+    $ sudo gem install bookshop
+
+=== Create a bookshop application
+
+    $ bookshop new name_of_application
+
+	This will create a new bookshop app in /path/to/name_of_application
+	
+* If you can't issue bookshop from your command line, make sure you have included your gems folder in your system $PATH. In unix you can add the following to your .bashrc file in your home folder (this example is for Ubuntu 10.10):
+
+		PATH="$PATH:/var/lib/gems/1.8/bin"
+		export PATH
+
+	
+=== Install the java tools. All of the java tools (.jars, etc) can be found in /tools/java/ in the new application.
+
+* For Mac you should copy the contents of /tools/java/ into your system /Library/Java/Extensions or your user ~/Library/Java/Extensions folder. This is the default location for the Java Classpath
+
+* For *nix systems, you can define your classpath by creating a CLASSPATH variable in your .bashrc (or whatever shell/profile you are using). This example is for Ubuntu 10.10. Make sure to substitute:
+
+		CLASSPATH="/path/to/name_of_application/tools/java/fop.jar:\
+		/path/to/name_of_application/tools/java/avalon-framework-4.2.0.jar:\
+		/path/to/name_of_application/tools/java/xalan.jar:\
+		/path/to/name_of_application/tools/java/batik-all-1.7.jar:\
+		/path/to/name_of_application/tools/java/commons-io-1.3.1.jar:\
+		/path/to/name_of_application/tools/java/commons-logging-1.0.4.jar:\
+		/path/to/name_of_application/tools/java/fop-hyph.jar:\
+		/path/to/name_of_application/tools/java/jai-codec.jar:\
+		/path/to/name_of_application/tools/java/jai_core.jar:\
+		/path/to/name_of_application/tools/java/serializer.jar:\
+		/path/to/name_of_application/tools/java/xercesImpl.jar:\
+		/path/to/name_of_application/tools/java/xml-apis.jar:\
+		/path/to/name_of_application/tools/java/xmlgraphics-commons-1.4.jar"
+		export CLASSPATH
+
+* For Windows systems you can either use Cygwin and follow the directions for *nix systems above, or edit your Classpath via the Control Panel
+
+=== Building Your First Book
+
+To build a pdf format of your book from the docbook source:
+
+    bookshop build pdf
+	
+To build an epub format of your book from the docbook source:
+
+    bookshop build epub
+
+== Getting Help
+
+* Checkout the wiki page which is in development currently for installation help and links to other articles and help content. https://github.com/blueheadpublishing/bookshop/wiki
+
+* bookshop comes with a built in help feature. Simply run 'bookshop --help' from the command line to get list of possible commands to issue including possible options. You can also run 'bookshop COMMAND --help' (where COMMAND is the command you want) to get a list of possible options for that particular command
+
+== Thanks
+
+We would like to thank:
+
+* The Xerces Team
+* The DocBook Team
+* The Ruby/Rubygems Team
+
+== Description of Gem Contents
+
+The basic bookshop gem architecture:
+
+  |-- bin
+  |-- lib
+
+bin
+	command file copied to /usr/bin upon installation (which is then called from the command line)
+	
+lib
+	bookshop gem library files
+
+== Description of bookshop app contents
+
+The default directory structure of a generated bookshop app:
+
+	|-- book
+	|-- builds
+	|   |-- epub
+	|   |-- html
+	|   |-- mobi
+	|	  `-- pdf
+	|-- stylesheets
+	|-- tools
+	|   |-- dtd
+	|   |-- xsl
+	|   `-- java
+
+book
+  Holds all the manuscript DocBook code/files. This is where your master manuscript lives from which everything is built.
+
+builds
+  Holds all the output files built from the DocBook using their specific Stylesheets
+
+builds/epub
+	When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
+
+builds/html
+	When building the html asset, the generated output will reside here.
+	
+build/mobi
+	When building the mobi asset, the generated output will reside here as "book.mobi".
+
+build/pdf
+	When building the pdf book, the generated output will reside here as "book.pdf".
+
+stylesheets
+	Holds the XSL stylesheets for customizing your book output.
+	
+tools
+	Holds the DocBook DTD, DocBook-XSL specs and Java tools which serve as the base for building formats. Customization should not happen here, but rather with the stylesheets in the "stylesheets" folder. Files here should remain largely unchanged unless you know what you are doing.
+	
+== Copyright (MIT-LICENSE)
+
+Copyright (C) 2010, 2011 by BlueHead Publishing LLC (http://blueheadpublishing.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

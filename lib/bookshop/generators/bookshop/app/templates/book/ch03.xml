@@ -1,0 +1,2224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter id="docbook_xml_markup_guidelines">
+  <title>DocBook XML Markup Guidelines</title>
+
+  <para>Here are some general markup guidelines and instructions that you may
+  find helpful while writing your manuscript in DocBook. If you have any
+  questions about what markup to use for a particular element, or whether our
+  toolchain supports a specific type of markup, please contact
+  <email>toolsreq@oreilly.com</email>.</para>
+
+  <sect1 id="keep_it_simple">
+    <title>Keep It Simple</title>
+
+    <para>“Keep it Simple” sounds a bit silly when referring to something as
+    complex as DocBook, but the point here is that even though DocBook offers
+    over 400 elements, you’ll likely need only a fraction of them. For
+    example, you can safely stay away from the <literal moreinfo="none"
+    role="keep-together">confsponsor</literal>, <literal
+    moreinfo="none">msgsub</literal>, and <literal
+    moreinfo="none">seriesvolnums</literal> elements. DocBook is meant to be
+    comprehensive across a universe of technical documentation. We’re only
+    dealing with a subset: content meant for expression in an O’Reilly title.
+    Practically speaking, you’ll mostly use elements very similar to the
+    standard HTML elements, like <literal
+    moreinfo="none">itemizedlist</literal> and <literal
+    moreinfo="none">table</literal>.</para>
+
+    <para><xref linkend="common_elements" /> covers some of the commonly used
+    DocBook elements in O’Reilly books.</para>
+
+    <sidebar>
+      <title>Can I Change the Appearance of Elements in My Book?</title>
+
+      <para>We have developed our series stylesheets according to O’Reilly
+      house style and the design standards for each series. If something isn’t
+      showing up as you’d expect in your PDF, or if you want to know if it’s
+      feasible to make a customization (after consulting with your editor on
+      house style), please contact <email>toolsreq@oreilly.com</email>.</para>
+    </sidebar>
+
+    <sect2>
+      <title>Using Elements Correctly</title>
+
+      <para>For XML to be valid it must not only be well-formed (which means
+      that all the start and end tags match), but also must have all the tags
+      in the proper hierarchy according to the associated DTD (in our case,
+      the DocBook 4.5 DTD). The tag at the top of the hierarchy is called the
+      root element. For a book, <literal
+      moreinfo="none">&lt;book&gt;</literal> would be your root element, which
+      would contain <literal moreinfo="none">&lt;part&gt;</literal> or
+      <literal moreinfo="none">&lt;chapter&gt;</literal> children, for
+      example. Tags like <literal moreinfo="none">&lt;chapter&gt;</literal>
+      must be nested within <literal moreinfo="none">&lt;book&gt;</literal>,
+      and a <literal moreinfo="none">&lt;sect3&gt;</literal> cannot be
+      directly nested within a <literal
+      moreinfo="none">&lt;sect1&gt;</literal>; it would have to be within a
+      <literal moreinfo="none">&lt;sect2&gt;</literal>. Reversed tags or
+      improper nesting will return invalid DocBook files.</para>
+
+      <note>
+        <para>One nice feature of using an XML editor such as XXE is that it
+        will not allow you to move, delete, or add elements in a way that
+        doesn’t follow the DTD hierarchy.</para>
+      </note>
+
+      <sidebar>
+        <title>Tags Versus Elements</title>
+
+        <para>The words “tag” and “element” are sometimes used
+        interchangeably, but there is a distinction. For example,
+        <literal>&lt;chapter&gt;</literal> is a tag that indicates the start
+        of a <literal>chapter</literal> element. For the XML document to be
+        well-formed, it must contain an end tag,
+        <literal>&lt;/chapter&gt;</literal>.</para>
+
+        <para>Some tags are self-contained and stand alone as complete
+        elements, without the need for separate end tags. For example,
+        <literal>&lt;xref linkend="foo" /&gt;</literal> is a self-contained
+        tag—note the <literal>/&gt;</literal> marker that closes it.</para>
+      </sidebar>
+    </sect2>
+
+    <sect2>
+      <title>Sample Markup and PDFs</title>
+
+      <para>This document uses the same DocBook markup as our books, so you
+      can use it as a model for your own manuscript. <xref
+      linkend="common_elements" /> provides a close look at some of the more
+      frequently used elements in O’Reilly books. In addition, please check
+      out some book samples we have posted, which are available at the URL
+      below. Note that we often put a README (text) file in each directory to
+      give you a bit of guidance on what is where, and generally it’s best to
+      take a look at the PDF version for additional commentary before delving
+      into the XML.</para>
+
+      <simplelist>
+        <member><ulink
+        url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/"></ulink></member>
+
+        <member>(username: <literal moreinfo="none">guest</literal>; empty
+        password)</member>
+      </simplelist>
+
+      <note>
+        <para>If the Tools team has already given you SVN credentials
+        (mentioned in <xref linkend="using_an_oreilly_svn_repo" />), you
+        should use those instead of “guest” so that your browser/client
+        doesn’t cache “guest” and later prevent you from accessing your own
+        repo.</para>
+      </note>
+
+      <para>The samples include a standard chapter as well as more complex
+      markup, including:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Markup/rendering for RefEntry material (common in Nutshells
+          and occasionally other series; consult with your editor on whether
+          this applies to your book), found in the
+          <filename>nutshell/</filename> directory</para>
+        </listitem>
+
+        <listitem>
+          <para>Bibliography markup/rendering, in the
+          <filename>bibliography/</filename> directory</para>
+        </listitem>
+
+        <listitem>
+          <para>URL markup/rendering options, in the
+          <filename>urls/</filename> directory</para>
+        </listitem>
+      </itemizedlist>
+
+      <sidebar>
+        <title>The Elements in My PDFs Don’t Look Like the Ones in this
+        Document</title>
+
+        <para>The rendered version of this document is an example of
+        O’Reilly’s Animal Guide series template. You may be working on a book
+        in a different series, such as Theory In Practice, Nutshell, Cookbook,
+        or Pocket Reference. That’s fine—the book’s series doesn’t affect how
+        you write in DocBook. The XML <emphasis>markup</emphasis> you use
+        won’t change, since it’s the underlying series
+        <emphasis>stylesheet</emphasis> that determines how the elements
+        appear in the PDF. You can find more series-specific information and
+        examples in the <filename><ulink role="orm:hideurl:ital"
+        url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/">samples/</ulink></filename>
+        directory.</para>
+      </sidebar>
+    </sect2>
+  </sect1>
+
+  <sect1 id="organizing_files">
+    <title>Organizing Your Files</title>
+
+    <para>As you will see in the <filename moreinfo="none">book.xml</filename>
+    file that O’Reilly provides for you, the book file contains just the book
+    metadata and no actual content. Each chapter is its own full DocBook
+    document with its own <literal moreinfo="none">DOCTYPE</literal>
+    declaration, which makes validation easier.</para>
+
+    <note>
+      <para>This section discusses the files as we structure and name them
+      once they are submitted to Production, but when you are working on them,
+      you can structure and name them in any way that’s convenient for you.
+      All that matters is that you have a valid
+      <filename>book.xml</filename>—whether it’s a monolithic file you edit
+      directly, generate from a custom Makefile, etc.</para>
+    </note>
+
+    <para>Once you check out the template files from your SVN repository (see
+    <xref linkend="docbook_and_subversion" />), you can open the <filename
+    moreinfo="none">ch01.xml</filename> file and begin typing your first
+    paragraph. The basic <ulink
+    url="http://www.docbook.org/tdg/en/html/ch02.html#d0e2566"><literal>DOCTYPE</literal></ulink>
+    and other metadata will already be in the <filename
+    moreinfo="none">book.xml</filename> file for you, so you can concentrate
+    more on writing your book and less on XML markup.</para>
+
+    <sect2 id="adding_chapters_to_the_book">
+      <title>Adding Chapters to the Book</title>
+
+      <para>The <filename>book.xml</filename> file includes information
+      pertaining to which files comprise the book and the order in which they
+      should appear:</para>
+
+      <programlisting>&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"&gt;
+&lt;book&gt;
+&lt;title&gt;Wikipedia: The Missing Manual&lt;/title&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bookinfo.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch00.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch01.xml"/&gt;
+&lt;!-- The rest of the chapter files are listed here --&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch21.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appa.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appb.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appc.xml"/&gt;
+&lt;/book&gt;</programlisting>
+
+      <para>After you complete your first chapter and save it, you can create
+      a new, separate file for Chapter 2, modeled on your Chapter 1 file. Name
+      your new chapter—<filename moreinfo="none">ch02.xml</filename> is
+      O’Reilly’s naming convention—and then reference and include this chapter
+      in the <filename>book.xml</filename> file that is in your book
+      directory, <ulink
+      url="http://www.sagehill.net/docbookxsl/ModularDoc.html#UsingXinclude">using
+      an <literal moreinfo="none">XInclude</literal></ulink> as
+      follows:</para>
+
+      <programlisting>&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch02.xml"/&gt;</programlisting>
+
+      <warning>
+        <para>If your book contains parts, you may need to add files to the
+        appropriate <filename>part<replaceable>N</replaceable>.xml</filename>
+        instead of the <filename>book.xml</filename> file.</para>
+      </warning>
+
+      <para>Other template files, such as <filename>foreword.xml</filename>
+      and <filename>dedication.xml</filename>, can be found in the
+      <filename><ulink role="orm:hideurl:ital"
+      url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/">samples/</ulink></filename>
+      directory mentioned earlier. As you create new chapters and add them to
+      the book file, you’ll build a complete book document that can be
+      published in a variety of formats.</para>
+
+      <note>
+        <para>Chapter openers always start on a righthand page in the PDF.
+        This means the last page of a chapter may be blank.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="using_sect1s_etc">
+      <title>Using sect1s, sect2s, sect3s</title>
+
+      <para>Just as the book is made up of chapters, each chapter is made up
+      of sections (though chapter files do not necessarily use
+      <literal>XIncludes</literal>). Please use <literal>sect1</literal>,
+      <literal>sect2</literal>, and <literal>sect3</literal> elements, rather
+      than <literal>section</literal> elements, to structure your chapter.
+      Typically both <literal>sect1</literal> and <literal>sect2</literal>
+      titles will appear in the TOC.</para>
+
+      <para>The basic chapter structure looks something like this:</para>
+
+      <programlisting>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"&gt;
+&lt;chapter id="chapter_id"&gt;
+  &lt;title&gt;Chapter Title Here&lt;/title&gt;
+  &lt;sect1&gt;
+    &lt;title&gt;Sect1 Title Here&lt;/title&gt;
+    &lt;para&gt;Text goes here...&lt;/para&gt;
+    &lt;sect2&gt;
+      &lt;title&gt;Sect2 Title Here&lt;/title&gt;
+      &lt;para&gt;Text goes here...&lt;/para&gt;
+      &lt;sect3&gt;
+        &lt;title&gt;Sect3 title here&lt;/title&gt;
+        &lt;para&gt;Text goes here...&lt;/para&gt;
+      &lt;/sect3&gt;
+    &lt;/sect2&gt;
+  &lt;/sect1&gt;
+&lt;/chapter&gt;</programlisting>
+
+      <para>Note the <literal>para</literal>s between sections. Per O’Reilly
+      house style, we ask that you don’t add a section directly after the
+      previous section’s title with no <literal>para</literal> or other
+      element in between (though doing so isn’t invalid). In other words,
+      don’t do this:</para>
+
+      <programlisting>&lt;sect1&gt;
+  &lt;title&gt;Sect1 Title Here&lt;/title&gt;
+  &lt;sect2&gt;
+    &lt;title&gt;Sect2 Title Here&lt;/title&gt;
+    &lt;para&gt;Text goes here...&lt;/para&gt;
+  &lt;/sect2&gt;
+&lt;/sect1&gt;</programlisting>
+
+      <note>
+        <para>For a complete list of O’Reilly’s style conventions, including
+        proper heading and title capitalization, consult the <ulink
+        url="http://oreilly.com/oreilly/author/stylesheet.html">O’Reilly
+        Stylesheet and Word List</ulink>. Also keep in mind that except in
+        code listings, there should be no blank or empty lines in your XML
+        documents.</para>
+      </note>
+
+      <sect3>
+        <title>sect4s</title>
+
+        <para>You may also use <literal>sect4</literal>s, although these are
+        much less common in O’Reilly books. The <literal>sect4</literal> title
+        renders inline, with an autogenerated period following it, rather than
+        as a separate heading. Here’s the markup:</para>
+
+        <programlisting>&lt;sect4&gt;
+  &lt;title&gt;Example sect4&lt;/title&gt;
+  &lt;para&gt;This is a paragraph inside a &lt;literal&gt;sect4&lt;/literal&gt;.&lt;/para&gt;
+&lt;/sect4&gt;</programlisting>
+
+        <para>Here’s how it renders:</para>
+
+        <sect4>
+          <title>Example sect4</title>
+
+          <para>This is a paragraph inside a <literal>sect4</literal>.</para>
+        </sect4>
+      </sect3>
+    </sect2>
+
+    <sect2 id="creating_xrefs">
+      <title>Creating Cross-References</title>
+
+      <para>All references to titled block elements and book
+      components—figures, tables, <phrase
+      role="keep-together">examples</phrase>, sections, chapters, parts,
+      etc.—should be marked up as <literal>xref</literal>s, not entered as
+      plain text. <literal>xref</literal> markup will become a live hyperlink
+      to the target in online versions, and will automatically update if you
+      move numbered elements (figures, chapters, etc.) around while editing.
+      To insert an <literal>xref</literal>, follow these steps:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Note the <literal>id</literal> of the element you are
+          referencing. If the element does not have an <literal>id</literal>,
+          you will need to add one. For the book to be valid,
+          <literal>id</literal> attributes must be unique across the entire
+          book, have no spaces, and not start with a number. For example, a
+          figure <literal>id</literal> looks like this:</para>
+
+          <programlisting>&lt;figure id="foo"&gt;</programlisting>
+        </listitem>
+
+        <listitem>
+          <para>Once you have the <literal>id</literal>, you can insert an
+          <literal>xref</literal> element that references it via a
+          <literal>linkend</literal> attribute, like so:</para>
+
+          <programlisting>&lt;xref linkend="foo" /&gt;</programlisting>
+        </listitem>
+      </orderedlist>
+
+      <warning>
+        <para>You cannot use the word “inherit” as an <literal>id</literal>.
+        It won’t render properly in the PDF.</para>
+      </warning>
+
+      <para>The following table shows examples of <literal>xref</literal>
+      markup and rendering for various <phrase
+      role="keep-together">elements</phrase>.</para>
+
+      <informaltable>
+        <tgroup cols="3">
+          <thead>
+            <row>
+              <entry><phrase role="keep-together">Element to be
+              referenced</phrase></entry>
+
+              <entry>xref markup</entry>
+
+              <entry><phrase role="keep-together">xref
+              rendering</phrase></entry>
+            </row>
+          </thead>
+
+          <tbody>
+            <row>
+              <entry><literal>&lt;sect1
+              id="keep_it_simple"&gt;</literal></entry>
+
+              <entry><literal>&lt;xref
+              linkend="keep_it_simple"/&gt;</literal></entry>
+
+              <entry><xref linkend="keep_it_simple" /></entry>
+            </row>
+
+            <row>
+              <entry><literal>&lt;chapter
+              id="setting_up_your_xml_files"&gt;</literal></entry>
+
+              <entry><literal>&lt;xref
+              linkend="setting_up_your_xml_files"/&gt;</literal></entry>
+
+              <entry><xref linkend="setting_up_your_xml_files" /></entry>
+            </row>
+
+            <row>
+              <entry><literal>&lt;figure
+              id="svn_workflow_setup"&gt;</literal></entry>
+
+              <entry><literal>&lt;xref
+              linkend="svn_workflow_setup"/&gt;</literal></entry>
+
+              <entry><xref linkend="svn_workflow_setup" /></entry>
+            </row>
+
+            <row>
+              <entry><literal>&lt;example
+              id="sample_example"&gt;</literal></entry>
+
+              <entry><literal>&lt;xref
+              linkend="sample_example"/&gt;</literal></entry>
+
+              <entry><xref linkend="sample_example" /></entry>
+            </row>
+
+            <row>
+              <entry><literal>&lt;table
+              id="maximum_widths"&gt;</literal></entry>
+
+              <entry><literal>&lt;xref
+              linkend="maximum_widths"/&gt;</literal></entry>
+
+              <entry><xref linkend="maximum_widths" /></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+
+      <para>Note that cross-references to terms in a
+      <filename>glossary.xml</filename> use special markup, not
+      <literal>xref</literal>. See the <ulink role="orm:hideurl:ital"
+      url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/glossary">/samples/glossary/</ulink>
+      dir for details.</para>
+
+      <warning>
+        <para>Do not hardcode titles, labels, or page numbers. All of these
+        elements of the rendered <literal>xref</literal> are autogenerated; if
+        you move the referenced section to another place in the book or reword
+        a title, the cross-ref will automatically update.</para>
+      </warning>
+    </sect2>
+  </sect1>
+
+  <sect1 id="common_elements">
+    <title>Common Elements</title>
+
+    <para>The following sections describe and provide examples of common
+    DocBook elements in O’Reilly books. As mentioned earlier, additional
+    markup samples are available here: <ulink
+    url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/"></ulink></para>
+
+    <sect2>
+      <title>Block Elements Versus Inline Elements</title>
+
+      <para>At the paragraph-level, there are two basic types of
+      elements:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Block elements</term>
+
+          <listitem>
+            <para>Usually presented with a paragraph break before and after
+            them. Block elements may contain character data, inline elements,
+            and possibly other block elements. Examples include paragraphs,
+            lists, sidebars, tables, and block quotations.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Inline elements</term>
+
+          <listitem>
+            <para>Usually distinguished by a font change rather than obvious
+            breaks. Inline elements may contain character data and possibly
+            other inline elements, but never block elements. Examples include
+            cross-references, filenames, commands, and URLs.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <sidebar>
+        <title>Avoid Putting Block Elements in &lt;para&gt;s</title>
+
+        <para>To prevent spacing problems in rendering downstream, we’d prefer
+        that you don’t put any block elements within <literal
+        moreinfo="none">para</literal>s. In other words, block elements should
+        come <emphasis>after</emphasis> the closing
+        <literal>&lt;/para&gt;</literal> tag, not be nested within
+        <literal>&lt;para&gt;</literal> tags. Some of the block elements that
+        we’d like to avoid in <literal moreinfo="none">para</literal>s are the
+        <phrase role="keep-together">following</phrase>:</para>
+
+        <simplelist type="vert">
+          <member><literal moreinfo="none">blockquote</literal></member>
+
+          <member><literal moreinfo="none">calloutlist</literal></member>
+
+          <member><literal moreinfo="none">example</literal></member>
+
+          <member><literal moreinfo="none">figure</literal></member>
+
+          <member><literal moreinfo="none">glosslist</literal></member>
+
+          <member><literal moreinfo="none">informalequation</literal></member>
+
+          <member><literal moreinfo="none">informalexample</literal></member>
+
+          <member><literal moreinfo="none">informalfigure</literal></member>
+
+          <member><literal moreinfo="none">informaltable</literal></member>
+
+          <member><literal moreinfo="none">itemizedlist</literal></member>
+
+          <member><literal moreinfo="none">literallayout</literal></member>
+
+          <member><literal moreinfo="none">mediaobject</literal></member>
+
+          <member><literal moreinfo="none">note</literal></member>
+
+          <member><literal moreinfo="none">orderedlist</literal></member>
+
+          <member><literal moreinfo="none">programlisting</literal></member>
+
+          <member><literal moreinfo="none">screen</literal></member>
+
+          <member><literal moreinfo="none">sidebar</literal></member>
+
+          <member><literal moreinfo="none">simplelist</literal></member>
+
+          <member><literal moreinfo="none">table</literal></member>
+
+          <member><literal moreinfo="none">variablelist</literal></member>
+
+          <member><literal moreinfo="none">warning</literal></member>
+        </simplelist>
+      </sidebar>
+    </sect2>
+
+    <sect2>
+      <title>Inline Font Markup</title>
+
+      <para>Here are the most common inline elements:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term role="plain"><citation>&lt;citation&gt;</citation></term>
+
+          <listitem>
+            <para>Used in cross-reference syntax. Authors can also use this
+            for hardcoded <phrase role="keep-together">cross-</phrase><phrase
+            role="keep-together">references</phrase> to other, non-O’Reilly
+            books. As in, “See <citation>TITLE</citation>, published by
+            <replaceable role="keep-together">publisher</replaceable>”.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><command>&lt;command&gt;</command></term>
+
+          <listitem>
+            <para>An executable program, or the entry a user makes to execute
+            a command. As in, “Compare the two documents with the
+            <command>diff</command> command.”</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><emphasis>&lt;email&gt;</emphasis></term>
+
+          <listitem>
+            <para>An email address, such as
+            <email>example@oreilly.com</email>. (Note that these will become
+            hyperlinks in online versions, so for fake or example addresses,
+            use <literal>&lt;emphasis&gt;</literal> <phrase
+            role="keep-together">instead</phrase>.)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><emphasis>&lt;emphasis&gt;</emphasis></term>
+
+          <listitem>
+            <para>Provided for use where you would traditionally use
+            <emphasis>italics</emphasis> to emphasize a word or phrase.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><emphasis role="bold">&lt;emphasis
+          role="bold"&gt;</emphasis></term>
+
+          <listitem>
+            <para>A general-purpose tag provided for where you would use
+            <emphasis role="bold">bold</emphasis> type to emphasize a word or
+            phrase. (Note that <ulink role="orm:hideurl"
+            url="http://oreilly.com/oreilly/author/stylesheet.html">O’Reilly
+            house style</ulink> prefers italics for emphasis.)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><phrase role="roman">&lt;phrase
+          role="roman"&gt;</phrase></term>
+
+          <listitem>
+            <para>Provided for use within italicized text where you would
+            ordinarily use <phrase role="roman">italics</phrase> to emphasize
+            a word or phrase.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><filename>&lt;filename&gt;</filename></term>
+
+          <listitem>
+            <para>Used for the name of a file, directory, or path (e.g.,
+            <filename>/usr/bin</filename>).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><keycap>&lt;keycap&gt;</keycap></term>
+
+          <listitem>
+            <para>The text printed on a physical key on a computer keyboard
+            (e.g., <keycap>Return</keycap>).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><literal>&lt;literal&gt;</literal></term>
+
+          <listitem>
+            <para>Any stretch of text that must appear in <literal>constant
+            width</literal> font.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term
+          role="plain"><replaceable>&lt;replaceable&gt;</replaceable></term>
+
+          <listitem>
+            <para>Text that should be replaced with user-supplied values or by
+            values determined by context. Appears in <replaceable>constant
+            width italic</replaceable>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><subscript>&lt;subscript&gt;</subscript></term>
+
+          <listitem>
+            <para>A subscript character.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term
+          role="plain"><superscript>&lt;superscript&gt;</superscript></term>
+
+          <listitem>
+            <para>A superscript character.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><emphasis>&lt;ulink
+          url="ulink.org"/&gt;</emphasis></term>
+
+          <listitem>
+            <para>Several styles of <literal>ulink</literal>s and various URL
+            markup/rendering options are supported. See <xref
+            linkend="inserting_hyperlinks" /> for more details. (Note that
+            these will become hyperlinks in online versions, so for fake or
+            example URLs, use <literal>&lt;emphasis&gt;</literal> or
+            <literal>&lt;uri&gt;</literal> instead.)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term role="plain"><userinput>&lt;userinput&gt;</userinput></term>
+
+          <listitem>
+            <para><userinput>Data entered by the user</userinput>, typically
+            at a prompt line. Use with
+            <replaceable>&lt;replaceable&gt;</replaceable> if needed:
+            <userinput>&lt;userinput&gt;&lt;<replaceable>replaceable</replaceable>&gt;&lt;userinput&gt;</userinput></para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <sect3 id="verbatim_caveats">
+        <title>Caveats about inline markup in verbatim environments</title>
+
+        <para>Although inline markup within verbatim blocks
+        (<literal>programlisting</literal>s or <literal>screen</literal>s) is
+        valid DocBook, we ask that you follow some guidelines to prevent
+        rendering problems downstream. When using inline markup on multiple
+        code lines, close it before each linebreak and reopen if continuing on
+        the next line. For example, change this:</para>
+
+        <programlisting>&lt;emphasis role="bold"&gt;    GLuint m_gridTexture;
+    IResourceManager* m_resourceManager;
+&lt;/emphasis&gt;};</programlisting>
+
+        <para>to this:</para>
+
+        <programlisting>&lt;emphasis role="bold"&gt;    GLuint m_gridTexture;&lt;/emphasis&gt;
+&lt;emphasis role="bold"&gt;    IResourceManager* m_resourceManager;&lt;/emphasis&gt;
+};</programlisting>
+
+        <para>To ensure proper rendering, we also ask that you don’t add
+        newlines at the beginning or end of code blocks. This is because
+        <emphasis>all</emphasis> linebreaks and whitespace are preserved in
+        verbatim blocks, including leading and trailing space. For example,
+        the following listing will render with extra blank lines at the top
+        and bottom, because of the linebreaks following the opening
+        <literal>&lt;programlisting&gt;</literal> tag and preceding the
+        closing <literal>&lt;/programlisting&gt;</literal> tag:</para>
+
+        <programlisting>&lt;programlisting&gt;
+CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+locationManager.delegate = self;
+    [locationManager startUpdatingLocation];
+} else {
+    NSLog(@"Location services not enabled.");
+}
+&lt;/programlisting&gt;</programlisting>
+
+        <para>Although we have tools to remove the extraneous whitespace once
+        the files are in Production, we prefer not to run global changes on
+        code content, so it’s best if you avoid adding it in the first place.
+        Mark up the above like this instead:</para>
+
+        <programlisting>&lt;programlisting&gt;CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+locationManager.delegate = self;
+    [locationManager startUpdatingLocation];
+} else {
+    NSLog(@"Location services not enabled.");
+}&lt;/programlisting&gt;</programlisting>
+      </sect3>
+    </sect2>
+
+    <sect2 id="inserting_figures">
+      <title>Figures</title>
+
+      <para>Figures are similar to tables and examples in that they can be
+      either formal or informal. Formal figures have a title (aka caption), an
+      autogenerated numeric label, and (per O’Reilly house style) an explicit
+      cross-reference. Note that you do not need to number the figure in the
+      XML; the O’Reilly stylesheets autogenerate the number in both the figure
+      label and all <literal>xref</literal>s to it. Formal figures are more
+      common than informal figures in O’Reilly books. Unless you have a
+      special reason for using an informal figure (e.g., if it’s impractical
+      for the image to have a title), you should use a formal figure.</para>
+
+      <para>Find more information on how to prepare the image files themselves
+      in the <ulink
+      url="https://prod.oreilly.com/external/illustrations/illustrations_guidelines.html">O’Reilly
+      Media Illustration Guidelines</ulink>.</para>
+
+      <para>Here’s an example of proper <literal>figure</literal>
+      markup:</para>
+
+      <programlisting>&lt;figure id="docbook_duck_fig"&gt;
+&lt;title&gt;The DocBook duck&lt;/title&gt;
+&lt;mediaobject&gt;
+  &lt;imageobject&gt;
+    &lt;imagedata fileref="figs/docbook_duck.png width="4.8in"/&gt;
+  &lt;/imageobject&gt;
+&lt;/mediaobject&gt;
+&lt;/figure&gt;</programlisting>
+
+      <note>
+        <para>If you are working on files from an earlier edition of a book,
+        you may see the more complex figure markup that we use in Production
+        (it includes a second <literal>imageobject</literal>, among other
+        things). For any new figures you add, you can stick with the simpler
+        markup shown here.</para>
+      </note>
+
+      <para><xref linkend="docbook_duck_fig" /> shows how the above markup
+      renders.</para>
+
+      <figure id="docbook_duck_fig">
+        <title>The DocBook duck</title>
+
+        <mediaobject>
+          <imageobject role="web">
+            <imagedata fileref="figs/docbook_duck.png" format="PNG"
+                       width="4.8in" />
+          </imageobject>
+        </mediaobject>
+      </figure>
+
+      <para>The <literal>width</literal> attribute value in the
+      <literal>imagedata</literal> is a quick way to make large images “fit”
+      within the PDF page while you’re writing your manuscript. (Note that
+      this is strictly optional, and for your own convenience; it’s not
+      necessary for Production.) See <xref linkend="scaling_images"
+      xrefstyle="select:nopage" /> next and <xref linkend="inline_graphics" />
+      for more about image sizing.</para>
+
+      <para>Make sure to add your image files to the SVN repo (typically in
+      the <filename>figs/</filename> directory). Then set the
+      <literal>fileref</literal> and <literal>format</literal> attributes in
+      the XML markup so that they match the image file names and types. For
+      example, if an image is named <filename>battery.png</filename> in the
+      repo, it should be referenced in the XML as
+      <filename>battery.png</filename>, not
+      <filename>Battery.png</filename>.</para>
+
+      <para>The <literal>informalfigure</literal> markup is essentially the
+      same as a <literal>figure</literal>, but without the
+      <literal>id</literal> attribute or <literal>title</literal>
+      element.</para>
+
+      <sect3 id="scaling_images">
+        <title>Scaling images</title>
+
+        <para>When your book goes into Production, O’Reilly’s Illustration
+        staff will handle processing the images you submit, including scaling
+        them to the appropriate size. However, for the purposes of generating
+        draft PDF documents, you can scale your images using the <literal
+        moreinfo="none">width</literal> attribute of the <literal
+        moreinfo="none">imagedata</literal> element, which scales the image
+        proportionally to the width value supplied. For example, to set a
+        width of 4.8 inches (the maximum width for Animal Guide books), you’d
+        add a <literal moreinfo="none">width</literal> attribute value of
+        <literal>4.8in</literal>.</para>
+
+        <para><xref linkend="maximum_widths" /> contains a list of maximum
+        widths you can use to scale images to fit your book’s template.</para>
+
+        <table id="maximum_widths">
+          <title>Maximum widths for figures in different book
+          templates</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry>Book series</entry>
+
+                <entry>Maximum width value (in inches)</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>Animal Guide, Cookbook, Theory in Practice</entry>
+
+                <entry><literal>4.8in</literal></entry>
+              </row>
+
+              <row>
+                <entry>Nutshell (and other books with a 6×9 inch trim
+                size)</entry>
+
+                <entry><literal>4.3in</literal></entry>
+              </row>
+
+              <row>
+                <entry>Pocket Reference</entry>
+
+                <entry><literal>2.8in</literal></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <para>For more complete under-the-hood info, see <ulink
+        url="http://www.sagehill.net/docbookxsl/ImageSizing.html">http://www.sagehill.net/docbookxsl/ImageSizing.html</ulink>.
+        (Note that not everything described there will work for O’Reilly’s
+        <phrase role="keep-together">toolchain</phrase>.)</para>
+      </sect3>
+
+      <sect3 id="inline_graphics">
+        <title>Inline graphics</title>
+
+        <para>If you need to add inline graphics (e.g., small icons that are
+        part of the main text) to a file, instead of using
+        <literal>figure</literal> or <literal>informalfigure</literal>, use an
+        <literal>inlinemediaobject</literal> element with the following
+        markup:</para>
+
+        <programlisting>&lt;inlinemediaobject&gt;
+   &lt;imageobject&gt;
+      &lt;imagedata fileref="figs/icons_0501.png" width="0.12in"/&gt;
+   &lt;/imageobject&gt;
+&lt;/inlinemediaobject&gt;</programlisting>
+
+        <para>Although setting the <literal>width</literal> attribute of a
+        <literal>figure</literal> is optional, setting the
+        <literal>width</literal> for a <literal>inlinemediaobject</literal> is
+        required, so that the processor knows how much space to allocate for
+        it. The <literal>width</literal> value of an inline graphic will, of
+        course, be much smaller than that of a figure (e.g.,
+        <literal>width="0.12in"</literal> versus
+        <literal>width="4.8in"</literal>).</para>
+
+        <para>To figure out the width of a graphic (or how much space it may
+        occupy in your PDF), use a web browser, Adobe Acrobat, or any other
+        program that shows you an image or PDF’s dimensions.</para>
+
+        <para>Depending on the surrounding text, you may want to add a space
+        before and after the <literal>inlinemediaobject</literal>. For
+        example, add spaces if it’s between words like “mumble
+        <replaceable>ICON</replaceable> something” but not if it’s punctuated
+        like “mumble (<replaceable>ICON</replaceable>) something.”</para>
+      </sect3>
+
+      <sect3>
+        <title>ASCII art</title>
+
+        <para>ASCII art may be usable, but it does create ambiguities for
+        Tools staff who perform an “intake” on your files when they come into
+        production, as well as the illustrators. Please see detailed
+        guidelines and examples at <ulink
+        url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/ascii_art/">https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/ascii_art/</ulink>.</para>
+      </sect3>
+
+      <sect3>
+        <title>Accessibility</title>
+
+        <para>O’Reilly is committed to making electronic formats of its books
+        accessible to visually impaired readers. EPUB versions of our titles
+        contain alternative text descriptions for images (in the
+        <literal>alt</literal> attribute of <literal>img</literal> elements)
+        whenever possible.</para>
+
+        <para>By default, for formal <literal>figure</literal> elements, we
+        use the contents of the <literal>title</literal> element as the
+        <literal>alt</literal> text. However, you can supply your own custom
+        alt text for a <literal>figure</literal> by adding a
+        <literal>textobject</literal> element as a child of the figure’s
+        <literal>mediaobject</literal>, and enclosing the
+        <literal>alt</literal> text in a <literal>phrase</literal> element.
+        Here’s an example of the markup to use (<xref
+        linkend="figure_with_custom_alt_text" /> shows how it renders):</para>
+
+        <programlisting>&lt;figure id="figure_with_custom_alt_text"&gt;
+   &lt;title&gt;Figure image with custom alt text&lt;/title&gt;
+
+   &lt;mediaobject&gt;
+      &lt;imageobject&gt;
+         &lt;imagedata fileref="figs/universal_design_for_web_applications_cover.png"
+                    width="2.4in"/&gt;
+      &lt;/imageobject&gt;
+
+      &lt;textobject&gt;
+         &lt;phrase&gt;Universal Design for Web Applications Cover&lt;/phrase&gt;
+      &lt;/textobject&gt;
+   &lt;/mediaobject&gt;
+&lt;/figure&gt;</programlisting>
+
+        <figure id="figure_with_custom_alt_text">
+          <title>Figure image with custom alt text</title>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figs/universal_design_for_web_applications_cover.png"
+                         width="2.4in" />
+            </imageobject>
+
+            <textobject>
+              <phrase>Universal Design for Web Applications Cover</phrase>
+            </textobject>
+          </mediaobject>
+        </figure>
+
+        <para>For images you include in your book that do not have
+        <literal>title</literal> elements (e.g.,
+        <literal>informalfigure</literal>s and
+        <literal>inlinemediaobject</literal>s), we highly encourage you to
+        supply your own custom <literal>alt</literal> text in
+        <literal>textobject</literal>s (By default, we use the text “image
+        with no caption” as the <literal>alt</literal> text for
+        <literal>informalfigure</literal>s and leave <literal>alt</literal>
+        attributes empty for <literal>inlinemediaobject</literal>s). <xref
+        linkend="informalfigure_with_textobject" /> and <xref
+        linkend="inlinemediaobject_with_textobject" /> show examples of the
+        markup for an <literal>informalfigure</literal> and
+        <literal>inlinemediaobject</literal> with custom
+        <literal>alt</literal> text.</para>
+
+        <example id="informalfigure_with_textobject">
+          <title>informalfigure with textobject</title>
+
+          <programlisting>&lt;informalfigure id="informalfigure_with_custom_alt_text"&gt;
+   &lt;mediaobject&gt;
+      &lt;imageobject&gt;
+         &lt;imagedata fileref="figs/universal_design_for_web_applications_cover.png"
+                    width="2.4in"/&gt;
+      &lt;/imageobject&gt;
+
+      &lt;textobject&gt;
+         &lt;phrase&gt;Universal Design for Web Applications Cover&lt;/phrase&gt;
+      &lt;/textobject&gt;
+   &lt;/mediaobject&gt;
+&lt;/informalfigure&gt;</programlisting>
+        </example>
+
+        <example id="inlinemediaobject_with_textobject">
+          <title>inlinemediaobject with textobject</title>
+
+          <programlisting>&lt;inlinemediaobject&gt;
+   &lt;imageobject&gt;
+      &lt;imagedata fileref="figs/oreilly_logo.png" width="0.12in"/&gt;
+   &lt;/imageobject&gt;
+   &lt;textobject&gt;
+      &lt;phrase&gt;O’Reilly Media, Inc. logo&lt;/phrase&gt;
+   &lt;/textobject&gt;
+&lt;/inlinemediaobject&gt;</programlisting>
+        </example>
+
+        <tip>
+          <para>For some tips on writing good <literal>alt</literal> text,
+          O’Reilly’s <ulink
+          url="http://oreilly.com/catalog/9780596518745/"><emphasis>Universal
+          Design for Web Applications</emphasis></ulink> is a great resource.
+          In particular, see the section, “Keys to Writing Good Text
+          Alternatives,” which <ulink
+          url="http://my.safaribooksonline.com/9780596155681/keys_to_writing_good_text_alternatives">is
+          available on Safari</ulink>. We’d also be happy to supply you with a
+          PDF or EPUB of the book on request.</para>
+        </tip>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Tables</title>
+
+      <para>There are two main types of tables: formal and informal. If your
+      table requires a description, you expect to refer to it later elsewhere
+      in the text, or it’s especially complex, you probably want to use a
+      <literal>table</literal> element. Otherwise, consider an
+      <literal>informaltable</literal> <phrase
+      role="keep-together">element</phrase>.</para>
+
+      <sect3>
+        <title>Formal tables</title>
+
+        <para>Here’s the markup for a formal <literal>table</literal> with a
+        heading row:</para>
+
+        <programlisting>&lt;table id="example_table"&gt;
+&lt;title&gt;Example formal table&lt;/title&gt;
+  &lt;tgroup&gt;
+    &lt;thead&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Heading1&lt;/entry&gt;
+        &lt;entry&gt;Heading2&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Text1&lt;/entry&gt;
+        &lt;entry&gt;Text2&lt;/entry&gt;
+      &lt;/row&gt;
+      &lt;row&gt;
+        &lt;entry&gt;Text3&lt;/entry&gt;
+        &lt;entry&gt;Text4&lt;/entry&gt;
+      &lt;/row&gt;
+    &lt;/tbody&gt;
+  &lt;/tgroup&gt;
+&lt;/table&gt;</programlisting>
+
+        <para><xref linkend="example_table" /> shows how it renders.</para>
+
+        <table id="example_table">
+          <title>Example formal table</title>
+
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry>Heading1</entry>
+
+                <entry>Heading2</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>Text1</entry>
+
+                <entry>Text2</entry>
+              </row>
+
+              <row>
+                <entry>Text3</entry>
+
+                <entry>Text4</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+
+        <para>The table’s title is different from its heading row
+        (<literal>thead</literal>). The title describes the entire table,
+        while the heading row contains information about each column. A formal
+        table does not always need to have to have a heading row.</para>
+
+        <para>Tables can get <emphasis>much</emphasis> more complex than this
+        example. See <ulink
+        url="http://www.docbook.org/tdg/en/html/table.html">http://www.docbook.org/tdg/en/html/table.html</ulink>
+        for details, though note that not everything discussed there will work
+        with our toolchain or conform to O’Reilly’s house style (check with
+        your editor about the latter).</para>
+      </sect3>
+
+      <sect3>
+        <title>Informal tables</title>
+
+        <para>The markup of an <literal>informaltable</literal> is similar to
+        that of a <literal>table</literal>, but it does not have a
+        <literal>title</literal> or (in most cases) <literal>id</literal>.
+        Here’s an example.</para>
+
+        <informaltable frame="none">
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Text1</entry>
+
+                <entry>Text2</entry>
+              </row>
+
+              <row>
+                <entry>Text3</entry>
+
+                <entry>Text4</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+
+        <para>This particular informal table doesn’t have a heading (no
+        <literal>thead</literal>), but it would be valid to add one. Also, the
+        bottom rule has been suppressed with the use of a
+        <literal>frame="none"</literal> attribute; see the next section for
+        details on table borders.</para>
+
+        <note>
+          <para>Please check with your editor about O’Reilly house style
+          before overriding table defaults, as table markup can be quite
+          labor-intensive for you or Production staff to change back later
+          on.</para>
+        </note>
+      </sect3>
+
+      <sect3>
+        <title>Table frames and border lines</title>
+
+        <para>You can adjust the appearance of the gridlines and borders in
+        <literal>table</literal>s and <literal>informaltable</literal>s. By
+        default, in most series a table will render with a gray bottom border.
+        If you set the <literal>frame</literal> attribute to
+        <literal>all</literal>, all sides will be black. If you set the
+        <literal>frame</literal> to <literal>none</literal>, the bottom rule
+        will be suppressed.</para>
+
+        <para>You can control the interior cell borders by using the
+        <literal>colsep</literal> and <literal>rowsep</literal> attributes on
+        various elements in the table. Use them to toggle on or off borders,
+        either to the right of (in the case of <literal>colsep</literal>) or
+        below (in the case of <literal>rowsep</literal>) the cells in the
+        element’s scope. For both attributes, a value of <literal>1</literal>
+        draws the rule, and a value of <literal>0</literal> suppresses it.
+        These don’t affect the outer table frame, which is controlled by the
+        <literal>frame</literal> attribute.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Lists</title>
+
+      <para>There are four common types of lists. The <ulink
+      url="http://oreilly.com/oreilly/author/stylesheet.html#lists">O’Reilly
+      Stylesheet and Word List</ulink> has more details about when to use
+      them, but here’s the markup and an example of each.</para>
+
+      <sect3>
+        <title>Simple list</title>
+
+        <para>Markup:</para>
+
+        <programlisting>&lt;simplelist&gt;
+  &lt;member&gt;This is a list of several short items.&lt;/member&gt;
+  &lt;member&gt;Usually one or a few words each.&lt;/member&gt;
+&lt;/simplelist&gt;</programlisting>
+
+        <para>Rendering:</para>
+
+        <simplelist>
+          <member>This is a list of several short items.</member>
+
+          <member>Usually one or a few words each.</member>
+        </simplelist>
+      </sect3>
+
+      <sect3>
+        <title>Itemized list</title>
+
+        <para>Markup:</para>
+
+        <programlisting>&lt;itemizedlist&gt;
+  &lt;listitem&gt;&lt;para&gt;This is a list.&lt;/para&gt;&lt;/listitem&gt;
+  &lt;listitem&gt;&lt;para&gt;With bullets.&lt;/para&gt;&lt;/listitem&gt;
+&lt;itemizedlist&gt;</programlisting>
+
+        <para>Rendering:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>This is a list.</para>
+          </listitem>
+
+          <listitem>
+            <para>With bullets.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>In the case of an <literal>itemizedlist</literal> nested in an
+        <literal>itemizedlist</literal>, the child list will use em dashes in
+        place of bullets. If you want to use symbols other than em dashes or
+        bullets, you can set the symbol for an entire
+        <literal>itemizedlist</literal> by using the <literal>mark</literal>
+        attribute, or for a single <literal>listitem</literal> by using the
+        <literal>override</literal> attribute. For instance,
+        <literal>&lt;itemizedlist mark="disc"&gt;</literal> causes an entire
+        list to render with standard bullets.</para>
+
+        <note>
+          <para>Again, check with your editor about O’Reilly house style
+          before changing the defaults.</para>
+        </note>
+
+        <para>Here’s a list of the options:</para>
+
+        <informaltable>
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry>Attribute value</entry>
+
+                <entry>Symbol</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry><literal>none</literal></entry>
+
+                <entry></entry>
+              </row>
+
+              <row>
+                <entry><literal>disc</literal> (or
+                <literal>bullet</literal>)</entry>
+
+                <entry><para>•</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>endash</literal></entry>
+
+                <entry><para>–</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>emdash</literal></entry>
+
+                <entry><para>—</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>square</literal> (or
+                <literal>box</literal>)</entry>
+
+                <entry><para>■</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>smallblacksquare</literal></entry>
+
+                <entry><para>▪</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>circle</literal> (or
+                <literal>opencircle</literal>)</entry>
+
+                <entry><para>○</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>whitesquare</literal></entry>
+
+                <entry><para>□</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>smallwhitesquare</literal></entry>
+
+                <entry><para>▫</para></entry>
+              </row>
+
+              <row>
+                <entry><literal>round</literal> (or
+                <literal>blackcircle</literal>)</entry>
+
+                <entry><para>●</para></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Ordered list</title>
+
+        <para>Markup:</para>
+
+        <programlisting>&lt;orderedlist&gt;
+  &lt;listitem&gt;&lt;para&gt;This list uses numbers.&lt;/para&gt;&lt;/listitem&gt;
+  &lt;listitem&gt;&lt;para&gt;Instead of bullets.&lt;/para&gt;&lt;/listitem&gt;
+&lt;orderedlist&gt;</programlisting>
+
+        <para>Rendering:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>This list uses numbers.</para>
+          </listitem>
+
+          <listitem>
+            <para>Instead of bullets.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>To continue the numbering of an <literal>orderedlist</literal>
+        from a previous list, use a <literal
+        role="keep-together">continuation</literal> attribute with a value of
+        <literal>continues</literal>:</para>
+
+        <programlisting>&lt;orderedlist continuation="continues"&gt;</programlisting>
+
+        <?dbfo-need height=”1in”
+?>
+
+        <para>If an <literal>orderedlist</literal> has other lists nested
+        within it, this may cause <literal>&lt;orderedlist
+        contin⁠uation="continues"&gt;</literal> to start on the wrong number.
+        In these cases, add an <literal>override</literal> attribute value of
+        the number you’d like the <literal>listitem</literal> to start at on
+        the misnumbered <literal>listitem</literal>. Your continued
+        <literal>orderedlist</literal> should then begin on the correct
+        number.</para>
+
+        <para>The default (<literal>continuation="restarts"</literal>) causes
+        the numbering to begin at 1.</para>
+      </sect3>
+
+      <sect3>
+        <title>Variable list</title>
+
+        <para>A variable list is usually made up of pairs of items.</para>
+
+        <para>Markup:</para>
+
+        <programlisting>&lt;variablelist&gt;
+  &lt;varlistentry&gt;
+    &lt;term&gt;The first part could be a term&lt;/term&gt;
+    &lt;listitem&gt;&lt;para&gt;Followed by a definition.&lt;/para&gt;&lt;/listitem&gt;
+  &lt;/varlistentry&gt;
+  &lt;varlistentry&gt;
+    &lt;term&gt;Or a name&lt;/term&gt;
+    &lt;listitem&gt;&lt;para&gt;Followed by a description. Etc.&lt;/para&gt;&lt;/listitem&gt;
+  &lt;/varlistentry&gt;
+&lt;/variablelist&gt;</programlisting>
+
+        <para>Rendering:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>The first part could be a term</term>
+
+            <listitem>
+              <para>Followed by a definition.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Or a name</term>
+
+            <listitem>
+              <para>Followed by a description. Etc.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>By default, the variable list <literal>term</literal> will
+        render in italics. To remove the italics, add a
+        <literal>role</literal> attribute of <literal>plain</literal>:</para>
+
+        <programlisting>&lt;term role="plain"&gt;Variable list term&lt;/term&gt;</programlisting>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Notes, Warnings, and Sidebars</title>
+
+      <para>You have the option of these three different block elements for
+      supplemental information. Their use is fairly straightforward.</para>
+
+      <note>
+        <para>Use <literal>note</literal> instead of
+        <literal>tip</literal>.</para>
+      </note>
+
+      <warning>
+        <para>Use <literal>warning</literal> instead of
+        <literal>caution</literal>.</para>
+      </warning>
+
+      <para>Notes and warnings can contain <literal>para</literal>s,
+      <literal>programlisting</literal>s, and lists. They should
+      <emphasis>not</emphasis> contain figures, tables, or examples.</para>
+
+      <sidebar>
+        <title>When to Use a Sidebar?</title>
+
+        <para>If a note or a warning covers a lot of information or includes
+        complex elements, consider changing it to a sidebar. A sidebar can be
+        much longer—even spanning several <phrase
+        role="keep-together">pages—</phrase>and must have a title. It can
+        contain tables and examples, but per house style it should not contain
+        figures.</para>
+      </sidebar>
+
+      <note>
+        <para>The elements described in this section render differently
+        according to the series stylesheet. For example, in Animal Guide
+        books, a <literal>note</literal> generates a paw print icon and a
+        <literal>warning</literal> generates a bear trap icon; in Theory In
+        Practice books, these elements generate the text “NOTE” or “WARNING”.
+        In Animal Guide books, sidebars appear in a box; in Theory In Practice
+        books, sidebars have a top and bottom rule but no side rules.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="inserting_hyperlinks">
+      <title>Hyperlinks</title>
+
+      <para>The element for URLs is <literal>ulink</literal>. Here are the
+      traditional markup options:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>No CDATA</term>
+
+          <listitem>
+            <programlisting>&lt;ulink url="http://www.oreilly.com"/&gt;</programlisting>
+
+            <para>Looks like: <ulink
+            url="http://www.oreilly.com"></ulink></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>With CDATA different from <literal>url</literal></term>
+
+          <listitem>
+            <programlisting>&lt;ulink url="http://www.oreilly.com"&gt;O'Reilly&lt;/ulink&gt;</programlisting>
+
+            <para>Looks like: <ulink
+            url="http://www.oreilly.com">O’Reilly</ulink></para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><literal>ulink</literal>s render differently in the print and web
+      PDFs (see <xref linkend="web_pdfs" />). Suppose you have markup like the
+      following:</para>
+
+      <programlisting>&lt;para&gt;&lt;ulink url="http://www.macports.org"&gt;MacPorts&lt;/ulink&gt; is a great tool for 
+installing open source software on OS X.&lt;/para&gt;</programlisting>
+
+      <para>In the print book, the URL will render in parentheses following
+      the text “MacPorts”, like so:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject role="web">
+            <imagedata fileref="figs/hyperlink_print.png" format="PNG"
+                       scale="55" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>In the web PDF (i.e., the online PDF we sell on <ulink
+      role="orm:hideurl" url="http://www.oreilly.com">oreilly.com</ulink>),
+      the hyperlink will be clickable and display in blue, like so:</para>
+
+      <informalfigure>
+        <mediaobject>
+          <imageobject role="web">
+            <imagedata fileref="figs/hyperlink_web.png" format="PNG"
+                       scale="55" />
+          </imageobject>
+        </mediaobject>
+      </informalfigure>
+
+      <para>When you create <literal>ulink</literal>s, make sure the
+      <literal>url</literal> attribute contains a full URL, including the
+      protocol—e.g., <emphasis>http://www.macports.org</emphasis> instead of
+      <emphasis>www.macports.org</emphasis>. This is important because the URL
+      is not actually valid without the protocol: while many browsers are
+      smart enough to silently add it for you, readers trying to follow a link
+      to it downstream may get an error.</para>
+
+      <note>
+        <para>Don’t use <literal>&lt;ulink&gt;</literal> markup for fake or
+        example URLs, as the hyperlinks may confuse readers (and
+        link-harvesting tools that may be used on your content downstream).
+        Instead, use <literal>&lt;emphasis&gt;</literal> or
+        <literal>&lt;uri&gt;</literal> as semantically appropriate.</para>
+      </note>
+
+      <sect3>
+        <title>Additional ulink rendering</title>
+
+        <para>Recent updates to the O’Reilly stylesheets allow you to mark up
+        <literal>ulink</literal>s so that they render in several additional
+        ways for web and print PDFs. To see what these options look like and
+        get markup examples, see the samples <ulink
+        url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/urls/">here</ulink>.
+        The default rendering is demonstrated in
+        <filename>web_default.pdf</filename> and
+        <filename>print_default.pdf</filename>.</para>
+
+        <para>Two other rendering options—the option to hide URLs globally or
+        to have them appear in footnotes—are shown in
+        <filename>print_globalhide.pdf</filename> and
+        <filename>print_usefootnotes.pdf</filename>. To make use of these,
+        send a request to <email>toolsreq@oreilly.com</email> and we’ll set up
+        the stylesheet parameter for you. Note that if we do that, all URLs
+        throughout the book will be <phrase
+        role="keep-together">affected</phrase>; we can’t set up URL footnote
+        rendering for a single chapter or section.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Footnotes</title>
+
+      <para>A <literal>footnote</literal> generates a superscript symbol
+      wherever it is placed in the text, and the body of the footnote appears
+      at the bottom of the page. The symbols are generated in a five-symbol
+      cycle, starting over at the beginning of each chapter. So the first
+      symbol in a chapter is always an asterisk,<footnote>
+          <para>Asterisk</para>
+        </footnote> and the rest occur like so: dagger,<footnote>
+          <para>Dagger</para>
+        </footnote> double dagger,<footnote>
+          <para>Double dagger</para>
+        </footnote> section sign,<footnote>
+          <para>Section sign</para>
+        </footnote> vertical lines,<footnote>
+          <para>Vertical lines</para>
+        </footnote> pound sign.<footnote>
+          <para>Pound sign</para>
+        </footnote></para>
+
+      <para>Table footnotes are lettered (a, b, c, etc.) and appear directly
+      after the table (not at the bottom of the page). For example:</para>
+
+      <informaltable frame="none">
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Here is some text.<footnote>
+                  <para>Here’s a table footnote.</para>
+                </footnote></entry>
+
+              <entry>A bit more text.</entry>
+            </row>
+
+            <row>
+              <entry>This is text.</entry>
+
+              <entry>You get the idea.<footnote>
+                  <para>Here’s another.</para>
+                </footnote></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+
+      <para>Footnotes should generally be inserted <emphasis>after</emphasis>
+      punctuation, whether a period, comma, or colon. See the <ulink
+      url="http://oreilly.com/oreilly/author/stylesheet.html#footnotes">O’Reilly
+      Stylesheet and Word List</ulink> for guidelines.</para>
+
+      <para>We may be able to support the use of numbered footnotes via a
+      stylesheet customization; please check with your editor if this is
+      appropriate for your book.</para>
+    </sect2>
+
+    <sect2>
+      <title>Index Tags</title>
+
+      <para>O’Reilly provides professional indexing as a normal part of book
+      production, but if for some reason you’d like to add index markers in
+      your book, this section covers the proper markup. See O’Reilly’s <ulink
+      url="https://prod.oreilly.com/external/tools/docbook/docs/authoring/other_info/docbook_indexing_guidelines.txt">DocBook
+      Indexing Guidelines</ulink> for complete details.</para>
+
+      <para>To see the index in your PDF, add a line that says
+      <literal>&lt;index/&gt;</literal> to your <filename>book.xml</filename>
+      file before the closing <literal>&lt;/book&gt;</literal> tag, like
+      so:</para>
+
+      <programlisting>&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" 
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"&gt;
+&lt;book&gt;
+&lt;title&gt;Wikipedia: The Missing Manual&lt;/title&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="bookinfo.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch00.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch01.xml"/&gt;
+&lt;!-- The rest of the chapter files are listed here --&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="ch21.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appa.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appb.xml"/&gt;
+&lt;xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="appc.xml"/&gt;
+&lt;index/&gt;
+&lt;/book&gt;</programlisting>
+
+      <para>It’s also useful if you add a <literal>&lt;remark&gt;</literal> in
+      <filename>book.xml</filename> (see <xref linkend="adding_comments" />)
+      explaining to Production whether you’re adding a few terms that you’d
+      like the indexer to incorporate, or whether this should be used as the
+      book’s complete index. Discuss these options with your editor
+      first.</para>
+
+      <para>Here’s the basic index entry markup:</para>
+
+      <programlisting>&lt;indexterm&gt;&lt;primary&gt;index entry syntax, level 1&lt;/primary&gt;&lt;/indexterm&gt;</programlisting>
+
+      <para>Secondary entry (subentry) markup:</para>
+
+      <programlisting>&lt;indexterm&gt;
+    &lt;primary&gt;index entry syntax&lt;/primary&gt;
+    &lt;secondary&gt;for a subentry&lt;/secondary&gt;
+&lt;/indexterm&gt;</programlisting>
+
+      <para>Tertiary entry (sub-subentry) markup:</para>
+
+      <programlisting>&lt;indexterm&gt;
+    &lt;primary&gt;index entry syntax&lt;/primary&gt;
+    &lt;secondary&gt;for a subentry&lt;/secondary&gt;
+    &lt;tertiary&gt;with a subentry&lt;/tertiary&gt;
+&lt;/indexterm&gt;</programlisting>
+
+      <para>Index entry with a range markup:</para>
+
+      <programlisting>This book is full of geeky text with DocBook XML markup, which starts here:
+&lt;indexterm class="startofrange" id="geekytext"&gt;
+&lt;primary&gt;geeky DocBook XML text&lt;/primary&gt;&lt;/indexterm&gt;blah blah blah Ajax
+blah blah blah Ruby on Rails
+...
+and ends here&lt;indexterm class="endofrange" startref="geekytext"&gt;.</programlisting>
+
+      <note>
+        <para>The ending <literal>indexterm</literal> tag does not contain a
+        <literal>primary</literal> or <literal>secondary</literal> entry, just
+        a <literal>startref</literal> attribute that references the starting
+        <literal>indexterm</literal> entry. Do not place the ending tag on its
+        own line or the FO processor will add a blank line to the PDF.</para>
+      </note>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Expressing Code in DocBook</title>
+
+    <para>In general, code blocks should be enclosed inside <literal
+    moreinfo="none">programlisting</literal> elements, which may in turn be
+    inside of <literal moreinfo="none">example</literal> elements (see the
+    next section for more info). <literal
+    moreinfo="none">programlisting</literal>s are verbatim environments, which
+    means whitespace will be preserved. But you must either escape all
+    characters that have special meaning in XML (such as <literal
+    moreinfo="none">&lt;</literal> and <literal
+    moreinfo="none">&gt;</literal>), or use a <literal>CDATA</literal>
+    block.<footnote>
+        <para>You can use a <literal moreinfo="none">CDATA</literal> section
+        as long as you don’t need inline markup within the code (see <xref
+        linkend="verbatim_caveats" />). In a <literal
+        moreinfo="none">CDATA</literal> section, any text between <literal
+        moreinfo="none" role="keep-together">&lt;![CDATA[</literal> and
+        <literal moreinfo="none">]]&gt;</literal> is ignored by the XML
+        parser. You can’t use <literal moreinfo="none">CDATA</literal>
+        sections if you’re using the XMLmind editor, but on the other hand,
+        you don’t need to worry about escaping special characters (as XXE
+        takes care of that for you), which is probably the better end of the
+        bargain.</para>
+      </footnote> These obviously come up quite a bit in code, like <literal
+    moreinfo="none">x &lt;= 1</literal>.</para>
+
+    <para>If you want to manage your code in files separate from the
+    manuscript, you can use <literal moreinfo="none">XInclude</literal>
+    sections to point to your code files (O’Reilly also uses <literal
+    moreinfo="none">XInclude</literal>s to organize the
+    <filename>book.xml</filename>, as described in <xref
+    linkend="organizing_files" />). In an <literal
+    moreinfo="none">XInclude</literal> section, the code blocks are referenced
+    in <literal moreinfo="none">&lt;xi:include&gt;</literal>s and are ignored
+    by the XML parser (they’re not dropped or anything, but the parser doesn’t
+    try to interpret them as XML, as long as you include the
+    <literal>parse="text"</literal> attribute):</para>
+
+    <programlisting format="linespecific">&lt;programlisting&gt;
+&lt;xi:include 
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  parse="text" href="hello.c" /&gt;
+&lt;/programlisting&gt;</programlisting>
+
+    <sect2>
+      <title>Examples and programlistings</title>
+
+      <para>The <literal>example</literal> element is intended for larger
+      blocks of code for which you want to have a title, a number, and an
+      explicit cross-reference. <xref linkend="sample_example" /> shows a very
+      basic one.</para>
+
+      <example id="sample_example">
+        <title>Sample example</title>
+
+        <programlisting>&lt;!-- Code Goes Here --&gt;</programlisting>
+      </example>
+
+      <para>Sometimes your code listings are more informal, just two- or
+      three-line snippets that don’t require a title or cross-ref. For
+      runnable code that fits this description, just use a
+      <literal>programlisting</literal>.</para>
+
+      <para>Another option is a <literal>screen</literal>, although this
+      element is less frequently used and is more specifically intended to
+      display the output of a command rather than runnable code.</para>
+
+      <note>
+        <para>An <literal>informalexample</literal> element exists as well,
+        but it’s usually not needed. A <literal
+        role="keep-together">programlisting</literal> or a
+        <literal>screen</literal> should suffice for standard code
+        listings.</para>
+      </note>
+
+      <sidebar>
+        <title>Characters Per Code Line Limitations</title>
+
+        <para>The maximum number of characters per line of code varies
+        according to book series and where the code is positioned
+        hierarchically (i.e., the nesting level in the DocBook markup). The
+        following table lists the most common cases for each series.</para>
+
+        <note>
+          <para>Please keep in mind that these are just the
+          <emphasis>maximum</emphasis> characters <phrase
+          role="keep-together">allowed</phrase>. You should review your PDFs
+          and make your own judgments about the best way to present code
+          blocks to the reader.</para>
+        </note>
+
+        <informaltable>
+          <tgroup cols="5">
+            <colspec colname="col1" colnum="1" />
+
+            <colspec colname="col2" colnum="2" />
+
+            <colspec colname="col3" colnum="3" />
+
+            <colspec colname="col4" colnum="4" />
+
+            <colspec colname="col5" colnum="5" />
+
+            <thead>
+              <row>
+                <entry>Series</entry>
+
+                <entry>Body (top-level code)</entry>
+
+                <entry>Examples</entry>
+
+                <entry>Lists</entry>
+
+                <entry>Sidebars/notes/warnings</entry>
+              </row>
+            </thead>
+
+            <tbody>
+              <row>
+                <entry>Animal or Cookbook</entry>
+
+                <entry>85</entry>
+
+                <entry>90</entry>
+
+                <entry>80</entry>
+
+                <entry>80</entry>
+              </row>
+
+              <row>
+                <entry>Small Animal (6x9)</entry>
+
+                <entry>76</entry>
+
+                <entry>80</entry>
+
+                <entry>72</entry>
+
+                <entry>70</entry>
+              </row>
+
+              <row>
+                <entry>Theory in Practice</entry>
+
+                <entry>85</entry>
+
+                <entry>90</entry>
+
+                <entry>80</entry>
+
+                <entry>72</entry>
+              </row>
+
+              <row>
+                <entry>Nutshell</entry>
+
+                <entry>76</entry>
+
+                <entry>80</entry>
+
+                <entry>72</entry>
+
+                <entry>66</entry>
+              </row>
+
+              <row>
+                <entry>Pocket Reference</entry>
+
+                <entry>58</entry>
+
+                <entry>62</entry>
+
+                <entry>53</entry>
+
+                <entry>48</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+
+        <para>Rendered examples of the above are located here:</para>
+
+        <simplelist>
+          <member><ulink
+          url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/code_lengths"></ulink></member>
+        </simplelist>
+
+        <para>Please rebreak any code lines that exceed the maximum number of
+        characters; otherwise, the code will run into the margin in your PDFs,
+        which is unacceptable for print. It’s best to fix long code lines in
+        the manuscript stage, while you still have access to the source;
+        making such edits during Production is much more cumbersome for
+        everyone involved.</para>
+
+        <para>To align or indent within your code, remember to use spaces,
+        never tabs, because tabs don’t always translate to the same amount of
+        space on different systems.</para>
+      </sidebar>
+    </sect2>
+
+    <sect2>
+      <title>Annotating Your Code in DocBook</title>
+
+      <para>O’Reilly’s stylesheets support two different types of inline
+      DocBook markup for annotating code blocks in <literal
+      moreinfo="none">programlisting</literal> elements: line annotations and
+      callouts. Here’s some more information on each. For more details, you
+      may want to see <ulink
+      url="http://www.sagehill.net/docbookxsl/AnnotateListing.html"></ulink>.</para>
+
+      <sect3>
+        <title>Using line annotations in programlistings</title>
+
+        <para>You can add <literal moreinfo="none">lineannotation</literal>
+        elements in <literal moreinfo="none">programlisting</literal> elements
+        to place annotations adjacent to your code lines. Here’s an example of
+        a <literal moreinfo="none">programlisting</literal> that contains line
+        annotations:</para>
+
+        <programlisting format="linespecific">&lt;programlisting&gt; <lineannotation>The opening tag for a programlisting element.</lineannotation>
+&lt;xi:include <lineannotation>An xinclude</lineannotation>
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  parse="text" href="hello.c" /&gt;
+&lt;/programlisting&gt; <lineannotation>The closing tag for a programlisting element.</lineannotation></programlisting>
+
+        <para>O’Reilly’s stylesheets will, by default, render the <literal
+        moreinfo="none">lineannotation</literal> elements in italic, but not
+        constant width.</para>
+      </sect3>
+
+      <sect3>
+        <title>Using callouts in programlistings</title>
+
+        <para>If you want to have cross-references to specific lines of code
+        outside your <literal moreinfo="none">programlisting</literal>s—for
+        example, in discussion text following the code—you can use callouts to
+        achieve this effect. To add callouts, you need to add <literal
+        moreinfo="none">co</literal> elements to <literal
+        moreinfo="none">programlisting</literal>s, which add callout markers
+        inline in code. Then you need to create a <literal
+        moreinfo="none">calloutlist</literal> element, which includes a set of
+        <literal moreinfo="none">callout</literal> elements that include the
+        explanation text. Here’s the example from before, reconfigured to use
+        callouts instead of line annotations:</para>
+
+        <programlisting format="linespecific">&lt;programlisting&gt; <co
+            id="opening_tag_co" linkends="opening_tag" />
+&lt;xi:include <co id="xinclude_co" linkends="xinclude" /> 
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  parse="text" href="hello.c" /&gt;
+&lt;/programlisting&gt; <co id="closing_tag_co" linkends="closing_tag" /></programlisting>
+
+        <calloutlist>
+          <callout arearefs="opening_tag_co" id="opening_tag">
+            <para>The opening tag for a <literal>programlisting</literal>
+            element.</para>
+          </callout>
+
+          <callout arearefs="xinclude_co" id="xinclude">
+            <para>An <literal>XInclude</literal>.</para>
+          </callout>
+
+          <callout arearefs="closing_tag_co" id="closing_tag">
+            <para>The closing tag for a <literal>programlisting</literal>
+            element.</para>
+          </callout>
+        </calloutlist>
+
+        <para>Each <literal moreinfo="none">co</literal> element above
+        includes an optional <literal moreinfo="none">linkends</literal>
+        attribute that points at the <literal
+        moreinfo="none">callout</literal> elements that refer to it, forming a
+        link between the callout marker and the callout text. Conversely, each
+        <literal moreinfo="none">callout</literal> element requires an
+        <literal moreinfo="none">arearefs</literal> attribute that points at
+        the <literal moreinfo="none">co</literal> elements it refers to,
+        forming a link between the callout and the callout marker.</para>
+
+        <para>The callout markers in both the code and the callout list will
+        be rendered as clickable bidirectional cross-references if you use the
+        markup above.</para>
+
+        <note>
+          <para>We have a hack for using callouts with XIncluded code, which
+          you can find at <ulink role="orm:hideurl:ital"
+          url="https://prod.oreilly.com/external/tools/docbook/prod/trunk/samples/r_and_d/xincludes_and_callouts/">samples/r_and_d/xincludes_and_callouts/</ulink>.</para>
+        </note>
+
+        <para>Optionally, you may include multiple <literal>arearefs</literal>
+        in a single <literal>callout</literal>. To get the little black number
+        icons to render on one line—instead of stacked vertically—add the
+        processing instruction <literal>&lt;?dbfo
+        label-width="<replaceable>N</replaceable>pc"?&gt;</literal> to the
+        beginning of the <literal>calloutlist</literal>. Replace
+        <replaceable>N</replaceable> with the width of the icon column
+        according to how many icons you need to make room for:
+        <literal>1.75pc</literal> works for two icons,
+        <literal>2.5pc</literal> works for three, etc. (You can also replace
+        <literal>pc</literal> with <literal>in</literal>,
+        <literal>pt</literal>, or other standard units.) Here’s an example of
+        two icons on a single line:</para>
+
+        <screen>&lt;programlisting&gt; <co id="opening_tag_co2"
+            linkends="opening_closing_tag2" />
+&lt;xi:include <co id="xinclude_co2" linkends="xinclude2" /> 
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  parse="text" href="hello.c" /&gt;
+&lt;/programlisting&gt; <co id="closing_tag_co2"
+            linkends="opening_closing_tag2" /></screen>
+
+        <calloutlist>
+          <?dbfo label-width="1.75pc"?>
+
+          <callout arearefs="opening_tag_co2 closing_tag_co2"
+                   id="opening_closing_tag2">
+            <para>The opening and closing tags for a
+            <literal>programlisting</literal> element.</para>
+          </callout>
+
+          <callout arearefs="xinclude_co2" id="xinclude2">
+            <para>An <literal>XInclude</literal>.</para>
+          </callout>
+        </calloutlist>
+
+        <para>The markup for the above looks like this:</para>
+
+        <programlisting>&lt;screen&gt;&amp;lt;programlisting&amp;gt; &lt;co id="opening_tag_co2" 
+  linkends="opening_closing_tag2"/&gt;
+&amp;lt;xi:include &lt;co id="xinclude_co2" linkends="xinclude2"/&gt; 
+  xmlns:xi="http://www.w3.org/2001/XInclude" 
+  parse="text" href="hello.c" /&amp;gt;
+&amp;lt;/programlisting&amp;gt; &lt;co id="closing_tag_co2" linkends="opening_closing_tag2"/&gt;
+&lt;/screen&gt;
+
+&lt;calloutlist&gt;
+&lt;?dbfo label-width="2.5pc"?&gt;
+&lt;callout arearefs="opening_tag_co2 closing_tag_co2" id="opening_closing_tag2"&gt;
+&lt;para&gt;The opening and closing tags for a &lt;literal&gt;programlisting&lt;/literal&gt;
+element.&lt;/para&gt;
+&lt;/callout&gt;
+
+&lt;callout arearefs="xinclude_co2" id="xinclude_co2"&gt;
+&lt;para&gt;An &lt;literal&gt;XInclude&lt;/literal&gt;.&lt;/para&gt;
+&lt;/callout&gt;
+&lt;/calloutlist&gt;</programlisting>
+
+        <para>Note that the first and third <literal>co</literal> elements,
+        which both link to the first <literal>callout</literal>, have
+        <literal>linkends</literal> that match the
+        <literal>callout</literal>’s ID:
+        <literal>opening_closing_tag2</literal>.</para>
+
+        <para>For more information on DocBook callout markup, see <ulink
+        url="http://www.sagehill.net/docbookxsl/AnnotateListing.html#Callouts"></ulink>.
+        However, please note that our toolchain does not support <literal
+        moreinfo="none">areaspec</literal>/<literal
+        moreinfo="none">area</literal>/<literal
+        moreinfo="none">areaset</literal> elements to specify regions for
+        callouts.</para>
+      </sect3>
+
+      <sect3>
+        <title>Other ways of annotating code</title>
+
+        <para>Although DocBook XML includes markup for adding line numbering
+        to <literal moreinfo="none">programlisting</literal> elements,
+        O’Reilly’s toolchain doesn’t support rendering of line numbers in this
+        way. They don’t allow for good cross-referencing and can potentially
+        cause problems when code is revised. For example, let’s say you used
+        line numbering, and then in the text below you reference something in
+        line 17. But then, later in the process, a tech reviewer notes a bug
+        in lines 14–16, and you decide you don’t need those lines anyway, so
+        you delete them. Line 17 then becomes line 14, so you’d have to change
+        that reference in the text below, which is easy to overlook and is
+        unlikely to be caught in production.</para>
+
+        <para>If you want to cross-reference code blocks by line number, we
+        recommend using <phrase role="keep-together">callouts</phrase>
+        instead; they are autonumbered and will adjust automatically if you
+        shift code lines around.</para>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="unicode">
+    <title>Unicode for Special Characters</title>
+
+    <para>For special or nonstandard keyboard characters, use Unicode. The
+    following table provides the values for some common characters; for all
+    others, use the <ulink
+    url="http://www.fileformat.info/info/unicode/char/search.htm">Unicode
+    Char⁠acter Search</ulink> (but keep in mind that we may not have fonts for
+    more exotic characters; send email to <email>toolsreq@oreilly.com</email>
+    if you have questions). If you’re using XMLmind with the ORM XXE
+    Customizations file, most of these characters have shortcuts, and others
+    are available via the Characters panel.</para>
+
+    <para>To add a Unicode character directly to XML in a text editor, use the
+    entity <literal>&amp;#x<replaceable>CODEPOINT</replaceable>;</literal>,
+    where <replaceable>CODEPOINT</replaceable> is the four-digit hexadecimal
+    number after U+ (e.g., for <phrase role="keep-together">U+20A0</phrase>,
+    enter <literal>&amp;#x20A0;</literal>). Letters that are part of the
+    codepoint may be entered as either upper- or lowercase (i.e.,
+    <literal>&amp;#x03bb;</literal> is the same as
+    <literal>&amp;#x03BB;</literal>), but the <literal>x</literal> between the
+    <literal>#</literal> symbol and the codepoint must be lowercase.</para>
+
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>Character</entry>
+
+            <entry>Unicode value (hexadecimal codepoint)</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>— (Em Dash)</entry>
+
+            <entry>U+2014</entry>
+          </row>
+
+          <row>
+            <entry>- (En Dash)</entry>
+
+            <entry>U+2013</entry>
+          </row>
+
+          <row>
+            <entry>“ (Curly Left Double Quotation Mark)</entry>
+
+            <entry>U+201C</entry>
+          </row>
+
+          <row>
+            <entry>” (Curly Right Double Quotation Mark)</entry>
+
+            <entry>U+201D</entry>
+          </row>
+
+          <row>
+            <entry>‘ (Curly Left Single Quotation Mark)</entry>
+
+            <entry>U+2018</entry>
+          </row>
+
+          <row>
+            <entry>’ (Curly Right Single Quotation Mark)</entry>
+
+            <entry>U+2019</entry>
+          </row>
+
+          <row>
+            <entry>× (MathMultiplier)</entry>
+
+            <entry>U+00D7</entry>
+          </row>
+
+          <row>
+            <entry>→ (CharMenuDelim)</entry>
+
+            <entry>U+2192</entry>
+          </row>
+
+          <row>
+            <entry>€ (Euro Currency Symbol)</entry>
+
+            <entry>U+20A0</entry>
+          </row>
+
+          <row>
+            <entry>✓ (Check Mark)</entry>
+
+            <entry>U+2713</entry>
+          </row>
+
+          <row>
+            <entry>✗ (Ballot X)</entry>
+
+            <entry>U+2717</entry>
+          </row>
+
+          <row>
+            <entry>⌘ (Place Of Interest Sign)</entry>
+
+            <entry>U+2318</entry>
+          </row>
+
+          <row>
+            <entry>↵ (Carriage Return Arrow)</entry>
+
+            <entry>U+21B5</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </sect1>
+
+  <sect1 id="adding_comments">
+    <title>Adding Comments to Your Manuscript</title>
+
+    <para>You have two main options for adding comments to your manuscript:
+    using standard XML comments (<literal>&lt;!--</literal>
+    <literal>--&gt;</literal>) and using the <literal>remark</literal>
+    element.</para>
+
+    <para>XML comments are particularly useful for commenting out large blocks
+    of text—for example, text that is under review, or text that you don’t
+    currently want to include in your manuscript. In the following example,
+    the entire paragraph is commented out:</para>
+
+    <programlisting>&lt;!-- O’Reilly’s mission statement. 
+&lt;para&gt;O’Reilly Media spreads the knowledge of innovators through its books, 
+online services, magazines, research, and conferences. Since 1978, O’Reilly 
+has been a chronicler and catalyst of leading-edge development, homing in 
+on the technology trends that really matter and galvanizing their adoption 
+by amplifying “faint signals” from the alpha geeks who are creating the future. 
+An active participant in the technology community, the company has a long 
+history of advocacy, meme-making, and evangelism.&lt;/para&gt; --&gt;</programlisting>
+
+    <para><literal>remark</literal> elements are typically used by authors to
+    direct specific comments to the editor or Production, such as in the
+    following:</para>
+
+    <programlisting>&lt;remark&gt;PRODUCTION: Please stet grammatical errors in the following&lt;/remark&gt;
+
+&lt;para&gt;I can haz cheezburger, plz?&lt;/para&gt;</programlisting>
+
+    <para>If you have specific comments for Production staff, we would
+    appreciate you formatting them as <literal>remark</literal> elements and
+    starting them with “PRODUCTION”, as done above. This is very helpful in
+    distinguishing comments that should be addressed during Production from
+    other comments directed toward editorial staff or tech reviewers.</para>
+
+    <para>By default, comments are not rendered in your PDF builds. <xref
+    linkend="displaying_comments_in_pdfs" /> describes how to display
+    them.</para>
+  </sect1>
+</chapter>

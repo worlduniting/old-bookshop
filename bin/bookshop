@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+begin
+  require "bookshop/bookshop"
+rescue LoadError
+  bookshop_path = File.expand_path('../../lib', __FILE__)
+  $:.unshift(bookshop_path)
+  require "bookshop"
+end
