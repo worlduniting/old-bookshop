@@ -72,7 +72,7 @@ To build an epub format of your book from the docbook source:
 
 == Getting Help
 
-* Checkout the wiki page which is in development currently for installation help and links to other articles and help content. https://github.com/blueheadpublishing/bookshop/wiki
+* Checkout the wiki page which is in development currently for installation help and links to other articles and help content. https://github.com/worlduniting/bookshop/wiki
 
 * bookshop comes with a built in help feature. Simply run 'bookshop --help' from the command line to get list of possible commands to issue including possible options. You can also run 'bookshop COMMAND --help' (where COMMAND is the command you want) to get a list of possible options for that particular command
 
@@ -139,7 +139,7 @@ tools
 	
 == Copyright (MIT-LICENSE)
 
-Copyright (C) 2010, 2011 by BlueHead Publishing LLC (http://blueheadpublishing.com)
+Copyright (C) 2010, 2011 by World Uniting (http://worlduniting.org)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

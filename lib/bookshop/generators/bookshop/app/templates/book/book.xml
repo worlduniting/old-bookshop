@@ -2,14 +2,8 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
 "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <book>
-  <title>DocBook Authoring Guidelines</title>
-	<subtitle>
-			<inlinemediaobject>
-				<imageobject>
-					<imagedata fileref="covers/cover.jpg" />
-				</imageobject>
-		</inlinemediaobject>
-	</subtitle>
+  <title>bookshop</title>
+	<subtitle>the un-ultimate guide to docbook authoring</subtitle>
 
   <xi:include href="bookinfo.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
 

@@ -1,3 +1,14 @@
+0.0.4:
+		Core Changes
+				Added new mobi build
+				
+				Branding around World Uniting Press
+				
+				Added epubcheck for epub validations, v1.2
+				
+				Added kindlegen for generating mobi
+
+
 0.0.3:
     Core Changes
 				Added Java toolsets, including all necessary .jars for working with Docbook and
