@@ -50,6 +50,15 @@ module Bookshop
         directory "tools/java/", "#{app_path}/tools/java"
       end
       
+      # Add the Kindlegen dependencies
+      def add_kindle
+        directory "tools/kindle/", "#{app_path}/tools/kindle"
+      end
+      
+      # Change the permissions so kindlegen is executable 
+      def chmod_kindlegen
+        chmod "#{app_path}/tools/kindle/kindlegen", 0755
+      end
     protected
 
       def self.banner
