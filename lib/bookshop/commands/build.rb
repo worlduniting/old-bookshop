@@ -32,20 +32,25 @@ module Bookshop
         cmd = %x[wkhtmltopdf book/book.html builds/pdf/book.pdf]
         # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
       
-      when 'epub'
+      # when 'epub'
         puts "Deleting any old builds"
         File.delete("builds/epub/book.epub") if File::exists?( "builds/epub/book.epub" )
         puts "File Deleted"
         
         puts "Building new epub at builds/epub/book.epub"
+        
+        # create temp epub folder
+        # create folder META_INF with container...
+        # create folder OEBPS, copy html over
+        # create mimetype
+        
         cmd = %x[cd book/ && zip -X0 "../builds/epub/book.epub" mimetype && zip -rDX9 "../builds/epub/book.epub" * -x "*.DS_Store" -x mimetype]
         
         puts "Validating epub"
         cmd = %x[java -jar tools/epubcheck-1.2.jar builds/epub/book.epub]
 
       
-      # fix this
-      when 'mobi'
+      # when 'mobi'
         puts "Deleting any old builds"
         File.delete("builds/mobi/book.*") if File::exists?( "builds/mobi/book.*" )
         puts "File Deleted"

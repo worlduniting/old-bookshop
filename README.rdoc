@@ -1,10 +1,11 @@
 == Welcome to bookshop
 
-bookShop is an OSS ruby-based framework for docbook toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their DocBook-to-Output flows, by favoring convention over configuration, setting them up with best practices from the get-go.
+bookShop is an OSS ruby-based framework for html-to-(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book flows, by favoring convention over configuration, setting them up with best practices from the get-go.
 
 bookshop hopes to simplify the process by:
 * providing a Ruby Gem to make building a book from HTML as easy as 'sudo gem install bookshop'
-* pulling all the HTML-TO-(e)BOOOK tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
+* pulling all the html-to-(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
+* sticking with open-source tools
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
 * providing an extendable framework for other developers to add their own custom templates (and hopefully provide them for the community)
@@ -17,9 +18,21 @@ bookshop hopes to simplify the process by:
 * Rubygems v1.3.6 http://docs.rubygems.org/read/chapter/3
 * Java v1.6 http://www.java.com/
 
+== Installation
+
 === Install bookshop
 
     $ sudo gem install bookshop
+
+=== wkhtmltopdf
+
+1. Install by hand (recommended):
+
+    <https://github.com/jdpace/PDFKit/wiki/Installing-WKHTMLTOPDF>
+
+2.  Try using the wkhtmltopdf-binary gem (mac + linux i386)
+
+        gem install wkhtmltopdf-binary
 
 === Create a bookshop application
 
@@ -37,14 +50,8 @@ bookshop hopes to simplify the process by:
 To build a pdf format of your book from the html source:
 
     bookshop build pdf
-	
-To build an epub format of your book from the html source:
-
-    bookshop build epub
 
 == Getting Help
-
-* Checkout the wiki page which is in development currently for installation help and links to other articles and help content. https://github.com/worlduniting/bookshop/wiki
 
 * bookshop comes with a built in help feature. Simply run 'bookshop --help' from the command line to get list of possible commands to issue including possible options. You can also run 'bookshop COMMAND --help' (where COMMAND is the command you want) to get a list of possible options for that particular command
 
@@ -53,7 +60,7 @@ To build an epub format of your book from the html source:
 We would like to thank:
 
 * The Ruby/Rubygems Team
-* Hakon Wium Lie and Bert Bos for developing the book microformat
+* Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
 * The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
 * The EPUBCHECK team http://code.google.com/p/epubcheck/
 
@@ -123,3 +130,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+== The Boom Microformat License (as listed in the boom.css)
+
+/* Sample style sheet for boom!, the book microformat              */
+/* written  by Hakon Wium Lie and Bert Bos, November 2005          */
+/* You may reuse this style sheet for any purpose without any fees */
