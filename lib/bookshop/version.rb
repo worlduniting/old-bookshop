@@ -1,3 +1,3 @@
 module Bookshop
-  VERSION = "0.0.9.1"
+  VERSION = "0.0.11"
 end

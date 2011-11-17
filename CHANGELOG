@@ -1,3 +1,16 @@
+0.0.11:
+		Complete rewrite
+				Switched from docbook toolchain to html/css/javascript toolchain
+				
+				Removed all XML/XSLT/FOP dependencies since no longer using docbook
+				
+				Added wkhtmltopdf as the html-to-pdf processor
+				
+				Added Boom(.css) microformat to replace structural markup previously
+				 		available via docbook
+				
+				Moved copyright to BlueHead Inc
+
 0.0.4:
 		Core Changes
 				Added new mobi build

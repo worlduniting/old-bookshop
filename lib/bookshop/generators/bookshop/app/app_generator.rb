@@ -3,7 +3,8 @@ require 'thor/group'
 
 module Bookshop
   module Generators
-
+    # Thor based generator for creating new projects based upon a template project which
+    # is copied into the name_of_book project-folder when 'build new name_of_book' is issued
     class AppGenerator < Thor::Group
       include Thor::Actions
 
@@ -21,12 +22,12 @@ module Bookshop
         directory "templates", "#{app_path}"
       end
 
-      # Adds the Java jars and dependencies
+      # Adds third-party tools
       def add_tools
         directory "tools/", "#{app_path}/tools/"
       end
 
-      # Change the permissions so dbtoepub is executable 
+      # Change the permissions so tools are executable 
       def chmod_tools
         chmod "#{app_path}/tools/epubcheck-1.2.jar", 0755
         chmod "#{app_path}/tools/kindlegen", 0755
