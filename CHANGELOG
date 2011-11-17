@@ -1,3 +1,13 @@
+0.0.13:
+		Bug fixes
+				Fixed build pdf command so it doesn't try to build epub
+
+0.0.12:
+		Doc fixes
+				Added new post-install message to alert users to install wkhtmltopdf
+				
+				Removed old POST_INSTALL file
+
 0.0.11:
 		Complete rewrite
 				Switched from docbook toolchain to html/css/javascript toolchain
