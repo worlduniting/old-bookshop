@@ -24,7 +24,7 @@ bookshop hopes to simplify the process by:
 
     $ sudo gem install bookshop
 
-=== wkhtmltopdf
+=== Install wkhtmltopdf
 
 1. Install by hand (recommended):
 
@@ -79,14 +79,14 @@ The basic bookshop gem architecture:
   |-- lib
 
 bin
-	command file copied to /usr/bin upon installation (which is then called from the command line)
-	
+  command file copied to /usr/bin upon installation (which is then called from the command line)
+
 lib
-	bookshop gem library files
+  bookshop gem library files
 
 == Description of bookshop app contents
 
-The default directory structure of a generated bookshop app:
+The default directory structure of a generated bookshop project:
 
   |-- book
   |-- builds
@@ -99,10 +99,10 @@ The default directory structure of a generated bookshop app:
   |-- tools
 
 book
-  Holds all the manuscript DocBook code/files. This is where your master manuscript lives from which everything is built.
+  Holds all the manuscript html code/files. This is where your master manuscript lives from which everything is built.
 
 builds
-  Holds all the output files built from the DocBook using their specific Stylesheets
+  Holds all the output files built from the html
 
 builds/epub
   When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
@@ -141,5 +141,7 @@ THE SOFTWARE.
 == The Boom Microformat License (as listed in the boom.css)
 
 /* Sample style sheet for boom!, the book microformat              */
+
 /* written  by Hakon Wium Lie and Bert Bos, November 2005          */
+
 /* You may reuse this style sheet for any purpose without any fees */
