@@ -140,8 +140,6 @@ THE SOFTWARE.
 
 == The Boom Microformat License (as listed in the boom.css)
 
-/* Sample style sheet for boom!, the book microformat              */
-
-/* written  by Hakon Wium Lie and Bert Bos, November 2005          */
-
-/* You may reuse this style sheet for any purpose without any fees */
+  Sample style sheet for boom!, the book microformat
+  written  by Hakon Wium Lie and Bert Bos, November 2005
+  You may reuse this style sheet for any purpose without any fees */
