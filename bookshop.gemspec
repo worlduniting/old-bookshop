@@ -8,12 +8,12 @@ Gem::Specification.new do |s|
   s.authors     = ['D.a. Thompson']
   s.email       = ['git@worlduniting.org']
   s.homepage    = "http://rubygems.org/gems/bookshop"
-  s.summary     = "An OSS Ruby-Based Framework for DocBook Toolchain Happiness and Sustainable Productivity."
+  s.summary     = "An OSS Ruby-Based Framework for HTML-TO-(e)BOOK Toolchain Happiness and Sustainable Productivity for Publishing Houses."
   s.description = "bookShop is an OSS ruby-based framework for docbook toolchain happiness and sustainable productivity. 
                     The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly 
-                    jump in and develop their DocBook-to-Output flows, by favoring convention over 
+                    jump in and develop their HTML-TO_(e)BOOK flows, by favoring convention over 
                     configuration, setting them up with best practices, standards and
-                    tools from the get-go. This gem is brought to you by World Uniting Press, a division of World Uniting."
+                    tools from the get-go. This gem is brought to you by D.a. Thompson."
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "bookshop"
