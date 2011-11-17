@@ -11,10 +11,6 @@ bookshop hopes to simplify the process by:
 
 == Getting Started
 
-Some Useful Links For Docs, Info, Resources to help use use bookshop, or contribute as a developer to this gem.
-
-http://www.delicious.com/blueheadpublishing/bookshop
-
 === System Requirements
 
 * Ruby v1.8.7 or v1.9.2 http://www.ruby-lang.org/en/downloads/
