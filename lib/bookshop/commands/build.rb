@@ -38,7 +38,7 @@ module Bookshop
         puts "File Deleted"
         
         puts "Building new epub at builds/epub/book.epub"
-        cmd = %x[cd book/ && zip -X0 "builds/epub/book.epub" mimetype && zip -rDX9 "builds/epub/book.epub" * -x "*.DS_Store" -x mimetype]
+        cmd = %x[cd book/ && zip -X0 "../builds/epub/book.epub" mimetype && zip -rDX9 "../builds/epub/book.epub" * -x "*.DS_Store" -x mimetype]
         
         puts "Validating epub"
         cmd = %x[java -jar tools/epubcheck-1.2.jar builds/epub/book.epub]
