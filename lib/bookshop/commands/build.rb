@@ -8,9 +8,6 @@ module Bookshop
       
       ARGV << '--help' if ARGV.empty?
 
-      SRC_FILE = 'book/book.html'
-      PDF_OUTPUT_FILE = 'builds/pdf/book.pdf'
-
       aliases = {
         "p"  => "pdf"
       }
@@ -32,7 +29,8 @@ module Bookshop
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         puts "File Deleted"
         puts "Building new pdf at builds/pdf/book.pdf"
-        cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
+        cmd = %x[wkhtmltopdf book/book.html builds/pdf/book.pdf]
+        # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
       
       when 'epub'
         puts "Deleting any old builds"
