@@ -8,7 +8,7 @@ module Bookshop
       include Thor::Actions
 
       # Define arguments and options
-      argument :app_path,                   :type => :string
+      argument :app_path,               :type => :string
                                         
 
       class_option :dtd,                :type => :string, :aliases => "-dtd",

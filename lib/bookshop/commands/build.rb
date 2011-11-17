@@ -2,10 +2,14 @@ require 'thor/group'
 
 module Bookshop
   module Commands
+    # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
       
       ARGV << '--help' if ARGV.empty?
+
+      SRC_FILE = 'book/book.html'
+      PDF_OUTPUT_FILE = 'builds/pdf/book.pdf'
 
       aliases = {
         "p"  => "pdf"
@@ -28,7 +32,7 @@ module Bookshop
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         puts "File Deleted"
         puts "Building new pdf at builds/pdf/book.pdf"
-        cmd = %x[java -jar tools/java/fop.jar -xml book/book.xml -xsl stylesheets/fo-stylesheet.xsl builds/pdf/book.pdf]
+        cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
       
       when 'epub'
         puts "Deleting any old builds"
@@ -36,10 +40,10 @@ module Bookshop
         puts "File Deleted"
         
         puts "Building new epub at builds/epub/book.epub"
-        cmd = %x[tools/xsl/epub/bin/dbtoepub -v book/book.xml -o builds/epub/book.epub]
+        cmd = %x[cd book/ && zip -X0 "builds/epub/book.epub" mimetype && zip -rDX9 "builds/epub/book.epub" * -x "*.DS_Store" -x mimetype]
         
         puts "Validating epub"
-        cmd = %x[java -jar tools/java/epubcheck-1.2.jar builds/epub/book.epub]
+        cmd = %x[java -jar tools/epubcheck-1.2.jar builds/epub/book.epub]
 
       
       # fix this
@@ -55,7 +59,7 @@ module Bookshop
         cmd = %x[java -jar tools/java/epubcheck-1.2.jar builds/mobi/book.epub]
         
         puts "Generating mobi file at builds/mobi/book.mobi"
-        cmd = %x[tools/kindle/kindlegen builds/mobi/book.epub]
+        cmd = %x[rm ../book.* && epubmake && epubcheck && /Applications/Kindle/KindleGen/kindlegen ../book.epub]
         
         puts "Cleaning up..."
         File.delete("builds/mobi/book.epub") if File::exists?( "builds/mobi/book.epub" )

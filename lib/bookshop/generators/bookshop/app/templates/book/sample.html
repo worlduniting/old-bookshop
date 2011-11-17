@@ -1,0 +1,266 @@
+<!--?xml version="1.0" encoding="iso-8859-1"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>Cascading Style Sheets - Designing for the Web</title>
+<meta name="author" content="Håkon Wium Lie">
+<link rel="stylesheet" type="text/css" href="css/boom.css">
+</head>
+<body>
+
+<div class="frontcover">
+<img src="images/canvas.jpg">
+<h1>Cascading Style Sheets</h1>
+<h2>Designing for the Web</h2>
+<h3>Third Edition</h3>
+<p>Sample document</p>
+</div>
+
+<div class="halftitlepage">
+<h1 class="no-toc">Cascading Style Sheets</h1>
+<h2 class="no-toc">Designing for the Web</h2>
+<h3 class="no-toc">Third Edition</h3>
+</div>
+
+<div class="titlepage">
+<h1 class="no-toc">Cascading Style Sheets</h1>
+<h2 class="no-toc">Designing for the Web</h2>
+<h3 class="no-toc">Third Edition</h3>
+
+<p class="no-toc">Håkon Wium Lie<br>Bert Bos</p>
+<!-- also, the publisher's name would typically be printed here -->
+</div>
+
+<div class="imprint">
+<p>Copyright © 2005 Håkon Wium Lie and Bert Bos</p>
+
+</div>
+
+<div class="toc" id="toc-h-1">
+<h1>Table of Contents</h1>
+
+<ul class="toc">
+<li class="frontmatter"><a href="#toc-h-1">Table of Contents</a></li>
+<li class="frontmatter"><a href="#preface-h-1">Preface</a></li>
+<li class="chapter"><a href="#html-h-1">The Web and HTML</a>
+  <ul>
+  <li class="section"><a href="#the-web">The Web</a>
+    <ul>
+    <li class="section"><a href="#development">Development of the Web</a></li>
+    <li class="section"><a href="#images">Adding images</a></li>
+    </ul>
+  </li>
+  </ul>
+</li>
+<li class="chapter"><a href="#css-h-1">CSS</a>
+  <ul>
+  <li class="section"><a href="#rules">Rules and Style Sheets</a></li>
+  </ul>
+</li>
+<li class="endmatter"><a href="#index-h-1">Index</a></li>
+</ul>
+
+</div>
+
+<div class="preface" id="preface-h-1">
+<h1>Preface??</h1>
+
+<p>This is a sample document whose purpose is to show how CSS can be
+used to print a book. To make the document more lively, excerpts from
+the third edition of &#8220;Cascading Style Sheets &#8212; designing
+for tbe Web&#8221; have been included.<span class="footnote"> That
+book <em>was</em> produced using the methods described in the
+document, and it was published by Addison-Wesley in 2005.</span> The
+excerpts have been selected for their example values and they appear,
+in this document, out of order.</p>
+
+<p>The PDF version of this document is produced directly from the HTML
+and CSS sources by the Prince formatter.</p>
+
+<p>We encourage you to reuse the structure, markup and style sheet of
+this sample document. In your own book, however, you need to provide
+the content yourself.</p>
+
+<p class="author">Håkon Wium Lie &amp; Bert Bos<br>
+Oslo/Antibes<br>November 2005</p>
+
+</div>
+
+<div class="chapter" id="html-h-1">
+<h1 style="counter-reset: page 1">The Web and Baseball</h1>
+
+<p class="sidenote">The box <a class="pageref" href="#specs">&#8220;CSS Specifications&#8221;</a> lists the different CSS specifications.</p>
+
+<p>Cascading Style Sheets (CSS) represent a major breakthrough in
+how Web-page designers work by expanding their ability to
+control the appearance of Web pages, which are the documents
+that people publish on the Web.</p>
+
+<p>For the first few years after the World Wide Web (the Web) was
+created in 1990, people who wanted to put pages on the Web had
+little control over what those pages looked like. In the
+beginning, authors could only specify structural aspects of
+their pages (for example, that some piece of text would be a
+heading or some other piece would be straight text). Also,
+there were ways to make text bold or italic, among a few other
+effects, but that's where their control ended.</p>
+
+<div class="section" id="the-web">
+<h2>The Web</h2>
+
+<p>The Web is a vast collection of documents on the <dfn id="dfn-internet">Internet</dfn> that are linked together via
+hyperlinks. The Internet consists of millions of computers worldwide
+that communicate electronically. A <dfn id="dfn-hyperlink">hyperlink</dfn> is a predefined link between two
+documents. The hyperlinks allow a user to access documents on various
+Web servers without concern for where they are located. A <dfn id="dfn-web-server">Web server</dfn> is a computer on the Internet
+that serves out Web pages on request. From a document on a Web server
+in California, the user is just one mouse click away from a document
+that is stored, perhaps, on a Web server in France. Hyperlinks are
+integral to the Web. Without them, there would be no Web.</p>
+
+
+<div class="section" id="development">
+<h3>Development of the Web</h3>
+
+<p>The Web was invented around 1990 by Tim Berners-Lee with
+Robert Cailliau as a close ally. Both of them were then
+working at <dfn id="dfn-cern">CERN</dfn>, which is the European Laboratory for Particle
+Physics. Tim is a graduate of Oxford University and a
+long-time computer and software expert, and is now the director
+of the <dfn id="dfn-w3c">World Wide Web Consortium (W3C)</dfn>, an organization that
+coordinates the development of the Web. He also is a
+principal research scientist at Massachusetts Institute of
+Technology's Laboratory for Computer Science and Artificial
+Intelligence (MIT CSAIL). Robert is a 30-year veteran at
+CERN, where he still works. Robert organized the
+first Web conference in Geneva in 1993. Both Tim and Robert
+were awarded the ACM Software System Award in 1995 because
+of their work on the Web.</p>
+</div>
+</div>
+
+
+<div class="section" id="images">
+<h3>Adding images</h3>
+
+<p>Images proliferate on the Web. It wasn't until the Mosaic browser
+added support for images in 1993 that a critical mass of people
+realized the potential of the Web. You can add images to your
+documents with the <span class="element">img</span> element &#8211;
+<span class="element">img</span> is short for image.</p>
+
+<p>When the image is ready, the page looks like <a class="figref" href="#fig-loaded">this figure</a>.</p>
+
+<div class="figure" id="fig-loaded">
+  <p class="caption">The image has been loaded.</p>
+  <p class="art"><img alt="[image]" src="images/html-18.png" style="width: 100%;"></p>
+</div>
+
+</div>
+</div>
+
+<div class="chapter" id="css-h-1">
+<h1>CSS</h1>
+
+<p class="sidenote">HTML is the most popular document format on the
+Web, and it is used in most of the examples in this book.</p>
+
+<p>As we explained in <a class="chapref" href="http://people.opera.com/howcome/2005/ala/html-h-1"><q>The Web and HTML,</q></a>
+ HTML elements enable Web-page designers to
+mark up a document's structure. The HTML specification lists
+guidelines on how browsers should display these elements. For example,
+you can be reasonably sure that the contents of a <span class="element">strong</span> element will be displayed as boldfaced.
+Also, you can pretty much trust that most browsers will display the
+content of an <span class="element">h1</span> element using a big font
+size &#8211; at least bigger than the <span class="element">p</span>
+element and bigger than the <span class="element">h2</span> element.
+But beyond trust and hope, you don't have any control over your text's
+appearance.</p>
+
+<div class="sidebar" id="specs">
+<h2 class="no-toc">CSS specifications</h2>
+
+<p>Cascading Style Sheets is formally described in three W3C
+specifications: CSS1, CSS2, and CSS 2.1. (As discussed in the
+previous chapter, W3C is the organization that coordinates the
+technical development of the Web.) The first specification, CSS1,
+was issued in December 1996 and describes a simple style sheet
+language mostly for screen-based presentations. CSS1 has around 50
+properties (for example, <span class="property">color</span> and
+<span class="property">font-size</span>). CSS2 was finalized in May
+1998 and builds on CSS1. CSS2 includes all CSS1 properties and adds
+around 70 of its own, such as properties to describe aural
+presentations and page breaks.</p>
+
+<p>CSS 2.1 is the most recent specification published by W3C. It
+adds some new features, but CSS 2.1 is mostly a scaled-down version
+of CSS2. CSS2 was an ambitious attempt to describe functionality,
+which Web authors had requested. However, not all the functionality
+is reliably supported by all browsers. CSS 2.1 is a specification
+that describes the parts that <em>are</em> supported by two or
+more browsers. Because CSS 2.1 is similar to CSS2, the
+specification was given a minor version number (that is, 2.1)
+rather than a major number (such as CSS3).</p>
+</div>
+
+
+<div class="section" id="rules">
+<h2>Rules and Style Sheets</h2>
+
+<p>You can create style sheets in two ways. You can either use a
+normal text editor and write the style sheets <q>by hand</q> or you
+can use a dedicated tool &#8211; for example, a Web authoring tool.
+The dedicated tools enable you to create style sheets without learning
+the syntax of the CSS language. However, in many cases, the designer
+wants to tweak the style sheet by hand afterwards, so we recommend
+that you learn to write and edit CSS by hand. Let's get started! Here
+is a simple example:</p>
+
+<pre class="CSS">h1 { color: green }
+</pre>
+
+<p>This code is a simple CSS rule that contains one rule. A <dfn id="dfn-rule">rule</dfn> is a statement about one stylistic aspect of
+one or more elements. A <dfn id="dfn-style-sheet">style sheet</dfn> is
+a set of one or more rules that apply to an HTML document. This rule
+sets the color of all first-level headings (<span class="element">h1</span>).</p>
+
+
+<div class="table">
+<p class="caption">HTML extension elements and their CSS equivalent.</p>
+<table class="lined">
+  <thead>
+     <tr><th>Element</th><th>CSS equivalent</th></tr>
+  </thead>
+  <tbody>
+     <tr><td><code>&lt;tt&gt;</code></td>
+       <td><span class="css">font-family: monospace</span></td></tr>
+     <tr><td><code>&lt;i&gt;</code></td>
+       <td><span class="css">font-style: italic</span></td></tr>
+     <tr><td><code>&lt;b&gt;</code></td>
+       <td><span class="css">font-weight: bold</span></td></tr>
+     <tr><td><code>&lt;u&gt;</code></td>
+       <td><span class="css">text-decoration: underline</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+<div class="index" id="index-h-1">
+<h1>Index</h1>
+
+<ul class="index">
+<li><a href="#dfn-cern">CERN</a></li>
+<li><a href="#dfn-internet">Internet</a></li>
+<li><a href="#dfn-hyperlink">hyperlink</a></li>
+<li><a href="#dfn-rule">rule</a></li>
+<li><a href="#dfn-style-sheet">style sheet</a></li>
+<li><a href="#dfn-w3c">W3C</a></li>
+<li><a href="#dfn-web-server">Web server</a></li>
+<li><a href="#dfn-w3c">World Wide Web Consortium</a></li>
+</ul>
+
+</div>
+
+</body></html>

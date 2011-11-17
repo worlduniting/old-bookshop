@@ -27,46 +27,22 @@ http://www.delicious.com/blueheadpublishing/bookshop
 
 === Create a bookshop application
 
-    $ bookshop new name_of_application
+    $ bookshop new name_of_book
 
-	This will create a new bookshop app in /path/to/name_of_application
+	This will create a new bookshop app in /path/to/name_of_book
 	
 * If you can't issue bookshop from your command line, make sure you have included your gems folder in your system $PATH. In unix you can add the following to your .bashrc file in your home folder (this example is for Ubuntu 10.10):
 
 		PATH="$PATH:/var/lib/gems/1.8/bin"
 		export PATH
 
-	
-=== Install the java tools. All of the java tools (.jars, etc) can be found in /tools/java/ in the new application.
-
-* For Mac you should copy the contents of /tools/java/ into your system /Library/Java/Extensions or your user ~/Library/Java/Extensions folder. This is the default location for the Java Classpath
-
-* For *nix systems, you can define your classpath by creating a CLASSPATH variable in your .bashrc (or whatever shell/profile you are using). This example is for Ubuntu 10.10. Make sure to substitute:
-
-		CLASSPATH="/path/to/name_of_application/tools/java/fop.jar:\
-		/path/to/name_of_application/tools/java/avalon-framework-4.2.0.jar:\
-		/path/to/name_of_application/tools/java/xalan.jar:\
-		/path/to/name_of_application/tools/java/batik-all-1.7.jar:\
-		/path/to/name_of_application/tools/java/commons-io-1.3.1.jar:\
-		/path/to/name_of_application/tools/java/commons-logging-1.0.4.jar:\
-		/path/to/name_of_application/tools/java/fop-hyph.jar:\
-		/path/to/name_of_application/tools/java/jai-codec.jar:\
-		/path/to/name_of_application/tools/java/jai_core.jar:\
-		/path/to/name_of_application/tools/java/serializer.jar:\
-		/path/to/name_of_application/tools/java/xercesImpl.jar:\
-		/path/to/name_of_application/tools/java/xml-apis.jar:\
-		/path/to/name_of_application/tools/java/xmlgraphics-commons-1.4.jar"
-		export CLASSPATH
-
-* For Windows systems you can either use Cygwin and follow the directions for *nix systems above, or edit your Classpath via the Control Panel
-
 === Building Your First Book
 
-To build a pdf format of your book from the docbook source:
+To build a pdf format of your book from the html source:
 
     bookshop build pdf
 	
-To build an epub format of your book from the docbook source:
+To build an epub format of your book from the html source:
 
     bookshop build epub
 
@@ -80,9 +56,10 @@ To build an epub format of your book from the docbook source:
 
 We would like to thank:
 
-* The Xerces Team
-* The DocBook Team
 * The Ruby/Rubygems Team
+* Hakon Wium Lie and Bert Bos for developing the book microformat
+* The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
+* The EPUBCHECK team http://code.google.com/p/epubcheck/
 
 == Description of Gem Contents
 
@@ -103,15 +80,18 @@ The default directory structure of a generated bookshop app:
 
 	|-- book
 	|-- builds
-	|   |-- epub
-	|   |-- html
-	|   |-- mobi
-	|	  `-- pdf
+	
+	    |-- epub
+	    |-- html
+	    |-- mobi
+	 	  `-- pdf
+	
 	|-- stylesheets
 	|-- tools
-	|   |-- dtd
-	|   |-- xsl
-	|   `-- java
+	 
+	    |-- dtd
+	    |-- xsl
+	    `-- java
 
 book
   Holds all the manuscript DocBook code/files. This is where your master manuscript lives from which everything is built.
@@ -121,9 +101,6 @@ builds
 
 builds/epub
 	When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
-
-builds/html
-	When building the html asset, the generated output will reside here.
 	
 build/mobi
 	When building the mobi asset, the generated output will reside here as "book.mobi".
@@ -139,7 +116,7 @@ tools
 	
 == Copyright (MIT-LICENSE)
 
-Copyright (C) 2010, 2011 by World Uniting (http://worlduniting.org)
+Copyright (C) 2010, 2011 by BlueHead, Inc (http://blueheadinc.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
