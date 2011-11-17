@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 require File.expand_path("../lib/bookshop/version", __FILE__)
+require File.expand_path("../lib/bookshop/post_install", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "bookshop"
@@ -27,4 +28,6 @@ Gem::Specification.new do |s|
   s.files        = `git ls-files`.split("\n")
   s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
   s.require_path = 'lib'
+  
+  s.post_install_message = Bookshop::POST_INSTALL
 end
