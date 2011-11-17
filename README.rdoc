@@ -3,8 +3,8 @@
 bookShop is an OSS ruby-based framework for docbook toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their DocBook-to-Output flows, by favoring convention over configuration, setting them up with best practices from the get-go.
 
 bookshop hopes to simplify the process by:
-* providing a Ruby Gem to make working with DocBook as easy as 'sudo gem install bookshop'
-* pulling all the DocBook tools together into one place (DocBook DTD, XSL Stylesheets, XSLT Processor, XSL-FO Processor)
+* providing a Ruby Gem to make building a book from HTML as easy as 'sudo gem install bookshop'
+* pulling all the HTML-TO-(e)BOOOK tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
 * providing an extendable framework for other developers to add their own custom templates (and hopefully provide them for the community)
@@ -78,20 +78,15 @@ lib
 
 The default directory structure of a generated bookshop app:
 
-	|-- book
-	|-- builds
-	
-	    |-- epub
-	    |-- html
-	    |-- mobi
-	 	  `-- pdf
-	
-	|-- stylesheets
-	|-- tools
-	 
-	    |-- dtd
-	    |-- xsl
-	    `-- java
+  |-- book
+  |-- builds
+    epub
+    html
+    mobi
+    pdf
+
+  |-- stylesheets
+  |-- tools
 
 book
   Holds all the manuscript DocBook code/files. This is where your master manuscript lives from which everything is built.
@@ -100,19 +95,16 @@ builds
   Holds all the output files built from the DocBook using their specific Stylesheets
 
 builds/epub
-	When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
-	
+  When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
+
 build/mobi
-	When building the mobi asset, the generated output will reside here as "book.mobi".
+  When building the mobi asset, the generated output will reside here as "book.mobi".
 
 build/pdf
-	When building the pdf book, the generated output will reside here as "book.pdf".
-
-stylesheets
-	Holds the XSL stylesheets for customizing your book output.
+  When building the pdf book, the generated output will reside here as "book.pdf".
 	
 tools
-	Holds the DocBook DTD, DocBook-XSL specs and Java tools which serve as the base for building formats. Customization should not happen here, but rather with the stylesheets in the "stylesheets" folder. Files here should remain largely unchanged unless you know what you are doing.
+  Holds the epubcheck and kindlegen tools
 	
 == Copyright (MIT-LICENSE)
 
