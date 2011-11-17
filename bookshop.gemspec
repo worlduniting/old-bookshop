@@ -8,10 +8,10 @@ Gem::Specification.new do |s|
   s.authors     = ['D.a. Thompson']
   s.email       = ['git@worlduniting.org']
   s.homepage    = "http://rubygems.org/gems/bookshop"
-  s.summary     = "An OSS Ruby-Based Framework for HTML-TO-(e)BOOK Toolchain Happiness and Sustainable Productivity for Publishing Houses."
-  s.description = "bookShop is an OSS ruby-based framework for docbook toolchain happiness and sustainable productivity. 
+  s.summary     = "An OSS Ruby-Based Framework for html-to-(e)Book Toolchain Happiness and Sustainable Productivity for Publishing Houses."
+  s.description = "bookShop is an OSS ruby-based framework for html-to-(e)book toolchain happiness and sustainable productivity. 
                     The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly 
-                    jump in and develop their HTML-TO_(e)BOOK flows, by favoring convention over 
+                    jump in and develop their html_to_(e)book flows, by favoring convention over 
                     configuration, setting them up with best practices, standards and
                     tools from the get-go. This gem is brought to you by D.a. Thompson."
 
