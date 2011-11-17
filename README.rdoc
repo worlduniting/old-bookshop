@@ -108,10 +108,10 @@ builds/epub
   When building the epub, the generated output will reside here in an .epub file. You can rename the .epub extension to .zip then unzip the file to view the contents.
 
 build/mobi
-  When building the mobi asset, the generated output will reside here as "book.mobi".
+  When building the mobi asset, the generated output will reside here as "book.mobi"
 
 build/pdf
-  When building the pdf book, the generated output will reside here as "book.pdf".
+  When building the pdf book, the generated output will reside here as "book.pdf"
 	
 tools
   Holds the epubcheck and kindlegen tools
@@ -142,4 +142,4 @@ THE SOFTWARE.
 
   Sample style sheet for boom!, the book microformat
   written  by Hakon Wium Lie and Bert Bos, November 2005
-  You may reuse this style sheet for any purpose without any fees */
+  You may reuse this style sheet for any purpose without any fees
