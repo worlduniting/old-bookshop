@@ -21,9 +21,9 @@ else
 Usage: bookshop COMMAND [ARGS]
 
 The most common bookshop commands are:
- build       Builds a new book from your docbook based upon arguments passed (short-cut alias: "b")
- new         Create a new bookshop project. "bookshop new my_app" creates a
-             new project called MyProject in "./my_project"
+ build       Builds a new book from your html based upon arguments passed (short-cut alias: "b")
+ new         Create a new bookshop project. "bookshop new name_of_book" creates a
+             new book project called NameOfBook in "./name_of_book"
 
 All commands can be run with -h for more information.
   EOT

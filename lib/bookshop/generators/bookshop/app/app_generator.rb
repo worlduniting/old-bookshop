@@ -9,13 +9,6 @@ module Bookshop
 
       # Define arguments and options
       argument :app_path,               :type => :string
-                                        
-
-      class_option :dtd,                :type => :string, :aliases => "-dtd",
-                                        :desc => "DTD version [ 4.5, 5.0 ]", :default => "4.5"
-
-      class_option :xsl,                :type => :string, :aliases => "-xsl",
-                                        :desc => "DocBook-XSL version [ 1.75.2, 1.76.1 ]", :default => "1.76.1"
       
       # Define source root of application
       def self.source_root
@@ -28,37 +21,17 @@ module Bookshop
         directory "templates", "#{app_path}"
       end
 
-      # Adds the dtd specified by user
-      def add_dtd
-        puts "creating dtd"
-        dtd = "#{options[:dtd]}"
-        directory "tools/dtd/#{options[:dtd]}", "#{app_path}/tools/dtd"
-      end
-
-      # Adds the XSL/version specified by user
-      def add_xsl
-        directory "tools/xsl/#{options[:xsl]}", "#{app_path}/tools/xsl"
+      # Adds the Java jars and dependencies
+      def add_tools
+        directory "tools/", "#{app_path}/tools/"
       end
 
       # Change the permissions so dbtoepub is executable 
-      def chmod_dbtoepub
-        chmod "#{app_path}/tools/xsl/epub/bin/dbtoepub", 0755
+      def chmod_tools
+        chmod "#{app_path}/tools/epubcheck-1.2.jar", 0755
+        chmod "#{app_path}/tools/kindlegen", 0755
       end
-      
-      # Adds the Java jars and dependencies
-      def add_java
-        directory "tools/java/", "#{app_path}/tools/java"
-      end
-      
-      # Add the Kindlegen dependencies
-      def add_kindle
-        directory "tools/kindle/", "#{app_path}/tools/kindle"
-      end
-      
-      # Change the permissions so kindlegen is executable 
-      def chmod_kindlegen
-        chmod "#{app_path}/tools/kindle/kindlegen", 0755
-      end
+
     protected
 
       def self.banner
