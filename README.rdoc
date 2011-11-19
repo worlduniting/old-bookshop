@@ -22,7 +22,7 @@ bookshop hopes to simplify the process by:
 
 === Install bookshop
 
-    $ sudo gem install bookshop
+    $ gem install bookshop
 
 === Install wkhtmltopdf
 
