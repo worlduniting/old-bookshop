@@ -95,7 +95,7 @@ The default directory structure of a generated bookshop project:
     mobi
     pdf
 
-  |-- stylesheets
+  |-- config
   |-- tools
 
 book
@@ -112,9 +112,12 @@ build/mobi
 
 build/pdf
   When building the pdf book, the generated output will reside here as "book.pdf"
+
+config
+  application-wide variables and configurations will go here
 	
 tools
-  Holds the epubcheck and kindlegen tools
+  Holds all third-party tools: epubcheck, kindlegen
 	
 == Copyright (MIT-LICENSE)
 
