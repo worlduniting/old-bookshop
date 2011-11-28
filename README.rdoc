@@ -121,7 +121,7 @@ tools
 	
 == Copyright (MIT-LICENSE)
 
-Copyright (C) 2010, 2011 by BlueHead, Inc (http://blueheadinc.com)
+Copyright (C) 2010, 2011 by BlueHead Publishing, Inc (http://blueheadpublishing.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
