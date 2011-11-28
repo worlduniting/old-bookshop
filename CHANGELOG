@@ -1,3 +1,11 @@
+0.0.14:
+		Moved repository to blueheadpublishing and modified gem source
+			to update all links
+			
+		Features
+				Added CHANGELOG into project template to provide users with a
+					best-practices in documenting version changes.
+
 0.0.13:
 		Bug fixes
 				Fixed build pdf command so it doesn't try to build epub

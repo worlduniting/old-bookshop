@@ -28,11 +28,11 @@ bookshop hopes to simplify the process by:
 
 1. Install by hand (recommended):
 
-    https://github.com/worlduniting/bookshop/wiki/Installing-wkhtmltopdf
+    https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 2. Try using the wkhtmltopdf-binary gem (mac + linux i386)
 
-    gem install wkhtmltopdf-binary
+    $ gem install wkhtmltopdf-binary
 
 3. The wkhtmltopdf site has more info
 
@@ -55,7 +55,7 @@ bookshop hopes to simplify the process by:
 
 To build a pdf format of your book from the html source:
 
-    bookshop build pdf
+    $ bookshop build pdf
 
 == Getting Help
 

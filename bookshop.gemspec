@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Bookshop::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['D.a. Thompson']
-  s.email       = ['git@worlduniting.org']
+  s.email       = ['da@blueheadpublishing.com']
   s.homepage    = "http://rubygems.org/gems/bookshop"
   s.summary     = "A publishing framework for html-to-(e)book toolchain happiness and sustainable productivity."
   s.description = "bookShop is a publishing framework for html-to-(e)book toolchain happiness and sustainable productivity. 
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
 
   
   s.add_dependency "thor", ">= 0.14.6"
+  s.add_dependency "nokogiri"
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "rspec"
 
