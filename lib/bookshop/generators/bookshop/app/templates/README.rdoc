@@ -120,13 +120,13 @@ tools
   Holds all third-party tools: epubcheck, kindlegen
 
 == Get Involved
-  1. Fork the repository
-	2. Pick an issue (or feature you want to add)
-	3. Make changes to your forked code
-	4. Add tests so that we don't accidentally break your addition with our future commits
-	5. Commit to your git (forked) repository 
-	6. Let us know about your code and we'll review/merge it into the master.
-	7. And pat yourself on the back for contributing to an open source project!!
+1. Fork the repository
+2. Pick an issue (or feature you want to add)
+3. Make changes to your forked code
+4. Add tests so that we don't accidentally break your addition with our future commits
+5. Commit to your git (forked) repository 
+6. Let us know about your code and we'll review/merge it into the master.
+7. And pat yourself on the back for contributing to an open source project!!
 	
 == Copyright (MIT-LICENSE)
 
