@@ -1,62 +1,62 @@
 0.0.14:
-		Moved repository to blueheadpublishing and modified gem source
-			to update all links
+	Moved repository to blueheadpublishing and modified gem source
+		to update all links
 			
-		Features
-				Added CHANGELOG into project template to provide users with a
-					best-practices in documenting version changes.
+	Features
+		Added CHANGELOG into project template to provide users with a
+			best-practices in documenting version changes.
 
 0.0.13:
-		Bug fixes
-				Fixed build pdf command so it doesn't try to build epub
+	Bug fixes
+		Fixed build pdf command so it doesn't try to build epub
 
 0.0.12:
-		Doc fixes
-				Added new post-install message to alert users to install wkhtmltopdf
-				
-				Removed old POST_INSTALL file
+	Doc fixes
+		Added new post-install message to alert users to install wkhtmltopdf
+		
+		Removed old POST_INSTALL file
 
 0.0.11:
-		Complete rewrite
-				Switched from docbook toolchain to html/css/javascript toolchain
-				
-				Removed all XML/XSLT/FOP dependencies since no longer using docbook
-				
-				Added wkhtmltopdf as the html-to-pdf processor
-				
-				Added Boom(.css) microformat to replace structural markup previously
-				 		available via docbook
-				
-				Moved copyright to BlueHead Inc
+	Complete rewrite
+		Switched from docbook toolchain to html/css/javascript toolchain
+		
+		Removed all XML/XSLT/FOP dependencies since no longer using docbook
+		
+		Added wkhtmltopdf as the html-to-pdf processor
+		
+		Added Boom(.css) microformat to replace structural markup previously
+		 	available via docbook
+		
+		Moved copyright to BlueHead Inc
 
 0.0.4:
-		Core Changes
-				Added new mobi build
-				
-				Branding around World Uniting Press
-				
-				Added epubcheck for epub validations, v1.2
-				
-				Added kindlegen for generating mobi
+	Core Changes
+		Added new mobi build
+		
+		Branding around World Uniting Press
+		
+		Added epubcheck for epub validations, v1.2
+		
+		Added kindlegen for generating mobi
 
 
 0.0.3:
-    Core Changes
-				Added Java toolsets, including all necessary .jars for working with Docbook and
-						bookshop
+  Core Changes
+		Added Java toolsets, including all necessary .jars for working with 
+			Docbook and bookshop
 
-				Updated documentation to include information on how to setup java tools and Classpaths on various systems
-				
-				Added MIT-LICENSE
-				
-				Application Generator now has dynamically generated dates and content
-				
-				Added epub build command
-				
-				Added pdf build command
-				
-				Significant rework of Command Line Interface and 'help' dialogues
-				
-				
-		Bug Fixes
-				(none as this was a substantial rework)
+		Updated documentation to include information on how to setup java tools
+			and Classpaths on various systems
+		
+		Added MIT-LICENSE
+		
+		Application Generator now has dynamically generated dates and content
+		
+		Added epub build command
+		
+		Added pdf build command
+		
+		Significant rework of Command Line Interface and 'help' dialogues
+		
+Bug Fixes
+		(none as this was a substantial rework)
