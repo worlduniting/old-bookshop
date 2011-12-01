@@ -24,7 +24,7 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      filename = 'book.html.erb'
+      filename = 'book/book.html.erb'
       erb = ERB.new(File.read(filename))
       booksource = erb.result
       
