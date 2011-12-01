@@ -29,7 +29,7 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      def clean_up_builds
+      def self.clean_up_builds
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/pdf/*')
