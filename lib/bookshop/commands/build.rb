@@ -33,7 +33,7 @@ module Bookshop
         puts "Deleting any old builds"
         File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
         puts "Building new html at builds/html/book.html from erb"
-        File.open('../builds/html/book.html', 'a') do |f|
+        File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
         end
         
@@ -43,7 +43,7 @@ module Bookshop
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
         puts "Generating new html from erb"
-        File.open('../builds/html/book.html', 'a') do |f|
+        File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
         end    
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
