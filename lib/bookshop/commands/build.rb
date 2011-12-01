@@ -1,6 +1,8 @@
 require 'thor/group'
 require 'erb'
 
+# find a way to use css
+
 module Bookshop
   module Commands
     # Define build commands for bookshop command line
@@ -36,6 +38,11 @@ module Bookshop
         File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
         end
+
+        # Copy book css to the html build dir
+        def copy_css_to_html_build
+          directory "book/css/", "builds/html/css/"
+        end
         
       # 'build pdf' creates a pdf version of the book
       when 'pdf'      
@@ -45,7 +52,13 @@ module Bookshop
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
-        end    
+        end
+        
+        # Copy book css to the html build dir
+        def copy_css_to_html_build
+          directory "book/css/", "builds/html/css/"
+        end
+        
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
