@@ -15,6 +15,8 @@ module Bookshop
 
       build = ARGV.shift
       build = aliases[build] || build
+      
+      erb = ERB.new(File.read('book/book.html.erb'))
 
       # Define arguments and options
       argument :type,                   :type => :string
@@ -24,19 +26,28 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      filename = 'book/book.html.erb'
-      erb = ERB.new(File.read(filename))
-      booksource = erb.result
-      
       case build
       
-      # 'build pdf' creates a pdf of the book
-      when 'pdf'        
+      # 'build html' creates a html version of the book
+      when 'html'
+        puts "Deleting any old builds"
+        File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
+        puts "Building new html at builds/html/book.html from erb"
+        File.open('../builds/html/book.html', 'a') do |f|
+          f << erb.result
+        end
+        
+      # 'build pdf' creates a pdf version of the book
+      when 'pdf'      
         puts "Deleting any old builds"
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
-        puts "File Deleted"
-        puts "Building new pdf at builds/pdf/book.pdf"
-        cmd = %x[wkhtmltopdf #{booksource} builds/pdf/book.pdf]
+        File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
+        puts "Generating new html from erb"
+        File.open('../builds/html/book.html', 'a') do |f|
+          f << erb.result
+        end    
+        puts "Building new pdf at builds/pdf/book.pdf from new html build"
+        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
         
       else
