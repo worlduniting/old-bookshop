@@ -23,7 +23,10 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
+      
       case build
+      
+      # 'build pdf' creates a pdf of the book
       when 'pdf'
         puts "Deleting any old builds"
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )

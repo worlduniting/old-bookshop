@@ -8,9 +8,12 @@ command = ARGV.shift
 command = aliases[command] || command
 
 case command
+
+# command for calling a build of a book (e.g. pdf, epub)
 when 'build'
   require 'bookshop/commands/build'
 
+# command for generating a new book project
 when 'new'
   puts "Can't create a new Bookshop application within the directory of another, please change to a non-Bookshop directory first.\n"
   puts "Type 'bookshop' for help."

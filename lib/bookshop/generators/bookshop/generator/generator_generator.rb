@@ -1,5 +1,6 @@
 module Bookshop
   module Generators
+    # 
     class GeneratorGenerator < NamedBase
       check_class_collision :suffix => "Generator"
 
