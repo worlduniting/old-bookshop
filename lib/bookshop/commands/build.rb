@@ -1,5 +1,6 @@
 require 'thor/group'
 require 'erb'
+require 'fileutils'
 
 # find a way to use css
 
@@ -21,7 +22,7 @@ module Bookshop
       erb = ERB.new(File.read('book/book.html.erb'))
 
       # Define arguments and options
-      argument :type,                   :type => :string
+      argument :type
 
       # Define source root of application
       def self.source_root
@@ -30,31 +31,40 @@ module Bookshop
       
       case build
       
+      def clean_up_builds
+        # Clean up any old builds
+        puts "Deleting any old builds"
+        FileUtils.rm_r Dir.glob('builds/pdf/*')
+        FileUtils.rm_r Dir.glob('builds/html/*')
+        FileUtils.rm_r Dir.glob('builds/mobi/*')
+        FileUtils.rm_r Dir.glob('builds/epub/*')
+      end
+      
       # 'build html' creates a html version of the book
       when 'html'
-        puts "Deleting any old builds"
-        File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
-        puts "Building new html at builds/html/book.html from erb"
-        File.open('builds/html/book.html', 'a') do |f|
-          f << erb.result
-        end
-        copy_file "book/css/stylesheet.css", "builds/html/css/stylesheet.css"
-        
-      # 'build pdf' creates a pdf version of the book
-      when 'pdf'      
-        puts "Deleting any old builds"
-        File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
-        File.delete("builds/html/book.html") if File::exists?( "builds/html/book.html" )
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
         end
         
-        copy_file "book/css/stylesheet.css", "builds/html/css/stylesheet.css"
+        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
         
+      # 'build pdf' creates a pdf version of the book
+      when 'pdf'      
+        # Generate the html from ERB
+        puts "Generating new html from erb"
+        File.open('builds/html/book.html', 'a') do |f|
+          f << erb.result
+        end
+
+        # Copy over html assets
+        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
+
+        # Build the pdf
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
-        # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
@@ -63,9 +73,7 @@ module Bookshop
 
       The most common build commands are:
        pdf          Builds a new pdf at /builds/pdf/book.pdf
-       epub         Builds a new epub at /builds/epub/book.epub
        html         Builds a new html at /builds/html/book.html
-       all          Builds all possible builds in their respective locations
 
       All commands can be run with -h for more information.
         EOT
