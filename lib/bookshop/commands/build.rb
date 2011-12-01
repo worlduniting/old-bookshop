@@ -31,15 +31,14 @@ module Bookshop
       
       case build
       
-      def clean_up_builds
-        # Clean up any old builds
-        puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/pdf/*')
-        FileUtils.rm_r Dir.glob('builds/html/*')
-        FileUtils.rm_r Dir.glob('builds/mobi/*')
-        FileUtils.rm_r Dir.glob('builds/epub/*')
-      end
-      
+
+      # Clean up any old builds
+      puts "Deleting any old builds"
+      FileUtils.rm_r Dir.glob('builds/pdf/*')
+      FileUtils.rm_r Dir.glob('builds/html/*')
+      FileUtils.rm_r Dir.glob('builds/mobi/*')
+      FileUtils.rm_r Dir.glob('builds/epub/*')
+    
       # 'build html' creates a html version of the book
       when 'html'
         puts "Generating new html from erb"
