@@ -1,4 +1,5 @@
 require 'thor/group'
+require 'erb'
 
 module Bookshop
   module Commands
@@ -23,16 +24,19 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
+      filename = 'book.html.erb'
+      erb = ERB.new(File.read(filename))
+      booksource = erb.result
       
       case build
       
       # 'build pdf' creates a pdf of the book
-      when 'pdf'
+      when 'pdf'        
         puts "Deleting any old builds"
         File.delete("builds/pdf/book.pdf") if File::exists?( "builds/pdf/book.pdf" )
         puts "File Deleted"
         puts "Building new pdf at builds/pdf/book.pdf"
-        cmd = %x[wkhtmltopdf book/book.html builds/pdf/book.pdf]
+        cmd = %x[wkhtmltopdf #{booksource} builds/pdf/book.pdf]
         # cmd = %x[wkhtmltopdf #{SRC_FILE} #{OUT_FILE}]
         
       else
