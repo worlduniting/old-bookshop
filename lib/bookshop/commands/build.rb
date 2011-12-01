@@ -38,11 +38,7 @@ module Bookshop
         File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
         end
-
-        # Copy book css to the html build dir
-        def copy_css_to_html_build
-          directory "book/css/", "builds/html/css/"
-        end
+        copy_file "book/css/stylesheet.css", "builds/html/css/stylesheet.css"
         
       # 'build pdf' creates a pdf version of the book
       when 'pdf'      
@@ -54,10 +50,7 @@ module Bookshop
           f << erb.result
         end
         
-        # Copy book css to the html build dir
-        def copy_css_to_html_build
-          directory "book/css/", "builds/html/css/"
-        end
+        copy_file "book/css/stylesheet.css", "builds/html/css/stylesheet.css"
         
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
