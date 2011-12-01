@@ -29,19 +29,17 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      def self.clean_up_builds
+      case build
+      
+      # 'build html' creates a html version of the book
+      when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/pdf/*')
         FileUtils.rm_r Dir.glob('builds/html/*')
         FileUtils.rm_r Dir.glob('builds/mobi/*')
         FileUtils.rm_r Dir.glob('builds/epub/*')
-      end
-      
-      case build
-      
-      # 'build html' creates a html version of the book
-      when 'html'
+        
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
           f << erb.result
@@ -51,7 +49,14 @@ module Bookshop
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
         
       # 'build pdf' creates a pdf version of the book
-      when 'pdf'      
+      when 'pdf'
+        # Clean up any old builds
+        puts "Deleting any old builds"
+        FileUtils.rm_r Dir.glob('builds/pdf/*')
+        FileUtils.rm_r Dir.glob('builds/html/*')
+        FileUtils.rm_r Dir.glob('builds/mobi/*')
+        FileUtils.rm_r Dir.glob('builds/epub/*')
+        
         # Generate the html from ERB
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
