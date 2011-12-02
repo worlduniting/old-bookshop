@@ -51,6 +51,18 @@ bookshop hopes to simplify the process by:
   PATH="$PATH:/var/lib/gems/1.8/bin"
   export PATH
 
+=== Editing Your New Book
+
+All of the source documents/code for your book are stored in the book/ folder. The master file, from which everything is built is _book/book.html.erb_. Since this is an ERB file, you can do all kinds of things like:
+
+* embed ruby functions and calls
+* include other files or templates
+* explore other creative ways to structure your book (we'd love to see how you are doing it)
+
+When you are finished editing your source you can build whichever version of your book that you would like. Currently the only supported builds are pdf and html (and soon epub and mobi).
+
+The source code is completely HTML & CSS (and of course ERB/Ruby) which most developers are very familiar with.
+
 === Building Your First Book
 
 To build a pdf format of your book from the html source:
@@ -60,29 +72,6 @@ To build a pdf format of your book from the html source:
 == Getting Help
 
 * bookshop comes with a built in help feature. Simply run 'bookshop --help' from the command line to get list of possible commands to issue including possible options. You can also run 'bookshop COMMAND --help' (where COMMAND is the command you want) to get a list of possible options for that particular command
-
-== Thanks
-
-We would like to thank:
-
-* The Ruby/Rubygems Team www.ruby-lang.org/
-* The Thor Team - https://github.com/wycats/thor
-* Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
-* The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
-* The EPUBCHECK team http://code.google.com/p/epubcheck/
-
-== Description of Gem Contents
-
-The basic bookshop gem architecture:
-
-  |-- bin
-  |-- lib
-
-bin
-  command file copied to /usr/bin upon installation (which is then called from the command line)
-
-lib
-  bookshop gem library files
 
 == Description of bookshop app contents
 
@@ -155,3 +144,13 @@ THE SOFTWARE.
   Sample style sheet for boom!, the book microformat
   written  by Hakon Wium Lie and Bert Bos, November 2005
   You may reuse this style sheet for any purpose without any fees
+
+== Thanks
+
+We would like to thank:
+
+* The Ruby/Rubygems Team www.ruby-lang.org/
+* The Thor Team - https://github.com/wycats/thor
+* Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
+* The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
+* The EPUBCHECK team http://code.google.com/p/epubcheck/
