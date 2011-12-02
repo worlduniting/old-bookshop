@@ -3,6 +3,7 @@
 bookShop is a publishing framework for html-to-(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
+* using common developer tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book from HTML as easy as 'sudo gem install bookshop'
 * pulling all the html-to-(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * sticking with open-source tools
@@ -53,15 +54,15 @@ bookshop hopes to simplify the process by:
 
 === Editing Your New Book
 
-All of the source documents/code for your book are stored in the book/ folder. The master file, from which everything is built is _book/book.html.erb_. Since this is an ERB file, you can do all kinds of things like:
+All of the source documents/code/assets (yay... HTML/CSS) for your book are stored in the +book/+ folder. The master file, from which everything is built is +book/book.html.erb_+. Since this is an ERB file, you can do all kinds of things like:
 
 * embed ruby functions and calls
-* include other files or templates
-* explore other creative ways to structure your book (we'd love to see how you are doing it)
+* include other files or template structures
+* explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
-When you are finished editing your source you can build whichever version of your book that you would like. Currently the only supported builds are pdf and html (and soon epub and mobi).
+When the book is built, your master +book/book.html.erb+ file will be compiled into the final HTML which will be used to build the book types.
 
-The source code is completely HTML & CSS (and of course ERB/Ruby) which most developers are very familiar with.
+When you are finished editing your source you can build whichever type of your book that you would like. Currently the only supported builds are pdf and html (and soon epub and mobi).
 
 === Building Your First Book
 
