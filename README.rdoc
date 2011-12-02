@@ -58,7 +58,7 @@ All of the source documents/code/assets (yay... HTML/CSS) for your book are stor
 
 * embed ruby functions and calls
 
-  Today is <%= Time.now.strftime('%A') %>.
+    Today is <%= Time.now.strftime('%A') %>.
 
 or
 
