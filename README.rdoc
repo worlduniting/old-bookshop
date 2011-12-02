@@ -60,13 +60,13 @@ All of the source documents/code/assets (yay... HTML/CSS) for your book are stor
 
     Today is <%= Time.now.strftime('%A') %>.
 
-or
+  or
 
-  <ul>
-    <% for @item in @shopping_list %>
-      <li><%= @item %></li>
-    <% end %>
-  </ul>
+    <ul>
+      <% for @item in @shopping_list %>
+        <li><%= @item %></li>
+      <% end %>
+    </ul>
     
 * include other files or template structures
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
