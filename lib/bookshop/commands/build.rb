@@ -2,8 +2,6 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 
-# find a way to use css
-
 module Bookshop
   module Commands
     # Define build commands for bookshop command line
@@ -35,10 +33,7 @@ module Bookshop
       when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/pdf/*')
         FileUtils.rm_r Dir.glob('builds/html/*')
-        FileUtils.rm_r Dir.glob('builds/mobi/*')
-        FileUtils.rm_r Dir.glob('builds/epub/*')
         
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
@@ -54,8 +49,6 @@ module Bookshop
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/pdf/*')
         FileUtils.rm_r Dir.glob('builds/html/*')
-        FileUtils.rm_r Dir.glob('builds/mobi/*')
-        FileUtils.rm_r Dir.glob('builds/epub/*')
         
         # Generate the html from ERB
         puts "Generating new html from erb"
