@@ -54,9 +54,20 @@ bookshop hopes to simplify the process by:
 
 === Editing Your New Book
 
-All of the source documents/code/assets (yay... HTML/CSS) for your book are stored in the +book/+ folder. The master file, from which everything is built is +book/book.html.erb_+. Since this is an ERB file, you can do all kinds of things like:
+All of the source documents/code/assets (yay... HTML/CSS) for your book are stored in the +book/+ folder. The master file, from which everything is built is +book/book.html.erb+. Since this is an ERB file, you can do all kinds of things like:
 
 * embed ruby functions and calls
+
+  Today is <%= Time.now.strftime('%A') %>.
+
+or
+
+  <ul>
+    <% for @item in @shopping_list %>
+      <li><%= @item %></li>
+    <% end %>
+  </ul>
+    
 * include other files or template structures
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
