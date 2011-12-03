@@ -1,6 +1,7 @@
 require 'thor/group'
 require 'erb'
 require 'fileutils'
+require 'pdfkit'
 
 module Bookshop
   module Commands
@@ -62,7 +63,17 @@ module Bookshop
 
         # Build the pdf
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
+        # cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
+        
+        
+        kit = PDFKit.new(File.new('builds/html/book.html'))
+        kit.stylesheets << 'builds/html/css/stylesheet.css'
+
+        # Git an inline PDF
+        pdf = kit.to_pdf
+
+        # Save the PDF to a file
+        file = kit.to_file('builds/pdf/book.pdf')
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

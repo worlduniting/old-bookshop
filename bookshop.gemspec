@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ['D.a. Thompson']
   s.email       = ['da@blueheadpublishing.com']
   s.homepage    = "http://rubygems.org/gems/bookshop"
-  s.summary     = "A publishing framework for html-to-(e)book toolchain happiness and sustainable productivity."
+  s.summary     = "A publishing framework for html-to-(e)book/pdf toolchain happiness and sustainable productivity."
   s.description = "bookShop is a publishing framework for html-to-(e)book toolchain happiness and sustainable productivity. 
                     The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly 
                     jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over 
@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   
   s.add_dependency "thor", ">= 0.14.6"
-  s.add_dependency "nokogiri"
+  s.add_dependency "pdfkit", ">= 0.5.2"
   s.add_development_dependency "bundler", ">= 1.0.0"
   s.add_development_dependency "rspec"
 
