@@ -67,7 +67,6 @@ module Bookshop
         
         
         kit = PDFKit.new(File.new('builds/html/book.html'))
-        kit.stylesheets << 'builds/html/css/stylesheet.css'
 
         # Git an inline PDF
         pdf = kit.to_pdf
