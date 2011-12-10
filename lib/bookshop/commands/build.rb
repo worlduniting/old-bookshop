@@ -2,11 +2,26 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 
+module QuickTemplate
+   attr_reader :args, :text
+   def initialize(file)
+      @text = File.read(file)
+   end
+   def exec(args={})
+      b = binding
+      template = ERB.new(@text, 0, "%<>")
+      result = template.result(b)
+      # Chomp the trailing newline
+      result.gsub(/\n$/,'')
+   end
+end
+
 module Bookshop
   module Commands
     # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
+      include QuickTemplate
       
       ARGV << '--help' if ARGV.empty?
 
@@ -17,7 +32,11 @@ module Bookshop
       build = ARGV.shift
       build = aliases[build] || build
       
-      erb = ERB.new(File.read('book/book.html.erb'))
+      def import(file, args={})
+         QuickTemplate.new(file).exec(args)
+      end
+      
+      erb = import('book/book.html.erb')
 
       # Define arguments and options
       argument :type
@@ -26,6 +45,8 @@ module Bookshop
       def self.source_root
         File.dirname(__FILE__)
       end
+      
+      erb = import('book/book.html.erb')
       
       case build
       
