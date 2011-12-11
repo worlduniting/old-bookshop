@@ -1,3 +1,16 @@
+0.0.16:
+	Features
+		Added importing (<%= import(source.html.erb) %>) functionality for ERB source
+			files, providing subtemplating, allowing for cleaner code layouts.
+	
+	Documentation
+		Edited the example book which is generated with 'bookshop new'. The new layout
+			demonstrates how to utilize the <%= import(source.html.erb) %> for including
+			sub-files.
+			
+	Removed 'Tools' subfolder including Kindlegen and Epubcheck - I will include them
+		in a future release. But removed for now to save bandwidth and reduce gem size.
+
 0.0.15:
 	Features
 		Added ERB functionality to the book source

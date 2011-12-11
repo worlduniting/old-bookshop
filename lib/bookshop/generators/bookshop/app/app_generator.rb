@@ -23,9 +23,9 @@ module Bookshop
       end
 
       # Adds third-party tools
-      def add_tools
-        directory "tools/", "#{app_path}/tools/"
-      end
+      # def add_tools
+      #   directory "tools/", "#{app_path}/tools/"
+      # end
 
       # Change the permissions so tools are executable 
       def chmod_tools

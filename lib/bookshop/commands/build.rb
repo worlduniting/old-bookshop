@@ -17,6 +17,7 @@ module Bookshop
       build = ARGV.shift
       build = aliases[build] || build
       
+      # Renders <%= import(source.html.erb) %> files with ERB
       def self.import(file)
         ERB.new(File.read(file)).result(binding).gsub(/\n$/,'')
       end
