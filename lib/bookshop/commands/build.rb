@@ -19,7 +19,7 @@ module Bookshop
       
       # Renders <%= import(source.html.erb) %> files with ERB
       def self.import(file)
-        ERB.new(File.read(file)).result(binding).gsub(/\n$/,'')
+        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
 
       # Define arguments and options
@@ -30,7 +30,7 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      erb = import('book/book.html.erb')
+      erb = import('book.html.erb')
       
       case build
       
