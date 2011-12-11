@@ -28,10 +28,10 @@ module Bookshop
       # end
 
       # Change the permissions so tools are executable 
-      def chmod_tools
-        chmod "#{app_path}/tools/epubcheck-1.2.jar", 0755
-        chmod "#{app_path}/tools/kindlegen", 0755
-      end
+      # def chmod_tools
+      #  chmod "#{app_path}/tools/epubcheck-1.2.jar", 0755
+      #  chmod "#{app_path}/tools/kindlegen", 0755
+      # end
 
     protected
 
