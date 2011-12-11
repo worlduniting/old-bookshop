@@ -1,6 +1,6 @@
 == Welcome to bookshop
 
-bookShop is a publishing framework for html-to-(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
+bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
 * using common developer tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
@@ -17,7 +17,6 @@ bookshop hopes to simplify the process by:
 
 * Ruby v1.8.7 or v1.9.2 http://www.ruby-lang.org/en/downloads/
 * Rubygems v1.3.6 http://docs.rubygems.org/read/chapter/3
-* Java v1.6 http://www.java.com/
 
 == Installation
 
@@ -62,13 +61,18 @@ All of the source documents/code/assets (yay... HTML/CSS) for your book are stor
 
   or
 
+    items = [ "ball", "stick", "corgi" ]
+
     <ul>
-      <% for @item in @shopping_list %>
-        <li><%= @item %></li>
+      <% items.each do |item| %>
+        <li><%= item %></li>
       <% end %>
     </ul>
     
 * include other files or template structures
+
+    <%= import(your_source_file.erb.html) %>
+
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
 When the book is built, your master +book/book.html.erb+ file will be compiled into the final HTML which will be used to build the book types.
@@ -165,4 +169,3 @@ We would like to thank:
 * The Thor Team - https://github.com/wycats/thor
 * Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
 * The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
-* The EPUBCHECK team http://code.google.com/p/epubcheck/
