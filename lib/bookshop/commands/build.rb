@@ -1,6 +1,7 @@
 require 'thor/group'
 require 'erb'
 require 'fileutils'
+require 'yaml'
 
 module Bookshop
   module Commands
@@ -33,6 +34,8 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
+      # Load book settings into the book object
+      book = YAML.load_file 'config/book.yml'
       erb = import('book.html.erb')
       
       case build
