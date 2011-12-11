@@ -18,6 +18,9 @@ module Bookshop
       build = aliases[build] || build
       
       # Renders <%= import(source.html.erb) %> files with ERB
+      # 
+      # When a new import() is encountered it is processed by this
+      #    method and the result is added to 'erb'
       def self.import(file)
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
@@ -34,7 +37,8 @@ module Bookshop
       
       case build
       
-      # 'build html' creates a html version of the book
+      # 'build html' generates a html version of the book from the
+      #    book/book.html.erb source file
       when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
@@ -48,7 +52,8 @@ module Bookshop
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
         
-      # 'build pdf' creates a pdf version of the book
+      # 'build pdf' generates a pdf version of the book from the builds/html/book.html
+      #    which is generated from the book/book.html.erb source file
       when 'pdf'
         # Clean up any old builds
         puts "Deleting any old builds"

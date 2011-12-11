@@ -71,7 +71,7 @@ All of the source documents/code/assets (yay... HTML/CSS) for your book are stor
     
 * include other files or template structures
 
-    <%= import(your_source_file.erb.html) %>
+    <%= import(your_source_file.html.erb) %>
 
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
