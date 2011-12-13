@@ -1,13 +1,16 @@
 # Settings for the book which can be called within the book source files
 #
-# book.html.erb
+# in book/book.html.erb
+#
 #      <p><b>Version:</b> <%= book.version %></p>
+#
 #   or
+#
 #      <% if book.epub.version >= 1.0.0 %>
 #        <p>Whew! We made it!</p>
 #      <% end %>
 
-draft: no               # yes will build books with a 'draft' watermark
+draft: no               # if 'yes', builds will include a 'draft' watermark
 version: 0.0.1
 title: Bookshop
 subtitle: An HTML-to-PDF/(e)Book Publishing Framework
@@ -15,11 +18,10 @@ isbn: 1234567891011     # ISBN-13
 
 
 
-# Place the epub specific settings here.
+# Place the epub specific settings here. Use whatever you want.
 # You can use these settings in your source layouts by using a tag
-#   So, in your book.html.erb you could use <%= book.epub.title %>
+#   in book.html.erb you could use <%= book.epub.title %>
 epub:
-  version: 0.0.1
   title: Bookshop (the eBook)
 
 
@@ -29,5 +31,9 @@ html:
   title: Bookshop (html version)
 
 
-# You can add any additional variables that you want to.
+# You can add any additional variables
 #
+# foo:
+#   bar: foobar
+#
+#   in book.html.erb you could use <%= foo.bar %>  # --> foobar

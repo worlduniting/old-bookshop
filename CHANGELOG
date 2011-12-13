@@ -1,3 +1,13 @@
+0.0.17:
+	Features
+		Added config/book.yml, providing a data structure for elements accessible within the
+			book/ source files.
+			
+		Added 'current date' to the end of the generated filename of builds.
+			
+	Clean-up
+		Removed Template Generator for now, this has become part of the 0.2.0 milestone
+
 0.0.16:
 	Features
 		Added importing <%= import(your_source_file.html.erb) %> functionality for ERB source

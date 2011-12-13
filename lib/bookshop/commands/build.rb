@@ -5,6 +5,41 @@ require 'yaml'
 
 module Bookshop
   module Commands
+    
+    class Book
+
+      def initialize(data={})
+        @data = {}
+        update!(data)
+      end
+
+      def update!(data)
+        data.each do |key, value|
+          self[key] = value
+        end
+      end
+
+      def [](key)
+        @data[key.to_sym]
+      end
+
+      def []=(key, value)
+        if value.class == Hash
+          @data[key.to_sym] = Book.new(value)
+        else
+          @data[key.to_sym] = value
+        end
+      end
+
+      def method_missing(sym, *args)
+        if sym.to_s =~ /(.+)=$/
+          self[$1] = args.first
+        else
+          self[sym]
+        end
+      end
+
+    end
     # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
@@ -23,6 +58,8 @@ module Bookshop
       # When a new import() is encountered it is processed by this
       #    method and the result is added to 'erb'
       def self.import(file)
+        # Load book settings into the book object
+        book = Book.new(YAML.load_file('config/book.yml'))
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
 
@@ -34,8 +71,6 @@ module Bookshop
         File.dirname(__FILE__)
       end
       
-      # Load book settings into the book object
-      book = YAML.load_file 'config/book.yml'
       erb = import('book.html.erb')
       
       case build
@@ -48,7 +83,7 @@ module Bookshop
         FileUtils.rm_r Dir.glob('builds/html/*')
         
         puts "Generating new html from erb"
-        File.open('builds/html/book.html', 'a') do |f|
+        File.open("builds/html/book_#{Time.now.strftime('%m-%e-%y')}.html", 'a') do |f|
           f << erb
         end
         
@@ -73,9 +108,9 @@ module Bookshop
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
 
-        # Build the pdf
+        # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
+        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book_#{Time.now.strftime('%m-%e-%y')}.pdf]
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
