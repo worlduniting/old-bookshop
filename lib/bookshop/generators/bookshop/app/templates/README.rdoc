@@ -53,7 +53,7 @@ bookshop hopes to simplify the process by:
 
 === Editing Your New Book
 
-All of the source documents/code/assets (yay... HTML/CSS) for your book are stored in the +book/+ folder. The master file, from which everything is built is +book/book.html.erb+. Since this is an ERB file, you can do all kinds of things like:
+All of the source documents and assets for your book are stored in the +book/+ folder. The source files are all in ERB. The master file, from which everything is built is +book/book.html.erb+. Since this is an ERB file, you can do all kinds of things like:
 
 * embed ruby functions and calls
 
@@ -75,9 +75,35 @@ All of the source documents/code/assets (yay... HTML/CSS) for your book are stor
 
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
+http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
+
 When the book is built, your master +book/book.html.erb+ file will be compiled into the final HTML which will be used to build the book types.
 
 When you are finished editing your source you can build whichever type of your book that you would like. Currently the only supported builds are pdf and html (and soon epub and mobi).
+
+=== The book.yml file (config/book.yml)
+
+We've provided a data structure for your book (in YAML) so you can store pieces of data or variables that you can call within your source files.
+
+    # book.yml
+    
+    title: A Book Title
+    subtitle: A Book Subtitle
+    
+    epub:
+      title: A EPUB Title
+
+In your book source file:
+
+    # book/book.html.erb
+    
+    <p>The book title is <%= book.title %></p>
+    <p>The book subtitle is <%= book.subtitle %></p>
+    <p>The epub title is <%= book.epub.title %>
+
+More info about YAML:
+
+http://en.wikipedia.org/wiki/YAML
 
 === Building Your First Book
 
