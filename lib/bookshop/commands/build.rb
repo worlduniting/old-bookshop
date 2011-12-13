@@ -53,15 +53,6 @@ module Bookshop
       build = ARGV.shift
       build = aliases[build] || build
       
-      # Renders <%= import(source.html.erb) %> files with ERB
-      # 
-      # When a new import() is encountered it is processed by this
-      #    method and the result is added to 'erb'
-      def self.import(file)
-        # Load book settings into the book object
-        book = Book.new(YAML.load_file('config/book.yml'))
-        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
-      end
 
       # Define arguments and options
       argument :type
@@ -69,6 +60,16 @@ module Bookshop
       # Define source root of application
       def self.source_root
         File.dirname(__FILE__)
+      end
+
+      # Renders <%= import(source.html.erb) %> files with ERB
+      # 
+      # When a new import() is encountered within source files it is
+      #    processed with this method and the result is added to 'erb'
+      def self.import(file)
+        # Load book settings into the book object
+        book = Book.new(YAML.load_file('config/book.yml'))
+        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
       
       erb = import('book.html.erb')

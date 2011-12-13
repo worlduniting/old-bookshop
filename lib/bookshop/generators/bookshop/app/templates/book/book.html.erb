@@ -6,7 +6,11 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 </head>
 <body>
-<p>THIS BOOK TITLE IS <%= book.epub.title %></p>
+<p>Title: <%= book.title %></p>
+<p>Subtitle: <%= book.subtitle %></p>
+<p>ISBN: <%= book.isbn %></p>
+
+
 <%= import('cover.html.erb')%>
 <%= import('toc.html.erb')%>
 <%= import('preface.html.erb')%>

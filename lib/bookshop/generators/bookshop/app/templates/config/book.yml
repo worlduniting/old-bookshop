@@ -10,7 +10,6 @@
 #        <p>Whew! We made it!</p>
 #      <% end %>
 
-draft: no               # if 'yes', builds will include a 'draft' watermark
 version: 0.0.1
 title: Bookshop
 subtitle: An HTML-to-PDF/(e)Book Publishing Framework
