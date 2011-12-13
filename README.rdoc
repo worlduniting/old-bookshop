@@ -99,7 +99,7 @@ In your book source file:
     
     <p>The book title is <%= book.title %></p>
     <p>The book subtitle is <%= book.subtitle %></p>
-    <p>The epub title is <%= book.epub.title %>
+    <p>The epub title is <%= book.epub.title %></p>
 
 More info about YAML:
 
