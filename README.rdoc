@@ -85,7 +85,7 @@ All of the source documents and assets for your book are stored in the +book/+ f
       <% end %>
     </p>
     
-    # did you notice the +book.html.title+? -- look below at the book.yml for explanation
+    # did you notice the book.html.title? Look below at the book.yml for explanation
 
 
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
@@ -122,9 +122,13 @@ http://en.wikipedia.org/wiki/YAML
 
 === Building Your First Book
 
-To build a pdf format of your book from the html source:
+To build a pdf format of your book from the ERB source:
 
-    $ bookshop build pdf
+    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
+
+To build an HTML format of your book from the ERB source:
+
+    $ bookshop build html   # -> find the output in builds/html/book_(date).pdf
 
 == Getting Help
 
@@ -142,7 +146,6 @@ The default directory structure of a generated bookshop project:
     pdf
 
   |-- config
-  |-- tools
 
 book
   Holds all the manuscript html code/files. This is where your master manuscript lives from which everything is built.
@@ -161,9 +164,6 @@ build/pdf
 
 config
   application-wide variables and configurations will go here
-	
-tools
-  Holds all third-party tools: epubcheck, kindlegen
 
 == Get Involved
 1. Fork the repository.
