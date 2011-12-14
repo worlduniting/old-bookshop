@@ -3,51 +3,11 @@ require 'erb'
 require 'fileutils'
 require 'yaml'
 
+require 'bookshop/commands/yaml/book'
+
 module Bookshop
   module Commands
-    # Take a YAML data structure and express it in a 'class.method.method' convention so
-    #   it can be passed to the build command, used in the source files to call data
-    #   from the book.yml file
-    #
-    # # book.yml
-    # foo:
-    #   bar: foobar
-    #
-    # is referenced in the source files as <%= book.foo.bar %> and yields in build 'foobar'
-    class Book
 
-      def initialize(data={})
-        @data = {}
-        update!(data)
-      end
-
-      def update!(data)
-        data.each do |key, value|
-          self[key] = value
-        end
-      end
-
-      def [](key)
-        @data[key.to_sym]
-      end
-
-      def []=(key, value)
-        if value.class == Hash
-          @data[key.to_sym] = Book.new(value)
-        else
-          @data[key.to_sym] = value
-        end
-      end
-
-      def method_missing(sym, *args)
-        if sym.to_s =~ /(.+)=$/
-          self[$1] = args.first
-        else
-          self[sym]
-        end
-      end
-
-    end
     # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
@@ -80,8 +40,6 @@ module Bookshop
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
       
-      erb = import('book.html.erb')
-      
       case build
       
       # 'build html' generates a html version of the book from the
@@ -91,6 +49,8 @@ module Bookshop
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/html/*')
         
+        @output = :html
+        erb = import('book.html.erb')
         puts "Generating new html from erb"
         File.open("builds/html/book_#{Time.now.strftime('%m-%e-%y')}.html", 'a') do |f|
           f << erb
@@ -107,6 +67,8 @@ module Bookshop
         FileUtils.rm_r Dir.glob('builds/pdf/*')
         FileUtils.rm_r Dir.glob('builds/html/*')
         
+        @output = :pdf
+        erb = import('book.html.erb')
         # Generate the html from ERB
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
