@@ -5,7 +5,15 @@ require 'yaml'
 
 module Bookshop
   module Commands
-    
+    # Take a YAML data structure and express it in a 'class.method.method' convention so
+    #   it can be passed to the build command, used in the source files to call data
+    #   from the book.yml file
+    #
+    # # book.yml
+    # foo:
+    #   bar: foobar
+    #
+    # is referenced in the source files as <%= book.foo.bar %> and yields in build 'foobar'
     class Book
 
       def initialize(data={})
