@@ -128,7 +128,7 @@ To build a pdf format of your book from the ERB source:
 
 To build an HTML format of your book from the ERB source:
 
-    $ bookshop build html   # -> find the output in builds/html/book_(date).pdf
+    $ bookshop build html   # -> find the output in builds/html/book_(date).html
 
 == Getting Help
 

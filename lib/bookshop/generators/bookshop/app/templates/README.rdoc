@@ -4,7 +4,7 @@ bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness a
 
 bookshop hopes to simplify the process by:
 * using common developer tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
-* providing a Ruby Gem to make building a book from HTML as easy as 'gem install bookshop'
+* providing a Ruby Gem to make building a pdf or (e)book from HTML as easy as 'gem install bookshop'
 * pulling all the html-to-(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * sticking with open-source tools
 * giving the developer a set of scripts to automate the redundant stuff
@@ -128,7 +128,7 @@ To build a pdf format of your book from the ERB source:
 
 To build an HTML format of your book from the ERB source:
 
-    $ bookshop build html   # -> find the output in builds/html/book_(date).pdf
+    $ bookshop build html   # -> find the output in builds/html/book_(date).html
 
 == Getting Help
 
