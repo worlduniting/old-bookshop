@@ -1,3 +1,16 @@
+0.0.18:
+	Features
+		Added @output variable for use in ERB source files so conditionals can be used to
+			define custom layouts based upon the type of output being built
+			(e.g. html, pdf, etc)
+		
+		Abstracted the book-to-yaml class into it's own class under */commands/yaml/book.rb
+		
+	Documentation
+		Edited the example book to demonstrate use of "output" conditionals in ERB source
+			files.
+		Added documentation in README's to show use of "output" conditionals in ERB source
+
 0.0.17:
 	Features
 		Added config/book.yml, providing a data structure for elements accessible within the

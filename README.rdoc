@@ -73,6 +73,21 @@ All of the source documents and assets for your book are stored in the +book/+ f
 
     <%= import(your_source_file.html.erb) %>
 
+* specify content only for certain build outputs (e.g. html, pdf, epub, etc.)
+
+    # to generate titles that change depending on the build
+    
+    <p>Title: 
+      <% if @output == :html %>
+        <%= book.html.title %>
+      <% elsif @output == :pdf %>
+        <%= book.pdf.title %>
+      <% end %>
+    </p>
+    
+    # did you notice the +book.html.title+? -- look below at the book.yml for explanation
+
+
 * explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
 
 http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
