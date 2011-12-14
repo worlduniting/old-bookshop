@@ -2,37 +2,41 @@
 #
 # in book/book.html.erb
 #
-#      <p><b>Version:</b> <%= book.version %></p>
+#      <p><b>Version:</b> <%= book.epub.version %></p>
 #
 #   or
 #
-#      <% if book.epub.version >= 1.0.0 %>
+#      <% if book.epub.version == '1.0.0' %>
 #        <p>Whew! We made it!</p>
 #      <% end %>
 
-version: 0.0.1
 title: Bookshop
 subtitle: An HTML-to-PDF/(e)Book Publishing Framework
 isbn: 1234567891011     # ISBN-13
 
 
-
-# Place the epub specific settings here. Use whatever you want.
+# Place the pdf specific settings here. Use whatever you want.
 # You can use these settings in your source layouts by using a tag
-#   in book.html.erb you could use <%= book.epub.title %>
+#   in book.html.erb you could use <%= book.pdf.title %>
+pdf:
+  version: 0.0.1
+  title: Bookshop (PDF Version)
+
+
+# Place the epub specific settings here.
 epub:
-  title: Bookshop (the eBook)
+  version: 0.0.1
+  title: Bookshop (eBook)
 
 
-
-# Place the epub specific settings here
+# Place the html specific settings here
 html:
-  title: Bookshop (html version)
+  title: Bookshop (HTML version)
 
 
-# You can add any additional variables
+# You can add any additional variables you want
 #
 # foo:
 #   bar: foobar
 #
-#   in book.html.erb you could use <%= foo.bar %>  # --> foobar
+#   in book.html.erb you can then use <%= foo.bar %>  # --> foobar

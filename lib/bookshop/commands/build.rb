@@ -35,8 +35,11 @@ module Bookshop
       # When a new import() is encountered within source files it is
       #    processed with this method and the result is added to 'erb'
       def self.import(file)
-        # Load book settings into the book object
+        
+        # Load the book.yml into the Book object
         book = Book.new(YAML.load_file('config/book.yml'))
+        
+        # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
       
@@ -44,6 +47,8 @@ module Bookshop
       
       # 'build html' generates a html version of the book from the
       #    book/book.html.erb source file
+      # @output variable is set to "html" for access as a conditional
+      #   in the source erb's
       when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
