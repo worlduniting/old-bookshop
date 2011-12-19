@@ -52,10 +52,13 @@ bookshop hopes to simplify the process by:
   export PATH
 
 === Editing Your New Book
+==== Where does my Book really live?
 
-All of the source documents and assets for your book are stored in the +book/+ folder. The source files are all in ERB. The master file, from which everything is built is +book/book.html.erb+. Since this is an ERB file, you can do all kinds of things like:
+All of the source documents and assets for your book are stored in the +book/+ folder. So your stylesheets, images, text - everything used for building your book - lives here. Ideally, you should only every edit files in your +book/+ folder (with the exception of your config/book.yml file).
 
-* embed ruby functions and calls
+==== Why do the Source files end with +.erb+?
+
+The source files are all in ERB. ERB is a templating language for the Ruby programming language. Why is this cool? Because it means that you can use HTML _and_ you can embed Ruby code in your source files. In other words, you can do all kinds of cool programmy things. Like embed ruby functions and calls:
 
     <p>Today is <%= Time.now.strftime('%A') %>.</p>
 
@@ -68,57 +71,122 @@ All of the source documents and assets for your book are stored in the +book/+ f
         <li><%= item %></li>
       <% end %>
     </ul>
+
+==== One File to Rule Them All!
+
+Your master file (which is used to build everything) is the +book.html.erb+ file (remember that we are in the +book/+ folder). You could of course just use this file and put all of your book contents here, making one enormous file, but we don't recommend it... 
+
+==== The Magic of include()
+
+Are you writing another "War and Peace"? We've created a nice way to make your epic book easier to manage. Rather than putting everything in the +book.html.erb+ file, you can +import+ files. This allows you to break your book up into smaller, more manageable pieces. This makes it soooooo much easier to manage your book. And others will thank you for it..
+
+You can import a file by using the import() function, for example:
+
+    <%= import('a_whole_chapter.html.erb') %>
+
+This would import the file +book/a_whole_chapter.html+ 
+
+You can also create sub-folders and group your files there. For example, in your book.html.erb file you could import:
+
+    <%= import('ch1/my_first_section.html.erb') %>
+
+This would import the file +book/ch1/my_first_section.html.erb+
+
+Note that you can also nest import files into imported files.
+
+So in your +book/book.html.erb+
+
+    <%= import('ch01/ch01.html.erb') %>
+
+and in the +ch01/ch01.html.erb+ you could import more files
+
+    <%= import('first_section.html.erb') %>
+    <%= import('second_section.html.erb') %>
+
+==== Output-based Content
+
+So what if you want to create content for certain builds only? Let's say you want to have a different title for the pdf then you do for the epub version of the book.
+
+No worries. We've created the handy Output Variable (@output) for you to use in this case... aren't we special?
+
+Currently we have three attributes you can call with @output - :html, :pdf, and :epub.
+
+Let's generate titles that change depending on the build, using a conditional statement (remember, everything is ERB, so we can use Ruby):
     
-* include other files or template structures
+    <p>
+      <% if @output == :html %>
+        HTML Title
+      <% elsif @output == :pdf %>
+        PDF Title
+      <% elsif @output == :epub %>
+        EPUB Title
+      <% end %>
+    </p>
 
-    <%= import(your_source_file.html.erb) %>
+==== Book Variables -  The +config/book.yml+ file
 
-* specify content only for certain build outputs (e.g. html, pdf, epub, etc.)
+Gosh, wouldn't it be cool to have a way to store bits of information that we use repeatedly throughout the book, like the ISBN, or the title? And then it would be great to be able to reference them from within the book source. That way we can change them once, in one place, rather than having to go looking for them throughout the entire book.
 
-    # to generate titles that change depending on the build
+We've provided a data structure for your book (in YAML) so you can store these pieces of data in variables that you can call within your source files.
+
+Here's an example +config/book.yml+ file with some Book Variables:
+
+    # book.yml
     
+    isbn: 1234567891011
+    
+    html:
+      title: An HTML Title
+    
+    pdf:
+      title: A PDF Title
+      pub_date: 12/13/2012
+    
+    epub:
+      title: A EPUB Title
+      pub_date: 11/13/2012
+
+You can then use these Book Variables in your book source file:
+    
+    <p>The book isbn is <%= book.isbn %></p>
+    <p>The html title is <%= book.html.title %></p>
+    <p>The epub pub_date is <%= book.epub.pub_date %></p>
+
+Note that you can construct and/or nest variables however you want to:
+
+    # book.yml
+    
+    my:
+      madeup:
+        friend:
+          name: dave
+
+Then call it in your source file with the variable:
+
+    <p>My made up friend's name is <%= book.my.madeup.friend.name %>
+
+More info about YAML:
+
+http://en.wikipedia.org/wiki/YAML
+
+==== Mixing it up
+
+So, do you want to see something cool? Now that we have the Output Variable and Book Variables, we can combine them to do nifty things, like:
+
+    <p>The ISBN is <%= book.isbn %></p>
     <p>Title: 
       <% if @output == :html %>
         <%= book.html.title %>
       <% elsif @output == :pdf %>
         <%= book.pdf.title %>
+      <% elsif @output == :epub %>
+        <%= book.epub.title %>
       <% end %>
     </p>
-    
-    # did you notice the book.html.title? Look below at the book.yml for explanation
 
-
-* explore other creative ways to structure and enhance your book (we'd love to see how you are doing it)
+Please explore other creative ways to structure and enhance your book (we'd love to see how you are doing it).
 
 http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
-
-When the book is built, your master +book/book.html.erb+ file will be compiled into the final HTML which will be used to build the book types.
-
-When you are finished editing your source you can build whichever type of your book that you would like. Currently the only supported builds are pdf and html (and soon epub and mobi).
-
-=== The book.yml file (config/book.yml)
-
-We've provided a data structure for your book (in YAML) so you can store pieces of data or variables that you can call within your source files.
-
-    # book.yml
-    
-    title: A Book Title
-    subtitle: A Book Subtitle
-    
-    epub:
-      title: A EPUB Title
-
-In your book source file:
-
-    # book/book.html.erb
-    
-    <p>The book title is <%= book.title %></p>
-    <p>The book subtitle is <%= book.subtitle %></p>
-    <p>The epub title is <%= book.epub.title %></p>
-
-More info about YAML:
-
-http://en.wikipedia.org/wiki/YAML
 
 === Building Your First Book
 
@@ -130,9 +198,17 @@ To build an HTML format of your book from the ERB source:
 
     $ bookshop build html   # -> find the output in builds/html/book_(date).html
 
-== Getting Help
+== Example Book
 
-* bookshop comes with a built in help feature. Simply run 'bookshop --help' from the command line to get list of possible commands to issue including possible options. You can also run 'bookshop COMMAND --help' (where COMMAND is the command you want) to get a list of possible options for that particular command
+We've provided an example book for you already in the +book/+ folder. You can use this as an example of how to structure your book and to use ERB, Book Variables, and Output Variables.
+
+Simply create a new book:
+
+    bookshop new name_of_book
+
+Then take a look at the example book in the +book/+ folder.
+
+You can then build the book into whatever format you like.
 
 == Description of bookshop app contents
 
