@@ -4,6 +4,7 @@ require 'fileutils'
 require 'yaml'
 
 require 'bookshop/commands/yaml/book'
+require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
   module Commands
@@ -35,10 +36,10 @@ module Bookshop
       # When a new import() is encountered within source files it is
       #    processed with this method and the result is added to 'erb'
       def self.import(file)
-        
+  
         # Load the book.yml into the Book object
         book = Book.new(YAML.load_file('config/book.yml'))
-        
+  
         # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
@@ -87,6 +88,9 @@ module Bookshop
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book_#{Time.now.strftime('%m-%e-%y')}.pdf]
+        
+      when 'epub'
+        EpubBuild.new
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

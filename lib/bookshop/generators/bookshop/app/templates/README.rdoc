@@ -1,14 +1,15 @@
 == Welcome to bookshop
 
-bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
+bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
-* using common tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
+* using common developer tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book from HTML as easy as 'gem install bookshop'
-* pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
+* pulling all the html-to-(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * sticking with open-source tools
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
+* providing an extendable framework for other developers to add their own custom templates (and hopefully provide them for the community)
 
 == Getting Started
 
@@ -27,7 +28,7 @@ bookshop hopes to simplify the process by:
 
 1. Install by hand (recommended):
 
-https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
+    https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 2. Try using the wkhtmltopdf-binary gem (mac + linux i386)
 
