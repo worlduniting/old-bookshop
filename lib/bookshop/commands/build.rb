@@ -37,7 +37,7 @@ module Bookshop
       def self.import(file)
         
         # Load the book.yml into the Book object
-        book = Book.new(YAML.load_file('config/book.yml'))
+        book = Book.new(YAML.load_file('onfig/book.yml'))
         
         # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
