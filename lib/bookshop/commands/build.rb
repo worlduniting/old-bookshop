@@ -24,6 +24,7 @@ module Bookshop
 
       # Define arguments and options
       argument :type
+      class_option :test_framework, :default => :test_unit
 
       # Define source root of application
       def self.source_root
@@ -37,7 +38,7 @@ module Bookshop
       def self.import(file)
         
         # Load the book.yml into the Book object
-        book = Book.new(YAML.load_file('onfig/book.yml'))
+        book = Book.new(YAML.load_file('config/book.yml'))
         
         # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')

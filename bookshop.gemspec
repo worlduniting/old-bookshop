@@ -29,6 +29,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '>= 1.0.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'aruba'
+  s.add_development_dependency 'rdoc'
   
   s.post_install_message = Bookshop::POST_INSTALL
 end
