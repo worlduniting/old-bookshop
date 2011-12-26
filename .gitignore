@@ -2,4 +2,6 @@ pkg/*
 *.gem
 .bundle
 rdoc/*
+results.html
+Gemfile.lock
 TODOS
