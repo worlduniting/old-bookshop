@@ -1,4 +1,7 @@
 pkg/*
 *.gem
 .bundle
-TODOS
+rdoc/*
+results.html
+Gemfile.lock
+tmp*

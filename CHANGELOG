@@ -1,3 +1,11 @@
+0.0.19:
+	Testing
+		This release incorporates a new testing suite.
+			I've added Aruba and Cucumber to create acceptance tests for the basic features
+			of bookshop. This does not currently include any unit testing. I will be adding
+			unit tests in a future release. Hopefully these basic acceptance tests will provide
+			some essence of stability considering my recent cowboy coding. :-)
+
 0.0.18:
 	Features
 		Added @output variable for use in ERB source files so conditionals can be used to
