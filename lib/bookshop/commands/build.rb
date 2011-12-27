@@ -58,7 +58,7 @@ module Bookshop
         @output = :html
         erb = import('book.html.erb')
         puts "Generating new html from erb"
-        File.open("builds/html/book_#{Time.now.strftime('%m-%e-%y')}.html", 'a') do |f|
+        File.open("builds/html/book.html", 'a') do |f|
           f << erb
         end
         
@@ -87,7 +87,7 @@ module Bookshop
 
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book_#{Time.now.strftime('%m-%e-%y')}.pdf]
+        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

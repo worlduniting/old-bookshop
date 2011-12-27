@@ -4,4 +4,4 @@ pkg/*
 rdoc/*
 results.html
 Gemfile.lock
-TODOS
+tmp*
