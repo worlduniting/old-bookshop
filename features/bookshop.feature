@@ -13,7 +13,7 @@ Feature: We can create a new book project and build books
 	Scenario: Build a new html book
 		Given a file named "test_book/script/bookshop" should exist
 		When I cd to "test_book"
-		When I run `bookshop build html`
+		And I run `bookshop build html`
 		Then the output should contain "Generating new html from erb"
 		And a file named "builds/html/book.html" should exist
 	
@@ -24,5 +24,13 @@ Feature: We can create a new book project and build books
 		When I cd to "test_book"
 		And I run `bookshop build pdf`
 		Then the output should contain "Building new pdf at builds/pdf/book.pdf"
-		And a file named "builds/html/book.html" should exist
 		And a file named "builds/pdf/book.pdf" should exist
+		
+	# @no-clobber
+	# Scenario: Build a new epub book
+	#	Given a file named "test_book/script/bookshop" should exist
+	# 	When I cd to "test_book"
+	# 	And I run `bookshop build epub`
+	# 	Then the output should contain "Building new epub at builds/epub/book.epub"
+	# 	And a file named "builds/epub/book.epub" should exist
+		

@@ -1,0 +1,7 @@
+nav: 
+  name: Title
+  text: title
+  
+  nav:
+    name: subtitle
+    text: SubTitle

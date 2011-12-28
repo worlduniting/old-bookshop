@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'aruba'
   s.add_development_dependency 'rdoc'
   s.add_development_dependency 'wkhtmltopdf-binary'
+  s.add_development_dependency 'mocha'
   
   s.post_install_message = Bookshop::POST_INSTALL
 end

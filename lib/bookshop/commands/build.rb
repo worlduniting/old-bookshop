@@ -4,7 +4,6 @@ require 'fileutils'
 require 'yaml'
 
 require 'bookshop/commands/yaml/book'
-require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
   module Commands
@@ -90,8 +89,9 @@ module Bookshop
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         
-      when 'epub'
-        EpubBuild.new
+      # when 'epub'
+        # require 'bookshop/commands/epub/epub_build'
+        # EpubBuild.new
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
