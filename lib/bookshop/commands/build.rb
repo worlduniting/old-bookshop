@@ -34,7 +34,7 @@ module Bookshop
       # Renders <%= import(source.html.erb) %> files with ERB
       # 
       # When a new import() is encountered within source files it is
-      #    processed with this method and the result is added to 'erb'
+      # processed with this method and the result is added to 'erb'
       def self.import(file)
   
         # Load the book.yml into the Book object
@@ -43,30 +43,34 @@ module Bookshop
         # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
+
+      def import_erb_source
+        @erb = import('book.html.erb')
+      end
       
       case build
       
       # 'build html' generates a html version of the book from the
-      #    book/book.html.erb source file
+      # book/book.html.erb source file
+      #
       # @output variable is set to "html" for access as a conditional
-      #   in the source erb's
+      # in the source erb's
       when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/html/*')
         
         @output = :html
-        erb = import('book.html.erb')
         puts "Generating new html from erb"
         File.open("builds/html/book.html", 'a') do |f|
-          f << erb
+          f << @erb
         end
         
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
-      #    which is generated from the book/book.html.erb source file
+      # which is generated from the book/book.html.erb source file
       when 'pdf'
         # Clean up any old builds
         puts "Deleting any old builds"
@@ -78,7 +82,7 @@ module Bookshop
         # Generate the html from ERB
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
-          f << erb
+          f << @erb
         end
 
         # Copy over html assets

@@ -2,6 +2,9 @@ require 'thor/group'
 require 'erb'
 require 'yaml'
 
+
+require 'bookshop/commands/yaml/book'
+
 module Bookshop
   module Commands
 
@@ -22,7 +25,10 @@ module Bookshop
       
       def compile_erb_source
         @output = :epub
-
+        
+        # Load the book.yml into the Book object
+        book = Book.new(YAML.load_file('config/book.yml'))
+        
         erb = import('book.html.erb')
 
         # Generate the html from ERB
@@ -53,7 +59,7 @@ module Bookshop
       end
       
       def validate_epub
-        cmd = %x[tools/epubcheck book_#{Time.now.strftime('%m-%e-%y').epub]
+        # cmd = %x[tools/epubcheck book_#{Time.now.strftime('%m-%e-%y').epub]
       end
     end
   end
