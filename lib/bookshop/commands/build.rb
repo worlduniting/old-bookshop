@@ -12,6 +12,15 @@ module Bookshop
     class Build < Thor::Group
       include Thor::Actions
       
+      BOOK_SOURCE = 'book.html.erb'
+      BOOK_SOURCE_FOLDER = 'book/'
+      BOOK_YAML = 'config/book.yml'
+      
+      def initialize
+        @book = book
+        @output = output
+      end
+      
       ARGV << '--help' if ARGV.empty?
 
       aliases = {
@@ -30,22 +39,25 @@ module Bookshop
       def self.source_root
         File.dirname(__FILE__)
       end
-
-      # Renders <%= import(source.html.erb) %> files with ERB
-      # 
-      # When a new import() is encountered within source files it is
-      # processed with this method and the result is added to 'erb'
-      def self.import(file)
-  
+      
+      def self.load_book_yaml(file)
+        
         # Load the book.yml into the Book object
-        book = Book.new(YAML.load_file('config/book.yml'))
-  
-        # Parse the source erb file
-        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
+        @book = Book.new(YAML.load_file(BOOK_YAML))
       end
 
-      def import_erb_source
-        @erb = import('book.html.erb')
+      # Renders <%= import_erb(source.html.erb) %> files with ERB
+      # 
+      # When a new import_erb() is encountered within source files it is
+      # processed with this method and the result is added to 'erb'
+      def self.import_erb(file)
+  
+        # Parse the source erb file
+        ERB.new(File.read(BOOK_SOURCE_FOLDER + file)).result(binding).gsub(/\n$/,'')
+      end
+
+      def compile_erb_files
+        @erb_result = import_erb(BOOK_SOURCE)
       end
       
       case build
@@ -63,7 +75,7 @@ module Bookshop
         @output = :html
         puts "Generating new html from erb"
         File.open("builds/html/book.html", 'a') do |f|
-          f << @erb
+          f << @erb_result
         end
         
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
@@ -78,11 +90,10 @@ module Bookshop
         FileUtils.rm_r Dir.glob('builds/html/*')
         
         @output = :pdf
-        erb = import('book.html.erb')
         # Generate the html from ERB
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
-          f << @erb
+          f << @erb_result
         end
 
         # Copy over html assets

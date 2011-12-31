@@ -29,7 +29,7 @@ module Bookshop
         # Load the book.yml into the Book object
         book = Book.new(YAML.load_file('config/book.yml'))
         
-        erb = import('book.html.erb')
+        erb = import_erb('book.html.erb')
 
         # Generate the html from ERB
         puts "Generating new html from erb"

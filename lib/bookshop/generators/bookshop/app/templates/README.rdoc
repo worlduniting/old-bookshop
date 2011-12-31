@@ -1,15 +1,14 @@
 == Welcome to bookshop
 
-bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
+bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
-* using common developer tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
+* using common tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book from HTML as easy as 'gem install bookshop'
-* pulling all the html-to-(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
+* pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * sticking with open-source tools
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
-* providing an extendable framework for other developers to add their own custom templates (and hopefully provide them for the community)
 
 == Getting Started
 
@@ -28,7 +27,7 @@ bookshop hopes to simplify the process by:
 
 1. Install by hand (recommended):
 
-    https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
+https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 2. Try using the wkhtmltopdf-binary gem (mac + linux i386)
 
@@ -76,19 +75,19 @@ The source files are all in ERB. ERB is a templating language for the Ruby progr
 
 Your master file (which is used to build everything) is the +book.html.erb+ file (remember that we are in the +book/+ folder). You could of course just use this file and put all of your book contents here, making one enormous file, but we don't recommend it... 
 
-==== The Magic of include()
+==== The Magic of import_erb()
 
 Are you writing another "War and Peace"? We've created a nice way to make your epic book easier to manage. Rather than putting everything in the +book.html.erb+ file, you can +import+ files. This allows you to break your book up into smaller, more manageable pieces. This makes it soooooo much easier to manage your book. And others will thank you for it..
 
 You can import a file by using the import() function, for example:
 
-    <%= import('a_whole_chapter.html.erb') %>
+    <%= import_erb('a_whole_chapter.html.erb') %>
 
 This would import the file +book/a_whole_chapter.html+ 
 
 You can also create sub-folders and group your files there. For example, in your book.html.erb file you could import:
 
-    <%= import('ch1/my_first_section.html.erb') %>
+    <%= import_erb('ch1/my_first_section.html.erb') %>
 
 This would import the file +book/ch1/my_first_section.html.erb+
 
@@ -96,12 +95,12 @@ Note that you can also nest import files into imported files.
 
 So in your +book/book.html.erb+
 
-    <%= import('ch01/ch01.html.erb') %>
+    <%= import_erb('ch01/ch01.html.erb') %>
 
 and in the +ch01/ch01.html.erb+ you could import more files
 
-    <%= import('first_section.html.erb') %>
-    <%= import('second_section.html.erb') %>
+    <%= import_erb('first_section.html.erb') %>
+    <%= import_erb('second_section.html.erb') %>
 
 ==== Output-based Content
 
@@ -148,9 +147,9 @@ Here's an example +config/book.yml+ file with some Book Variables:
 
 You can then use these Book Variables in your book source file:
     
-    <p>The book isbn is <%= book.isbn %></p>
-    <p>The html title is <%= book.html.title %></p>
-    <p>The epub pub_date is <%= book.epub.pub_date %></p>
+    <p>The book isbn is <%= @book.isbn %></p>
+    <p>The html title is <%= @book.html.title %></p>
+    <p>The epub pub_date is <%= @book.epub.pub_date %></p>
 
 Note that you can construct and/or nest variables however you want to:
 
@@ -163,7 +162,7 @@ Note that you can construct and/or nest variables however you want to:
 
 Then call it in your source file with the variable:
 
-    <p>My made up friend's name is <%= book.my.madeup.friend.name %>
+    <p>My made up friend's name is <%= @book.my.madeup.friend.name %>
 
 More info about YAML:
 
@@ -173,14 +172,14 @@ http://en.wikipedia.org/wiki/YAML
 
 So, do you want to see something cool? Now that we have the Output Variable and Book Variables, we can combine them to do nifty things, like:
 
-    <p>The ISBN is <%= book.isbn %></p>
+    <p>The ISBN is <%= @book.isbn %></p>
     <p>Title: 
       <% if @output == :html %>
-        <%= book.html.title %>
+        <%= @book.html.title %>
       <% elsif @output == :pdf %>
-        <%= book.pdf.title %>
+        <%= @book.pdf.title %>
       <% elsif @output == :epub %>
-        <%= book.epub.title %>
+        <%= @book.epub.title %>
       <% end %>
     </p>
 

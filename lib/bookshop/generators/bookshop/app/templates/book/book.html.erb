@@ -8,12 +8,12 @@
 <body>
 <p><a name="title">Title:</a> 
 	<% if @output == :html %>
-		<%= book.html.title %>
+		<%= @book.html.title %>
 	<% elsif @output == :pdf %>
-		<%= book.pdf.title %>
+		<%= @book.pdf.title %>
 	<% end %></p>
-<p>Subtitle: <%= book.subtitle %></p>
-<p>ISBN: <%= book.isbn %></p>
+<p>Subtitle: <%= @book.subtitle %></p>
+<p>ISBN: <%= @book.isbn %></p>
 
 
 <%= import('cover.html.erb')%>
