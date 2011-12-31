@@ -12,7 +12,7 @@ module Bookshop
     class Build < Thor::Group
       include Thor::Actions
       
-      BOOK_SOURCE = 'book.html.erb'
+      BOOK_SOURCE = 'dbook.html.erb'
       BOOK_SOURCE_FOLDER = 'book/'
       BOOK_YAML = 'config/book.yml'
       

@@ -32,5 +32,5 @@ Feature: We can create a new book project and build books
 	# 	When I cd to "test_book"
 	# 	And I run `bookshop build epub`
 	# 	Then the output should contain "Building new epub at builds/epub/book.epub"
-	# 	And a file named "builds/epub/book.epub" should exist
+	# 		And a file named "builds/epub/book.epub" should exist
 		
