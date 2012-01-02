@@ -1,7 +1,7 @@
 == Welcome to bookshop
 
-	book_publisher.yesterday # -> puts "Software is for geeks"
-	book_publisher.today # -> puts "I am a code monkey"
+    book_publisher.yesterday # -> puts "Software is for geeks"
+    book_publisher.today # -> puts "I am a code monkey"
 	
 bookShop is a book publishing framework for publishers, editors, and coders in today's publishing industry, providing a framework for developing books using well-known standard web languages, providing scripts to then convert them into pdf and other (e)books. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
 
