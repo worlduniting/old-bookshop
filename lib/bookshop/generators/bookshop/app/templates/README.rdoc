@@ -2,10 +2,10 @@
 
     "a book publishing framework for today's publishing industry"
 	
-bookShop is a book publishing framework for publishers, editors, and coders in today's publishing industry, providing a framework for developing books using well-known standard web languages, providing scripts to then convert them into pdf and other (e)books. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
+bookShop is a book publishing framework for publishers, editors, and coders in today's publishing industry, providing a framework for developing books using well-known standard web languages like HTML/CSS, providing scripts to then convert them into pdf and other (e)books. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
-* using common tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
+* using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
 * sticking with open-source tools to encourage community development
