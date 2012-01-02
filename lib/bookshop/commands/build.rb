@@ -4,6 +4,7 @@ require 'fileutils'
 require 'yaml'
 
 require 'bookshop/commands/yaml/book'
+require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
   module Commands
@@ -12,13 +13,10 @@ module Bookshop
     class Build < Thor::Group
       include Thor::Actions
       
-      BOOK_SOURCE = 'dbook.html.erb'
-      BOOK_SOURCE_FOLDER = 'book/'
-      BOOK_YAML = 'config/book.yml'
+      BOOK_SOURCE = 'book.html.erb'
       
       def initialize
-        @book = book
-        @output = output
+        @book
       end
       
       ARGV << '--help' if ARGV.empty?
@@ -39,50 +37,47 @@ module Bookshop
       def self.source_root
         File.dirname(__FILE__)
       end
-      
-      def self.load_book_yaml(file)
-        
+
+      # Load YAML files
+      def self.load_book_yamls
         # Load the book.yml into the Book object
-        @book = Book.new(YAML.load_file(BOOK_YAML))
+        @book = Book.new(YAML.load_file('config/book.yml'))
+        @toc = Toc.new(TAML.load_file('config/table_of_contents.yml'))
       end
 
-      # Renders <%= import_erb(source.html.erb) %> files with ERB
+      # Renders <%= import(source.html.erb) %> files with ERB
       # 
-      # When a new import_erb() is encountered within source files it is
-      # processed with this method and the result is added to 'erb'
-      def self.import_erb(file)
-  
+      # When a new import() is encountered within source files it is
+      #    processed with this method and the result is added to 'erb'
+      def self.import(file)
+        load_book_yaml
         # Parse the source erb file
-        ERB.new(File.read(BOOK_SOURCE_FOLDER + file)).result(binding).gsub(/\n$/,'')
-      end
-
-      def compile_erb_files
-        @erb_result = import_erb(BOOK_SOURCE)
+        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
       
       case build
       
       # 'build html' generates a html version of the book from the
-      # book/book.html.erb source file
-      #
+      #    book/book.html.erb source file
       # @output variable is set to "html" for access as a conditional
-      # in the source erb's
+      #   in the source erb's
       when 'html'
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/html/*')
         
         @output = :html
+        erb = import(BOOK_SOURCE)
         puts "Generating new html from erb"
         File.open("builds/html/book.html", 'a') do |f|
-          f << @erb_result
+          f << erb
         end
         
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
-      # which is generated from the book/book.html.erb source file
+      #    which is generated from the book/book.html.erb source file
       when 'pdf'
         # Clean up any old builds
         puts "Deleting any old builds"
@@ -90,10 +85,11 @@ module Bookshop
         FileUtils.rm_r Dir.glob('builds/html/*')
         
         @output = :pdf
+        erb = import(BOOK_SOURCE)
         # Generate the html from ERB
         puts "Generating new html from erb"
         File.open('builds/html/book.html', 'a') do |f|
-          f << @erb_result
+          f << erb
         end
 
         # Copy over html assets
@@ -104,9 +100,9 @@ module Bookshop
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         
-      # when 'epub'
-        # require 'bookshop/commands/epub/epub_build'
-        # EpubBuild.new
+      when 'epub'
+        require 'bookshop/commands/epub/epub_build'
+        EpubBuild.new
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

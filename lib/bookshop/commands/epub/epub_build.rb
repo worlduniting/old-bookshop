@@ -15,7 +15,9 @@ module Bookshop
       # Define source root of application
       def self.source_root
         File.dirname(__FILE__)
-      end      
+      end
+        
+
       
       def clean_up
         puts "Deleting any old builds"
@@ -26,21 +28,20 @@ module Bookshop
       def compile_erb_source
         @output = :epub
         
-        # Load the book.yml into the Book object
-        book = Book.new(YAML.load_file('config/book.yml'))
-        
-        erb = import_erb('book.html.erb')
+        erb = import(BOOK_SOURCE)
 
         # Generate the html from ERB
-        puts "Generating new html from erb"
+        puts "Building new epub at builds/epub/book.epub"
         File.open('builds/epub/OEBPS/book.html', 'a') do |f|
           f << erb
         end
+        FileUtils.cp_r('book/css/', 'builds/epub/OEBPS/', :verbose => true)
+        FileUtils.cp_r('book/images/', 'builds/epub/OEBPS/', :verbose => true)
       end
       
       # Load the book.yml into the Book object
       @book = Book.new(YAML.load_file('config/book.yml'))
-      @toc = Toc.new(TAML.load_file('config/toc.yml'))
+      @toc = Toc.new(TAML.load_file('config/table_of_contents.yml'))
       
       def create_epub_structure
         directory "templates/epub", "builds/epub"

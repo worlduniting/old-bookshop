@@ -18,7 +18,7 @@ CUKE_RESULTS = 'results.html'
 CLEAN << CUKE_RESULTS
 CLOBBER << 'tmp'
 Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format html -o #{CUKE_RESULTS} --format progress -x"
+  t.cucumber_opts = "features"
   t.fork = false
 end
 

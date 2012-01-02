@@ -15,6 +15,6 @@ require 'rspec/expectations'
 Before do
   # @dirs = ["/tmp/aruba"]
   # raise timeouts
-  @aruba_timeout_seconds = 5
+  # @aruba_timeout_seconds = 5
   @aruba_io_wait_seconds = 5
 end

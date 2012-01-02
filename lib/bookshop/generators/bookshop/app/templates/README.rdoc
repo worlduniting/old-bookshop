@@ -1,12 +1,15 @@
 == Welcome to bookshop
 
-bookShop is a publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity. The framework is optimized to help developers quickly ramp-up, allowing them to more rapidly jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best practices, standards and tools from the start.
+	book_publisher.yesterday # -> puts "Software is for geeks"
+	book_publisher.today # -> puts "I am a code monkey"
+	
+bookShop is a book publishing framework for publishers, editors, and coders in today's publishing industry, providing a framework for developing books using well-known standard web languages, providing scripts to then convert them into pdf and other (e)books. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book (print-pdf, epub, mobi, etc.) flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
 * using common tools like HTML, CSS, etc. to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
-* providing a Ruby Gem to make building a book from HTML as easy as 'gem install bookshop'
+* providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
-* sticking with open-source tools
+* sticking with open-source tools to encourage community development
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
 
@@ -14,8 +17,7 @@ bookshop hopes to simplify the process by:
 
 === System Requirements
 
-* Ruby v1.8.7 or v1.9.2 http://www.ruby-lang.org/en/downloads/
-* Rubygems v1.3.6 http://docs.rubygems.org/read/chapter/3
+* Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads/
 
 == Installation
 
@@ -75,19 +77,19 @@ The source files are all in ERB. ERB is a templating language for the Ruby progr
 
 Your master file (which is used to build everything) is the +book.html.erb+ file (remember that we are in the +book/+ folder). You could of course just use this file and put all of your book contents here, making one enormous file, but we don't recommend it... 
 
-==== The Magic of import_erb()
+==== The Magic of import()
 
 Are you writing another "War and Peace"? We've created a nice way to make your epic book easier to manage. Rather than putting everything in the +book.html.erb+ file, you can +import+ files. This allows you to break your book up into smaller, more manageable pieces. This makes it soooooo much easier to manage your book. And others will thank you for it..
 
 You can import a file by using the import() function, for example:
 
-    <%= import_erb('a_whole_chapter.html.erb') %>
+    <%= import('a_whole_chapter.html.erb') %>
 
 This would import the file +book/a_whole_chapter.html+ 
 
 You can also create sub-folders and group your files there. For example, in your book.html.erb file you could import:
 
-    <%= import_erb('ch1/my_first_section.html.erb') %>
+    <%= import('ch1/my_first_section.html.erb') %>
 
 This would import the file +book/ch1/my_first_section.html.erb+
 
@@ -95,12 +97,12 @@ Note that you can also nest import files into imported files.
 
 So in your +book/book.html.erb+
 
-    <%= import_erb('ch01/ch01.html.erb') %>
+    <%= import('ch01/ch01.html.erb') %>
 
 and in the +ch01/ch01.html.erb+ you could import more files
 
-    <%= import_erb('first_section.html.erb') %>
-    <%= import_erb('second_section.html.erb') %>
+    <%= import('first_section.html.erb') %>
+    <%= import('second_section.html.erb') %>
 
 ==== Output-based Content
 
