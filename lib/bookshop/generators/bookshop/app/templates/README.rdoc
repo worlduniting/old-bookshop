@@ -26,13 +26,13 @@ bookshop hopes to simplify the process by:
 
 === Install wkhtmltopdf
 
-1. Install by hand (recommended):
-
-https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
-
-2. Try using the wkhtmltopdf-binary gem (mac + linux i386)
+1. Try using the wkhtmltopdf-binary gem (mac + linux i386)
 
     $ gem install wkhtmltopdf-binary
+
+2. Install by hand (for windows or users who want to install newer builds):
+
+https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 3. The wkhtmltopdf site has more info
 
@@ -40,16 +40,11 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 == Using bookshop
 
-=== Create a bookshop application
+=== Create a bookshop book
 
-    $ bookshop new name_of_book
+    $ bookshop new my_new_book
 
-	This will create a new bookshop app in /path/to/name_of_book
-	
-* If you can't issue bookshop from your command line, make sure you have included your gems folder in your system $PATH. In unix you can add the following to your .bashrc file in your home folder (this example is for Ubuntu 10.10):
-
-  PATH="$PATH:/var/lib/gems/1.8/bin"
-  export PATH
+	This will create a new bookshop book in /path/to/my_new_book
 
 === Editing Your New Book
 ==== Where does my Book really live?
