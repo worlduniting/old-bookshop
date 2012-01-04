@@ -1,3 +1,19 @@
+## Bookshop 0.1.0 ##
+
+### Documentation ###
+
+* Added new website using the gh-pages branch - which is then hosted on the git pages site
+
+* Created the example book which serves as the test book for the cucumber tests, and as an example for users to see how to code their books.
+
+
+0.1.0:
+	Documentation
+		Added new website using the gh-pages branch - which is then hosted on the 
+			git pages site
+		Created the example book which serves as the test book for the cucumber tests, and
+			as an example for users to see how to code their books.
+			
 0.0.19:
 	Testing
 		This release incorporates a new testing suite.
