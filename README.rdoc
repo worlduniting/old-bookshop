@@ -1,6 +1,4 @@
-== Welcome to bookshop
-
-http://blueheadpublishing.github.com/bookshop/assets/logo.png
+=== http://blueheadpublishing.github.com/bookshop/assets/logo.png
 
     "a book publishing framework for today's publishing world"
 	
