@@ -45,11 +45,11 @@ header nav {
   position: absolute;
   top: 140px;
   right: 0;
-  width: 130px;
+  width: 160px;
 }
 header nav li {
   float: right;
-  margin: 3px 10px;
+  margin: 3px 30px;
 }
 header nav a,
 header nav a:visited,
@@ -67,10 +67,10 @@ header nav a.active {
   margin-top: 150px;
   margin-left: 465px;
 }
-#bluehead_logo {
+#what_the_fork {
 	position: fixed;
-	top:10px;
-	right: 10px;
-	height:125px;
-	width:130px;
+	top:0px;
+	right: 0px;
+	height:149;
+	width:149;
 }
