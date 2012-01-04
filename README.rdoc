@@ -1,5 +1,7 @@
 == Welcome to bookshop
 
+http://blueheadpublishing.github.com/bookshop/assets/logo.png
+
     "a book publishing framework for today's publishing world"
 	
 bookshop is a book publishing framework for publishers, editors, and coders in today's publishing industry. bookshop provides a framework for developing books using well-known/standard web languages like HTML/CSS, which are then converted into pdf and other (e)book formats. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
