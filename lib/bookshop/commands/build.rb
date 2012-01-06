@@ -4,7 +4,7 @@ require 'fileutils'
 require 'yaml'
 
 require 'bookshop/commands/yaml/book'
-require 'bookshop/commands/epub/epub_build'
+# require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
   module Commands
@@ -39,10 +39,10 @@ module Bookshop
       end
 
       # Load YAML files
-      def self.load_book_yamls
+      def self.load_book_yaml
         # Load the book.yml into the Book object
         @book = Book.new(YAML.load_file('config/book.yml'))
-        @toc = Toc.new(TAML.load_file('config/table_of_contents.yml'))
+        #@toc = Toc.new(TAML.load_file('config/table_of_contents.yml'))
       end
 
       # Renders <%= import(source.html.erb) %> files with ERB
@@ -100,9 +100,9 @@ module Bookshop
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
         
-      when 'epub'
-        require 'bookshop/commands/epub/epub_build'
-        EpubBuild.new
+      #when 'epub'
+       # require 'bookshop/commands/epub/epub_build'
+        #EpubBuild.new
         
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

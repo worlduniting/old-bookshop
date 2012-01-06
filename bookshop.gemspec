@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.executables  = ['bookshop']
   
   s.add_dependency 'thor', '>= 0.14.6'
-  s.add_dependency 'rubyzip2'
+  s.add_dependency 'rubyzip'
   s.add_development_dependency 'bundler', '>= 1.0.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'

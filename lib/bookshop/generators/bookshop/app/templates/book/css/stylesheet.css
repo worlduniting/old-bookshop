@@ -44,9 +44,9 @@ q::after {
   content: "\201D";
 }
 
-p { margin: 0 }
+p { margin: 0 0 .5em 0 }
 p + p { text-indent: 1.3em }
-p.sidenote + p, p.caption, p.art { text-indent: 0 }
+p.sidenote + p, p.caption, p.art { text-indent: 0; }
 
 p.author {
   margin-top: 2em;
@@ -56,7 +56,7 @@ p.author {
 
 pre {  margin: 1em 1.3em; }
 
-a { text-decoration: none; color: black }
+a { text-decoration: underline; color: blue }
 
 /* cross-references */
 
