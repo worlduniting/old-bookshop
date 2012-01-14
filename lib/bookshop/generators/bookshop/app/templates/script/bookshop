@@ -1,3 +1,5 @@
 # This command will automatically be run when you run "bookshop" with Bookshop gem installed from the root of your application.
 
+# require File.expand_path('../../config/settings',  __FILE__)
+
 require 'bookshop/commands'

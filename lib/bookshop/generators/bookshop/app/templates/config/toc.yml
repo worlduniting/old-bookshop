@@ -1,15 +1,7 @@
 foreword:
-	id: Title
+  id: Title
   text: title
 
 ch01:
-	id: ch01
-	text: This is the First Chapter
-	
-	s01:
-		id: s01
-		text: This is the First Section
-		
-	s02:
-	  id: s02
-	  text: This is the Second Section
+  id: ch01
+  text: This is the First Chapter

@@ -2,8 +2,10 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 require 'yaml'
+# require 'PDFKit'
 
 require 'bookshop/commands/yaml/book'
+# require 'bookshop/commands/yaml/toc'
 # require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
@@ -16,7 +18,7 @@ module Bookshop
       BOOK_SOURCE = 'book.html.erb'
       
       def initialize
-        @book
+        @book = []
       end
       
       ARGV << '--help' if ARGV.empty?
@@ -39,10 +41,10 @@ module Bookshop
       end
 
       # Load YAML files
-      def self.load_book_yaml
+      def self.load_yaml_files
         # Load the book.yml into the Book object
         @book = Book.new(YAML.load_file('config/book.yml'))
-        #@toc = Toc.new(TAML.load_file('config/table_of_contents.yml'))
+        # @toc = Toc.new(YAML.load_file('config/toc.yml'))
       end
 
       # Renders <%= import(source.html.erb) %> files with ERB
@@ -50,11 +52,11 @@ module Bookshop
       # When a new import() is encountered within source files it is
       #    processed with this method and the result is added to 'erb'
       def self.import(file)
-        load_book_yaml
+        load_yaml_files
         # Parse the source erb file
         ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
       end
-      
+
       case build
       
       # 'build html' generates a html version of the book from the
@@ -79,6 +81,7 @@ module Bookshop
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
       when 'pdf'
+        
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/pdf/*')
