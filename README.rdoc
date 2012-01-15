@@ -189,7 +189,7 @@ What if you want your pdf to print as Lanscape, or a different page-size, or in 
 
 For example, to print in Lanscape mode, in your master +book/book.html.erb+ file we can add <meta name="pdfkit-orientation" content="Landscape" />:
 
-so:
+so you html would be:
 
     <html>
       <head>
