@@ -183,6 +183,34 @@ Please explore other creative ways to structure and enhance your book (we'd love
 
 http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
 
+==== Editing your pdf document options
+
+What if you want your pdf to print as Lanscape, or a different page-size, or in grayscale? Because bookshop uses PDFKit, you can pass wkhtmltopdf (the pdf rendering engine) options by way of <meta> tags in your html source code.
+
+For example, to print in Lanscape mode, in your master +book/book.html.erb+ file we can add +<meta name="pdfkit-orientation" content="Landscape" />+:
+
+so:
+
+    <html>
+      <head>
+        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+        <meta name="pdfkit-orientation" content="Landscape" />
+        <title>how-to bookshop</title>
+        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+      </head>
+    <body>
+    <p>The ISBN is <%= @book.isbn %></p>
+
+You can look at all of the possible wkhtmltopdf options by using the command:
+
+    wkhtmltopdf --extended-help
+
+Your meta tags should use the following naming conventions. 
+
+* For each option, replace the double-dashes '--' before the option with +pdfkit-+ and change dashes '-' to an underscore '_'. So '--page-size' becomes +<meta name "pdfkit-page_size" content="Letter" />+
+
+* For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank. So '--grayscale' simply becomes +<meta name "pdfkit-grayscale" content="" />+
+
 === Building Your First Book
 
 To build a pdf format of your book from the ERB source:

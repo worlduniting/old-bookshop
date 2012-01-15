@@ -12,7 +12,6 @@ Feature: We can create a new book project and build books
 		Given a file named "test_book/script/bookshop" should exist		
 		When I cd to "test_book"
 		And I run `bookshop build pdf`
-		Then the output should contain "Loading pages"
 		And a file named "builds/pdf/book.pdf" should exist
 
 	# @no-clobber	ensures that the previous Scenario's generated book project files are

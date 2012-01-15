@@ -1,17 +1,14 @@
-## Bookshop 0.1.0 ##
+## Bookshop 0.0.20 ##
+
+### Features ###
+* Added PDFKit integration which adds ability to pass wkhtmltopdf options via <meta> tags in the html (e.g. <meta name="pdfkit-page_width" content="6in" />)
+
 ### Documentation ###
+* Updated README with instructions for passing wkhtmltopdf options via html meta tags
 
 * Added new website http://blueheadpublishing.github.com/bookshop/ using the gh-pages branch - which is then hosted on the git pages site
 
 * Created the example book which serves as the test book for the cucumber tests, and as an example for users to see how to code their books.
-
-
-## Bookshop 0.1.0 ##
-### Documentation ###
-* Added new website using the gh-pages branch - which is then hosted on the git pages site
-
-* Created the example book which serves as the test book for the cucumber tests, and
-			as an example for users to see how to code their books.
 			
 ## Bookshop 0.0.19 ##
 ### Testing ###

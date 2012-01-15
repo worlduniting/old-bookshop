@@ -2,9 +2,10 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 require 'yaml'
-# require 'PDFKit'
+require 'PDFKit'
 
 require 'bookshop/commands/yaml/book'
+
 # require 'bookshop/commands/yaml/toc'
 # require 'bookshop/commands/epub/epub_build'
 
@@ -99,9 +100,16 @@ module Bookshop
         FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
         FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
 
-        # Builds the pdf from builds/html/book.html
-        puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[wkhtmltopdf builds/html/book.html builds/pdf/book.pdf]
+
+        # PDFKit.new takes the HTML and any options for wkhtmltopdf
+        # run `wkhtmltopdf --extended-help` for a full list of options
+        kit = PDFKit.new(File.new('builds/html/book.html'))
+
+        # Git an inline PDF
+        pdf = kit.to_pdf
+
+        # Save the PDF to a file
+        file = kit.to_file('builds/pdf/book.pdf')
         
       #when 'epub'
        # require 'bookshop/commands/epub/epub_build'
