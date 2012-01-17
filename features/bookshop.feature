@@ -44,7 +44,10 @@ Feature: We can create a new book project and build books
 		Given a file named "test_book/script/bookshop" should exist
 		When I cd to "test_book"
 		And I run `bookshop build epub`
-		Then the output should contain "EpubBuild Worked"
-		# And the output should contain "Building new html at builds/epub/OEBPS/book.html"
-		# And a file named "builds/epub/OEBPS/book.html" should exist
+		#Then the following files should exist:
+		#| builds/epub/mimetype |
+		#| builds/epub/META-INF/container.xml |
+		And a file named "builds/epub/mimetype" should exist
+		And a file named "builds/epub/OEBPS/book.html" should exist
+		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
 		

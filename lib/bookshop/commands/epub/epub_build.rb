@@ -5,29 +5,55 @@ require 'yaml'
 
 require 'bookshop/commands/yaml/book'
 
-require 'bookshop/commands/epub/'
-
 module Bookshop
   module Commands
 
     # Define build commands for bookshop command line
     class EpubBuild < Thor::Group
-      puts "EpubBuild Worked"
-      #include Thor::Actions
+      include Thor::Actions
       
-      # Define arguments and options
-      #argument :app_path
-      
+      app_path = APP_PATH
+      BOOK_SOURCE = "book.html.erb"
+
       # Define source root of application
-      #def self.source_root
-      #  File.dirname(__FILE__)
-      #end
+      def self.source_root
+        File.dirname(__FILE__)
+      end
+      
+      # Load YAML files
+      def self.load_yaml_files
+        # Load the book.yml into the Book object
+        @book = Book.new(YAML.load_file('config/book.yml'))
+        # @toc = Toc.new(YAML.load_file('config/toc.yml'))
+      end
+
+      # Renders <%= import(source.html.erb) %> files with ERB
+      # 
+      # When a new import() is encountered within source files it is
+      #    processed with this method and the result is added to 'erb'
+      def self.import(file)
+        load_yaml_files
+        # Parse the source erb file
+        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
+      end
 
       # Create the project from templates
-      #def create_base_project
-      #  puts "creating base project"
-      #  directory "templates", "#{app_path}"
-      #end
+      def create_base_project
+        # Clean up any old builds
+        puts "Deleting any old builds"
+        FileUtils.rm_r Dir.glob('builds/epub/*')
+        
+        puts "Creating epub base files"
+        directory "templates", "#{app_path}/builds/epub/"
+      end
+      
+      @output = :epub
+      erb = import(BOOK_SOURCE)
+      puts "Generating new html from erb"
+      File.open('builds/epub/OEBPS/book.html', 'a') do |f|
+        f << erb
+      end
+      
     end
   end
 end

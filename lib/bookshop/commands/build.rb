@@ -5,7 +5,6 @@ require 'yaml'
 require 'PDFKit'
 
 require 'bookshop/commands/yaml/book'
-
 require 'bookshop/commands/epub/epub_build'
 
 module Bookshop

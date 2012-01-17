@@ -26,7 +26,7 @@ pdf:
 # Place the epub specific settings here.
 epub:
   version: 0.0.1
-  title: Bookshop (eBook)
+  title: Bookshop ePub Version
 
 
 # Place the html specific settings here
