@@ -212,14 +212,14 @@ Your meta tags should use the following naming conventions.
     
     becomes
     
-    <meta name "pdfkit-page_size" content="Letter" />
+    <meta name="pdfkit-page_size" content="Letter" />
 
 * For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank.
     --grayscale
     
     becomes
     
-    <meta name "pdfkit-grayscale" content="" />
+    <meta name="pdfkit-grayscale" content="" />
 
 === Building Your First Book
 
