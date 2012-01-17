@@ -215,7 +215,7 @@ Your meta tags should use the following naming conventions.
     <meta name "pdfkit-page_size" content="Letter" />
 
 * For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank.
-    '--grayscale'
+    --grayscale
     
     becomes
     
