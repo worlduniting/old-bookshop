@@ -111,10 +111,33 @@ module Bookshop
         # Save the PDF to a file
         file = kit.to_file('builds/pdf/book.pdf')
         
-      #when 'epub'
-       # require 'bookshop/commands/epub/epub_build'
-        #EpubBuild.new
+      when 'epub'
+        puts "Deleting any old builds"
+        FileUtils.rm_r Dir.glob('builds/epub/*')
+        FileUtils.rm_r Dir.glob('builds/html/*')
+
         
+        @output = :epub
+
+        erb = import(BOOK_SOURCE)
+
+        # Generate the html from ERB
+        puts "Building new html at builds/epub/OEBPS/book.html"
+        
+        empty_directory "OEBPS"
+        
+        File.open('builds/epub/OEBPS/book.html', 'a') do |f|
+          f << erb
+        end
+        FileUtils.cp_r('book/css/', 'builds/epub/OEBPS/', :verbose => true)
+        FileUtils.cp_r('book/images/', 'builds/epub/OEBPS/', :verbose => true)
+
+        # open content.opf.tt just like for html erb
+
+        # zip the contents into book.epub
+
+        # cmd = %x[tools/epubcheck book_#{Time.now.strftime('%m-%e-%y').epub]
+
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
         puts <<-EOT
