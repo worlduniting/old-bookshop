@@ -15,10 +15,8 @@ Feature: We can create a new book project and build books
 		| config/toc.yml |
 		| README.rdoc |
 		| script/bookshop |
-		| builds/epub/META-INF/container.xml |
-		| builds/epub/mimetype |
 		And the following directories should exist:
-		| builds/epub/OEBPS |
+		| builds/epub |
 		| builds/html |
 		| builds/pdf |
 		| builds/mobi |
@@ -47,5 +45,7 @@ Feature: We can create a new book project and build books
 		Then the following files should exist:
 		| builds/epub/mimetype |
 		| builds/epub/META-INF/container.xml |
+		And the following directories should exist:
+		| builds/epub/OEBPS |
 		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
 		

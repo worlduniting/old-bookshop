@@ -7,6 +7,9 @@
 <meta name="pdfkit-grayscale" content="" />
 <title>how-to bookshop</title>
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+<% if @output == :epub %>
+	<link rel="stylesheet" type="application/vnd.adobe-page-template+xml" href="css/page-template.xpgt"/>
+<% end %>
 </head>
 <body>
 <p><a name="title">New Title:</a> 
