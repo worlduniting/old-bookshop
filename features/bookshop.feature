@@ -17,7 +17,7 @@ Feature: We can create a new book project and build books
 		| script/bookshop |
 		| builds/epub/META-INF/container.xml |
 		| builds/epub/mimetype |
-		Then the following directories should exist:
+		And the following directories should exist:
 		| builds/epub/OEBPS |
 		| builds/html |
 		| builds/pdf |
@@ -44,10 +44,8 @@ Feature: We can create a new book project and build books
 		Given a file named "test_book/script/bookshop" should exist
 		When I cd to "test_book"
 		And I run `bookshop build epub`
-		#Then the following files should exist:
-		#| builds/epub/mimetype |
-		#| builds/epub/META-INF/container.xml |
-		And a file named "builds/epub/mimetype" should exist
-		And a file named "builds/epub/OEBPS/book.html" should exist
+		Then the following files should exist:
+		| builds/epub/mimetype |
+		| builds/epub/META-INF/container.xml |
 		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
 		
