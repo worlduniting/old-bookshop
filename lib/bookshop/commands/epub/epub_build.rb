@@ -54,6 +54,11 @@ module Bookshop
         f << erb
       end
       
+      def copy_over_assets
+        # Copy over html assets
+        FileUtils.cp_r('book/css/', 'builds/epub/OEBPS/', :verbose => true)
+        FileUtils.cp_r('book/images/', 'builds/epub/OEBPS/', :verbose => true)
+      end
     end
   end
 end

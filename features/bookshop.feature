@@ -45,7 +45,9 @@ Feature: We can create a new book project and build books
 		Then the following files should exist:
 		| builds/epub/mimetype |
 		| builds/epub/META-INF/container.xml |
-		And the following directories should exist:
-		| builds/epub/OEBPS |
+		| builds/epub/OEBPS/css/page-template.xpgt |
+		| builds/epub/OEBPS/css/stylesheet.css |
+		| builds/epub/OEBPS/images/canvas.jpg |
+		| builds/epub/OEBPS/css/stylesheet.css |
 		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
 		
