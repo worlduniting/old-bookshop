@@ -225,11 +225,11 @@ Your meta tags should use the following naming conventions.
 
 To build a pdf format of your book from the ERB source:
 
-    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
+    $ bookshop build pdf    # -> find the output in builds/pdf/book.pdf
 
 To build an HTML format of your book from the ERB source:
 
-    $ bookshop build html   # -> find the output in builds/html/book_(date).html
+    $ bookshop build html   # -> find the output in builds/html/book.html
 
 == Example Book
 
