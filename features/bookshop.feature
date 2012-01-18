@@ -21,21 +21,24 @@ Feature: We can create a new book project and build books
 		| builds/pdf |
 		| builds/mobi |
 	
-	#@no-clobber
-	#Scenario: Build a new pdf book
-	#	Given a file named "test_book/script/bookshop" should exist		
-	#	When I cd to "test_book"
-	#	And I run `bookshop build pdf`
-	#	And a file named "builds/pdf/book.pdf" should exist
+	@no-clobber
+	Scenario: Build a new pdf book
+		Given a file named "test_book/script/bookshop" should exist		
+		When I cd to "test_book"
+		And I run `bookshop build pdf`
+		And a file named "builds/pdf/book.pdf" should exist
 	
-	#@no-clobber
-	#Scenario: Build a new html book
-	#	Given a file named "test_book/script/bookshop" should exist
-	#	When I cd to "test_book"
-	#	And I run `bookshop build html`
-	#	Then the output should contain "Generating new html from erb"
-	#	And a file named "builds/html/book.html" should exist
-	#	And the file "builds/html/book.html" should match /Title:/
+	@no-clobber
+	Scenario: Build a new html book
+		Given a file named "test_book/script/bookshop" should exist
+		When I cd to "test_book"
+		And I run `bookshop build html`
+		Then the output should contain "Generating new html from erb"
+		Then the following files should exist:
+		| builds/html/book.html |
+		| builds/html/css/stylesheet.css |
+		| builds/html/images/canvas.jpg |
+		And the file "builds/html/book.html" should match /HTML version/
 		
 	@no-clobber
 	Scenario: Build a new epub book
