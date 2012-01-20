@@ -53,4 +53,5 @@ Feature: We can create a new book project and build books
 		| builds/epub/OEBPS/images/canvas.jpg |
 		| builds/epub/OEBPS/css/stylesheet.css |
 		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
+		Then a file named "builds/epub/OEBPS/toc.ncx" should exist
 		

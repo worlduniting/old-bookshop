@@ -2,6 +2,7 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 require 'yaml'
+require 'nokogiri'
 
 require 'bookshop/commands/yaml/book'
 
@@ -58,8 +59,33 @@ module Bookshop
       FileUtils.cp_r('book/css/', 'builds/epub/OEBPS/', :verbose => true)
       FileUtils.cp_r('book/images/', 'builds/epub/OEBPS/', :verbose => true)
       
-      # create toc.ncx
+      # Generate toc source
+      # @output = :epub
+      # def create_toc
+      #  puts "Generating new toc from toc.html.erb"
+      #  toc_erb = import("book/toc.html.erb")
+      #  @noko_doc = Nokogiri::HTML(toc_erb)
+      #  File.open("builds/epub/OEBPS/toc.ncx", 'a') do |f|
+      #    f << @noko_doc.to_xml
+      #  end
+      #end
+      
+      
+      
+      
+      #File.open("builds/epub/OEBPS/toc.ncx", 'a') do |f|
+      #  f << @noko_doc.to_xml
+      #end
+      
+      #@doc = Nokogiri::HTML(f)
+      
+      #f.close
+      
+      # store nav structure in array tree
+      # build xml toc.ncx file from array
+      
       # create content.opf
+      
       # zip it up
     end
   end
