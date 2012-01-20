@@ -298,9 +298,50 @@ config
 6. Let us know about your code and we'll review/merge it into the master.
 7. And pat yourself on the back for contributing to an open source project!!
 	
-== Copyright (MIT-LICENSE)
+== Copyright (LICENSE)
 
-Copyright (C) 2010, 2011 by BlueHead Publishing, Inc (http://blueheadpublishing.com)
+BookShop is available under *either* the terms of the modified BSD license *or* the
+MIT License (2008). As a recipient of BookShop, you may choose which
+license to receive this code under (except as noted in per-module LICENSE
+files). Some modules may not be the copyright of BlueHead Publishing. These
+modules contain explicit declarations of copyright in both the LICENSE files in
+the directories in which they reside and in the code itself. No external
+contributions are allowed under licenses which are fundamentally incompatible
+with the MIT or BSD licenses that BookShop is distributed under.
+
+The text of the MIT and BSD licenses is reproduced below.
+
+=== The "New" BSD License
+
+Copyright (c) 2010-2011, BlueHead Publishing
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+* Neither the name of Bookshop/BlueHead/BlueHead Publishing nor the names of
+    its contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+=== The MIT License
+
+Copyright (c) <2010, 2011> <BlueHead Publishing, et. al., >
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -322,9 +363,9 @@ THE SOFTWARE.
 
 == The Boom Microformat License (as listed in the boom.css)
 
-  Sample style sheet for boom!, the book microformat
-  written  by Hakon Wium Lie and Bert Bos, November 2005
-  You may reuse this style sheet for any purpose without any fees
+Sample style sheet for boom!, the book microformat
+written  by Hakon Wium Lie and Bert Bos, November 2005
+You may reuse this style sheet for any purpose without any fees
 
 == Thanks
 
