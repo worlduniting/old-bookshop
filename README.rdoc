@@ -46,16 +46,18 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 	This will create a new bookshop book in /path/to/my_new_book with the following structure:
 
-    |-- book/        # Source files for your book
-      book.html.erb  # This is the master file
-      css/
-      images/
-    |-- builds/      # All the builds are created here
-      epub/
-      html/
-      mobi/
-      pdf/
-    |-- config/      # Your config and data settings
+    |-- book/             # Source files for your book
+        |--book.html.erb  # The master file
+        |--css/
+        |--images/
+
+    |-- builds/           # All the builds are created here
+        |--epub/
+        |--html/
+        |--mobi/
+        |--pdf/
+
+    |-- config/           # Your config and data settings
 
 === Editing Your New Book
 ==== Where does my Book really live?
@@ -248,16 +250,18 @@ You can then build the book into whatever format you like.
 
 The default directory structure of a generated bookshop project:
 
-    |-- book/        # Source files for your book
-      book.html.erb  # This is the master file
-      css/
-      images/
-    |-- builds/      # All the builds are created here
-      epub/
-      html/
-      mobi/
-      pdf/
-    |-- config/      # Your config and data settings
+    |-- book/             # Source files for your book
+        |--book.html.erb  # The master file
+        |--css/
+        |--images/
+    
+    |-- builds/           # All the builds are created here
+        |--epub/
+        |--html/
+        |--mobi/
+        |--pdf/
+    
+    |-- config/           # Your config and data settings
 
 book
   Holds all the manuscript html code/files. This is where your master manuscript lives from which everything is built.
