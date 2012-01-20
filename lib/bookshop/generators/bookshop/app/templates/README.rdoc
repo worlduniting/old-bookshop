@@ -203,7 +203,7 @@ To build a pdf format of your book from the ERB source:
 
 What if you want your pdf to print as Lanscape, or a different page-size, or in grayscale? Because bookshop uses PDFKit, you can pass wkhtmltopdf (the pdf rendering engine) options by way of <meta> tags in your html source code.
 
-For example, to print in Lanscape mode, in your master +book/book.html.erb+ file we can add <meta name="pdfkit-orientation" content="Landscape" />:
+For example, to print in Landscape mode, in your master +book/book.html.erb+ file we can add <meta name="pdfkit-orientation" content="Landscape" />:
 
 so you html would be:
 
@@ -217,7 +217,9 @@ so you html would be:
     <body>
     <p>The ISBN is <%= @book.isbn %></p>
 
-You can look at all of the possible wkhtmltopdf options by using the command:
+Here's a list of other options https://github.com/blueheadpublishing/bookshop/wiki/wkhtmltopdf-options
+
+Or you can look at all of the possible wkhtmltopdf options by using the command:
 
     $ wkhtmltopdf --extended-help
 
