@@ -62,6 +62,7 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
         |--book.yml           # Settings/Data for your book
 
 === Editing Your New Book
+
 ==== Where does my Book really live?
 
 All of the source documents and assets for your book are stored in the +book/+ folder. So your stylesheets, images, text - everything used for building your book - lives here. Ideally, you should only every edit files in your +book/+ folder (with the exception of your config/book.yml file).
@@ -70,17 +71,9 @@ All of the source documents and assets for your book are stored in the +book/+ f
 
 The source files are all in ERB. ERB is a templating language for the Ruby programming language. Why is this cool? Because it means that you can use HTML _and_ you can embed Ruby code in your source files. In other words, you can do all kinds of cool programmy things. Like embed ruby functions and calls:
 
-    <p>Today is <%= Time.now.strftime('%A') %>.</p>
+    <p>Today is <%= Time.now.strftime('%A') %>.</p>  # creates -> <p>Today is Thursday.</p>
 
-  or
-
-    items = [ "ball", "stick", "corgi" ]
-
-    <ul>
-      <% items.each do |item| %>
-        <li><%= item %></li>
-      <% end %>
-    </ul>
+More information on ERB - http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
 
 ==== One File to Rule Them All!
 
