@@ -226,9 +226,19 @@ Or you can look at all of the possible wkhtmltopdf options by using the command:
 
 Your meta tags should use the following naming conventions. 
 
-* For each option, replace the double-dashes '--' before the option with +pdfkit-+ and change dashes '-' to an underscore '_'. So '--page-size' becomes <meta name "pdfkit-page_size" content="Letter" />
+* For each option, replace the double-dashes '--' before the option with +pdfkit-+ and change single-dashes '-' to an underscore +_+.
+    --page-size
 
-* For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank. So '--grayscale' simply becomes <meta name "pdfkit-grayscale" content="" />
+    becomes
+
+    <meta name="pdfkit-page_size" content="Letter" />
+
+* For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank.
+    --grayscale
+
+    becomes
+
+    <meta name="pdfkit-grayscale" content="" />
 
 == Example Book
 
