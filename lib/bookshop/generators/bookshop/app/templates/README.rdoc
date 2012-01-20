@@ -61,6 +61,7 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
     |-- config/               # Your config and data settings
         |--book.yml           # Settings/Data for your book
 
+
 === Editing Your New Book
 
 ==== Where does my Book really live?
