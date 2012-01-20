@@ -189,7 +189,15 @@ So, do you want to see something cool? Now that we have the Output Variable and 
 
 Please explore other creative ways to structure and enhance your book (we'd love to see how you are doing it).
 
-http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
+=== Building Your First Book
+
+To build an HTML format of your book from the ERB source:
+
+    $ bookshop build html   # -> find the output in builds/html/book_(date).html
+
+To build a pdf format of your book from the ERB source:
+
+    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
 
 ==== Editing your pdf document options
 
@@ -218,16 +226,6 @@ Your meta tags should use the following naming conventions.
 * For each option, replace the double-dashes '--' before the option with +pdfkit-+ and change dashes '-' to an underscore '_'. So '--page-size' becomes <meta name "pdfkit-page_size" content="Letter" />
 
 * For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank. So '--grayscale' simply becomes <meta name "pdfkit-grayscale" content="" />
-
-=== Building Your First Book
-
-To build a pdf format of your book from the ERB source:
-
-    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
-
-To build an HTML format of your book from the ERB source:
-
-    $ bookshop build html   # -> find the output in builds/html/book_(date).html
 
 == Example Book
 
