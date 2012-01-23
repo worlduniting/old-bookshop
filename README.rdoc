@@ -8,7 +8,7 @@ bookshop hopes to simplify the process by:
 * separating the book into layers
   * *Content*: the book's source - <i>writings, images, videos, copy</i>
   * *Structure*: using div/css microformat to describe the book's structure - <i>chapter, section, etc.</i>
-  * *Style*: stylesheets to create the book's layout - fonts, margins, color, etc.</i>
+  * *Style*: stylesheets to create the book's layout - <i>fonts, margins, color, etc.</i>
 * using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
