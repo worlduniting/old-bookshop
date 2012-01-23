@@ -1,4 +1,6 @@
-## Bookshop 0.0.20 ##
+## Bookshop 0.0.21 ##
+
+(0.0.20 was skipped due to a bad gem push)
 
 ### Features ###
 * Added PDFKit integration which adds ability to pass wkhtmltopdf options via <meta> tags in the html (e.g. <meta name="pdfkit-page_width" content="6in" />)
