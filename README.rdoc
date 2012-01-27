@@ -198,15 +198,15 @@ Please explore other creative ways to structure and enhance your book (we'd love
 
 To build an HTML format of your book from the ERB source:
 
-    $ bookshop build html   # -> find the output in builds/html/book_(date).html
+    $ bookshop build html   # -> find the output in builds/html/book.html
 
 To build a pdf format of your book from the ERB source:
 
-    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
+    $ bookshop build pdf    # -> find the output in builds/pdf/book.pdf
 
 ==== Editing your pdf document options
 
-What if you want your pdf to print as Lanscape, or a different page-size, or in grayscale? Because bookshop uses PDFKit, you can pass wkhtmltopdf (the pdf rendering engine) options by way of <meta> tags in your html source code.
+What if you want your pdf to print as Landscape, or a different page-size, or in grayscale? Because bookshop uses PDFKit, you can pass wkhtmltopdf (the pdf rendering engine) options by way of <meta> tags in your html source code.
 
 For example, to print in Landscape mode, in your master +book/book.html.erb+ file we can add <meta name="pdfkit-orientation" content="Landscape" />:
 
@@ -372,5 +372,5 @@ We would like to thank:
 
 * The Ruby/Rubygems Team www.ruby-lang.org/
 * The Thor Team - https://github.com/wycats/thor
-* Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
+* Hakon Wium Lie and Bert Bos for prototyping a book microformat http://www.alistapart.com/articles/boom
 * The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
