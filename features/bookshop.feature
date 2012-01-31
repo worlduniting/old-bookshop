@@ -9,7 +9,7 @@ Feature: We can create a new book project and build books
 		When I cd to "test_book"
 		Then the following files should exist:
 		| book/book.html.erb |
-		| book/assets/images/canvas.jpg |
+		| book/images/canvas.jpg |
 		| book/toc.html.erb |
 		| config/book.yml |
 		| config/toc.yml |
@@ -36,7 +36,7 @@ Feature: We can create a new book project and build books
 		Then the output should contain "Generating new html from erb"
 		Then the following files should exist:
 		| builds/html/book.html |
-		| builds/html/assets/css/stylesheet.css |
+		| builds/html/css/stylesheet.css |
 		| builds/html/images/canvas.jpg |
 		And the file "builds/html/book.html" should match /HTML version/
 		
