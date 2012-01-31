@@ -9,7 +9,7 @@ Feature: We can create a new book project and build books
 		When I cd to "test_book"
 		Then the following files should exist:
 		| book/book.html.erb |
-		| book/images/canvas.jpg |
+		| book/assets/images/canvas.jpg |
 		| book/toc.html.erb |
 		| config/book.yml |
 		| config/toc.yml |
@@ -36,22 +36,22 @@ Feature: We can create a new book project and build books
 		Then the output should contain "Generating new html from erb"
 		Then the following files should exist:
 		| builds/html/book.html |
-		| builds/html/css/stylesheet.css |
+		| builds/html/assets/css/stylesheet.css |
 		| builds/html/images/canvas.jpg |
 		And the file "builds/html/book.html" should match /HTML version/
 		
-	@no-clobber
-	Scenario: Build a new epub book
-		Given a file named "test_book/script/bookshop" should exist
-		When I cd to "test_book"
-		And I run `bookshop build epub`
-		Then the following files should exist:
-		| builds/epub/mimetype |
-		| builds/epub/META-INF/container.xml |
-		| builds/epub/OEBPS/css/page-template.xpgt |
-		| builds/epub/OEBPS/css/stylesheet.css |
-		| builds/epub/OEBPS/images/canvas.jpg |
-		| builds/epub/OEBPS/css/stylesheet.css |
-		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
-		Then a file named "builds/epub/OEBPS/toc.ncx" should exist
+#	@no-clobber
+#	Scenario: Build a new epub book
+#		Given a file named "test_book/script/bookshop" should exist
+#		When I cd to "test_book"
+#		And I run `bookshop build epub`
+#		Then the following files should exist:
+#		| builds/epub/mimetype |
+#		| builds/epub/META-INF/container.xml |
+#		| builds/epub/OEBPS/css/page-template.xpgt |
+#		| builds/epub/OEBPS/css/stylesheet.css |
+#		| builds/epub/OEBPS/images/canvas.jpg |
+#		| builds/epub/OEBPS/css/stylesheet.css |
+#		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
+#		Then a file named "builds/epub/OEBPS/toc.ncx" should exist
 		
