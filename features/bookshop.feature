@@ -36,7 +36,7 @@ Feature: We can create a new book project and build books
 		Then the output should contain "Generating new html from erb"
 		Then the following files should exist:
 		| builds/html/book.html |
-		| builds/html/assets/css/stylesheet.css |
+		| builds/html/assets/css/stylesheet.html.css |
 		| builds/html/assets/images/canvas.jpg |
 		And the file "builds/html/book.html" should match /HTML version/
 		
