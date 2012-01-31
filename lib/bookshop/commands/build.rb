@@ -5,8 +5,6 @@ require 'yaml'
 require 'PDFKit'
 
 require 'bookshop/commands/yaml/book'
-
-# require 'bookshop/commands/yaml/toc'
 # require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
@@ -76,8 +74,7 @@ module Bookshop
           f << erb
         end
         
-        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
-        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
@@ -97,8 +94,7 @@ module Bookshop
         end
 
         # Copy over html assets
-        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
-        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
 
 
         # PDFKit.new takes the HTML and any options for wkhtmltopdf
@@ -111,10 +107,9 @@ module Bookshop
         # Save the PDF to a file
         file = kit.to_file('builds/pdf/book.pdf')
         
-      #when 'epub'
-       # require 'bookshop/commands/epub/epub_build'
-        #EpubBuild.new
-        
+      # when 'epub'
+      #   Bookshop::Commands::EpubBuild.new
+
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
         puts <<-EOT
