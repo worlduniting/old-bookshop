@@ -56,8 +56,7 @@ module Bookshop
       end
       
       # Copy over html assets
-      FileUtils.cp_r('book/css/', 'builds/epub/OEBPS/', :verbose => true)
-      FileUtils.cp_r('book/images/', 'builds/epub/OEBPS/', :verbose => true)
+      FileUtils.cp_r('book/assets/', 'builds/epub/OEBPS/', :verbose => true)
       
       # Generate toc source
       # @output = :epub

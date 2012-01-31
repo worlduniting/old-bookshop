@@ -5,7 +5,7 @@ require 'yaml'
 require 'PDFKit'
 
 require 'bookshop/commands/yaml/book'
-require 'bookshop/commands/epub/epub_build'
+# require 'bookshop/commands/epub/epub_build'
 
 module Bookshop
   module Commands
@@ -74,8 +74,7 @@ module Bookshop
           f << erb
         end
         
-        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
-        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
@@ -95,8 +94,7 @@ module Bookshop
         end
 
         # Copy over html assets
-        FileUtils.cp_r('book/css/', 'builds/html/', :verbose => true)
-        FileUtils.cp_r('book/images/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
 
 
         # PDFKit.new takes the HTML and any options for wkhtmltopdf
