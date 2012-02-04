@@ -48,9 +48,11 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
     |-- book/                 # Source files for your book
         |--book.html.erb      # The master file
-        |--css/
-            |--stylesheet.css
-        |--images/
+        |--assets/
+            |--css/
+                |--stylesheet.css
+            |--images/
+            |--js/
 
     |-- builds/               # All the builds are created here
         |--epub/
@@ -262,6 +264,7 @@ The default directory structure of a generated bookshop project:
             |--css/
                 |--stylesheet.css
             |--images/
+            |--js/
 
     |-- builds/               # All the builds are created here
         |--epub/
