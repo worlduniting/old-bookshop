@@ -8,14 +8,12 @@ Gem::Specification.new do |s|
   s.author      = 'Dave Thompson'
   s.email       = 'da@blueheadpublishing.com'
   s.homepage    = 'http://blueheadpublishing.github.com/bookshop/'
-  s.summary     = 'A book publishing framework for html-to-pdf/(e)book toolchain happiness and sustainable productivity.'
-  s.description = 'bookshop is a book publishing framework for publishers, editors, and coders in today\'s
-                    publishing industry. bookshop provides a framework for developing books using
-                    well-known/standard web languages like HTML/CSS, which are then converted into pdf
-                    and other (e)book formats. The framework is optimized to help developers quickly ramp-up,
-                    allowing them to jump in and develop their html-to-pdf/(e)book flows, by favoring
-                    convention over configuration, setting them up with best-practices, standards and tools
-                    from the start.'
+  s.summary     = 'A book publishing framework for building pdf/(e)books based on HTML, CSS, and JavaScript.'
+  s.description = 'bookshop is a book publishing framework for building pdf/(e)books based on HTML,
+                    CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors
+                    quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by
+                    favoring convention over configuration, setting them up with best-practices, standards
+                    and tools from the start.'
   s.license     = 'MIT'
 
   s.required_rubygems_version = '>= 1.3.6'

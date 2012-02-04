@@ -1,3 +1,10 @@
+## Bookshop 0.0.22 ##
+
+### Features ###
+* Added a javascript folder to house javascript files
+* Moved all css/images/js into an assets folder
+* Created a Contributors file to list devs on project
+
 ## Bookshop 0.0.21 ##
 
 (0.0.20 was skipped due to a bad gem push)

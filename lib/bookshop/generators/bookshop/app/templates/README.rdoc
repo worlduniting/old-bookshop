@@ -2,7 +2,7 @@
 
     "a book publishing framework for today's publishing world"
 	
-bookshop is a book publishing framework for publishers, editors, and coders in today's publishing industry. bookshop provides a framework for developing books using well-known/standard web languages like HTML/CSS, which are then converted into pdf and other (e)book formats. The framework is optimized to help developers quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows, by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
+bookshop is a book publishing framework for building pdf/(e)books based on HTML, CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
 
 bookshop hopes to simplify the process by:
 * using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
@@ -258,9 +258,10 @@ The default directory structure of a generated bookshop project:
 
     |-- book/                 # Source files for your book
         |--book.html.erb      # The master file
-        |--css/
-            |--stylesheet.css
-        |--images/
+        |--assets/
+            |--css/
+                |--stylesheet.css
+            |--images/
 
     |-- builds/               # All the builds are created here
         |--epub/
@@ -320,11 +321,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-== The Boom Microformat License (as listed in the boom.css)
+== The Boom Microformat License - boom.css (from which the css microformat was based)
 
-  Sample style sheet for boom!, the book microformat
-  written  by Hakon Wium Lie and Bert Bos, November 2005
-  You may reuse this style sheet for any purpose without any fees
+http://www.alistapart.com/articles/boom
+
+    Sample style sheet for boom!, the book microformat
+    written  by Hakon Wium Lie and Bert Bos, November 2005
+    You may reuse this style sheet for any purpose without any fees
 
 == Thanks
 
@@ -334,3 +337,6 @@ We would like to thank:
 * The Thor Team - https://github.com/wycats/thor
 * Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
 * The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
+
+A List of Our Contributors:
+https://github.com/blueheadpublishing/bookshop/blob/master/CONTRIBUTORS.md
