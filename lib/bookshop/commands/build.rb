@@ -2,7 +2,7 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 require 'yaml'
-require 'PDFKit'
+require 'pdfkit'
 
 require 'bookshop/commands/yaml/book'
 # require 'bookshop/commands/epub/epub_build'
