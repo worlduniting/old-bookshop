@@ -268,25 +268,41 @@ table.lined td, table.lined th {
    A book consists of different types of sections. We propose to use
    DIV elements with these class names:
 
-    frontcover
-    halftitlepage: contains the title of the book
-    titlepage: contains the title of the book, name of author(s) and publisher
-    imprint: left page with copyright, publisher, library printing information
-    dedication: right page with short dedication
-    foreword: written by someone other than the author(s)
-    toc: table of contents
-    preface: preface, including acknowledgements
-    chapter: each chapter is given its own DIV element
-    references: contains list of references
-    appendix: each appendix is given its own 
-    bibliography
-    glossary
-    index
-    colophon: describes how the book was produced
-    backcover
+    frontcover:				cover for the work
 
-   A book will use several of the types listed above, but few books
-   will use all of them.
+    frontmatter:			front section of book, should be used as DIV for frontmatter not listed below
+			acknowledgment:	acknowledges those who contributed to the creation of the book, usually part of preface
+			introduction: 	beginning section which states the purpose and goals of the following writing
+			prologue: 			prologue is an opening to a story that establishes the setting and gives background details
+	    halftitlepage:	(right page facing) contains the only the title of the book
+	    titlepage: 			contains the title of the book, name of author(s) and publisher
+	    imprint: 				(left page facing) copyright, publisher, library printing information
+	    dedication: 		right page with short dedication
+	    foreword: 			written by someone other than the author(s)
+	    toc: 						table of contents
+	    preface: 				generally covers the story of how the book came into being
+	
+    bodymatter:				body section of book, should be used as DIV for badymatter not listed below
+      volume: 				set of leaves that are bound together
+				part: 				single volume may embody either a part of a book or the whole of a book
+					chapter: 		each chapter is given its own DIV element
+      			section: 	each section is given its own DIV element
+
+    backmatter:				closing section of book, should be used as DIV for badymatter not listed below
+			epilogue:				piece of writing at the end of a work, usually used to bring closure to the work
+			extro/outro:		conclusion to a piece of work and is considered the opposite of the intro
+			afterword:			frequently a piece of writing describing a time well after the time frame of the main story
+			conclusion:			general conclusion
+			postscript:			a piece of writing after the work
+			references: 		contains list of references
+	    appendix/addendum: supplemental addition to a given main work 
+	    bibliography:		cites others used in the body
+	    glossary:				consists of a set of definitions of words of importance to the work
+	    index:					used to find terms used in the text
+	    colophon: describes how the book was produced
+	
+    backcover:				back cover for the work
+
 */
 
 /* which section uses which named page */

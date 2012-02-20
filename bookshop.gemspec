@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = Bookshop::VERSION
   s.platform    = Gem::Platform::RUBY
   s.author      = 'Dave Thompson'
-  s.email       = 'da@blueheadpublishing.com'
+  s.email       = 'dave@blueheadpublishing.com'
   s.homepage    = 'http://blueheadpublishing.github.com/bookshop/'
   s.summary     = 'A book publishing framework for building pdf/(e)books based on HTML, CSS, and JavaScript.'
   s.description = 'bookshop is a book publishing framework for building pdf/(e)books based on HTML,
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = 'bookshop'
   s.has_rdoc = true
 
-  s.files        = Dir['CHANGELOG', 'README.rdoc', 'bin/**/*', 'lib/**/{*,.[a-z]*}']
+  s.files        = Dir['CHANGELOG.mc', 'README.rdoc', 'bin/**/*', 'lib/**/{*,.[a-z]*}']
   s.require_path = 'lib'
   
   s.bindir       = 'bin'
