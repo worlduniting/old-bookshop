@@ -27,15 +27,11 @@ Gem::Specification.new do |s|
   s.executables  = ['bookshop']
   
   s.add_dependency 'thor', '>= 0.14.6'
-  s.add_dependency 'rubyzip'
-  s.add_dependency 'pdfkit'
-  s.add_dependency 'nokogiri'
   s.add_development_dependency 'bundler', '>= 1.0.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'aruba'
   s.add_development_dependency 'rdoc'
-  s.add_development_dependency 'wkhtmltopdf-binary'
   s.add_development_dependency 'mocha'
   
   s.post_install_message = Bookshop::POST_INSTALL

@@ -1,20 +1,12 @@
 module Bookshop
   POST_INSTALL = "
   ******************************************************************
+
+
+  Install PrinceXML:
   
-  Make sure to have Java 1.5 or above installed
+  http://www.princexml.com/download/
   
-
-  Install wkhtmltopdf:
-
-  1. Install by hand (recommended):
-
-      https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
-
-  2. Try using the wkhtmltopdfify gem (mac + linux i386)
-
-      gem install wkhtmltopdfify
-
 
   ******************************************************************
   "

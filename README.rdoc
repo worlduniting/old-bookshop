@@ -7,7 +7,7 @@ bookshop is a book publishing framework for building pdf/(e)books based on HTML,
 bookshop hopes to simplify the process by:
 * using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
-* pulling all the html-to-pdf/(e)book tools together into one place (wkhtmltopdf, kindlegen, epubcheck)
+* pulling all the html-to-pdf/(e)book tools together into one place (princexml, kindlegen, epubcheck)
 * sticking with open-source tools to encourage community development
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
@@ -24,19 +24,11 @@ bookshop hopes to simplify the process by:
 
     $ gem install bookshop
 
-=== Install wkhtmltopdf
+=== Install PrinceXML
 
-1. Try using the wkhtmltopdf-binary gem (mac + linux i386)
+1. Go to PrinceXML website and following instructions
 
-    $ gem install wkhtmltopdf-binary
-
-2. Install by hand (for windows or users who want to install newer builds):
-
-https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
-
-3. The wkhtmltopdf site has more info
-
-    http://code.google.com/p/wkhtmltopdf/
+http://www.princexml.com/download/
 
 == Using bookshop
 
@@ -46,22 +38,25 @@ https://github.com/blueheadpublishing/bookshop/wiki/Installing-wkhtmltopdf
 
 	This will create a new bookshop book in /path/to/my_new_book with the following structure:
 
-    |-- book/                 # Source files for your book
-        |--book.html.erb      # The master file
-        |--assets/
-            |--css/
-                |--stylesheet.css
-            |--images/
-            |--js/
+  |-- book/                 # Source files for your book
+      |--book.html.erb      # The master file
+      |--frontmatter/       # Content at the front of the book (cover, title, preface, etc.)
+      |--bodymatter/        # Main content of book (chapters, sections, etc.)
+      |--backmatter/        # Content at the back of the book (appendix, index, etc.)
+      |--assets/
+          |--css/
+              |--stylesheet.css
+          |--images/
+          |--js/
 
-    |-- builds/               # All the builds are created here
-        |--epub/
-        |--html/
-        |--mobi/
-        |--pdf/
+  |-- builds/               # All the builds are created here
+      |--epub/
+      |--html/
+      |--mobi/
+      |--pdf/
 
-    |-- config/               # Your config and data settings
-        |--book.yml           # Settings/Data for your book
+  |-- config/               # Your config and data settings
+      |--book.yml           # Settings/Data for your book
 
 
 === Editing Your New Book
@@ -94,20 +89,20 @@ This would import the file +book/a_whole_chapter.html+
 
 You can also create sub-folders and group your files there. For example, in your book.html.erb file you could import:
 
-    <%= import('ch1/my_first_section.html.erb') %>
+    <%= import('bodymatter/ch01/my_first_section.html.erb') %>
 
-This would import the file +book/ch1/my_first_section.html.erb+
+This would import the file +book/bodymatter/ch01/my_first_section.html.erb+
 
 Note that you can also nest import files into imported files.
 
 So in your +book/book.html.erb+
 
-    <%= import('ch01/ch01.html.erb') %>
+    <%= import('bodymatter/ch01/ch01.html.erb') %>
 
 and in the +ch01/ch01.html.erb+ you could import more files
 
-    <%= import('first_section.html.erb') %>
-    <%= import('second_section.html.erb') %>
+    <%= import('bodymatter/ch01/first_section.html.erb') %>
+    <%= import('bodymatter/ch01/second_section.html.erb') %>
 
 ==== Output-based Content
 
@@ -204,43 +199,9 @@ To build a pdf format of your book from the ERB source:
 
 ==== Editing your pdf document options
 
-What if you want your pdf to print as Lanscape, or a different page-size, or in grayscale? Because bookshop uses PDFKit, you can pass wkhtmltopdf (the pdf rendering engine) options by way of <meta> tags in your html source code.
+We recommend consulting PrinceXML's documentation concerning PDF options.
 
-For example, to print in Landscape mode, in your master +book/book.html.erb+ file we can add <meta name="pdfkit-orientation" content="Landscape" />:
-
-so you html would be:
-
-    <html>
-      <head>
-        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-        <meta name="pdfkit-orientation" content="Landscape" />
-        <title>how-to bookshop</title>
-        <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-      </head>
-    <body>
-    <p>The ISBN is <%= @book.isbn %></p>
-
-Here's a list of other options https://github.com/blueheadpublishing/bookshop/wiki/wkhtmltopdf-options
-
-Or you can look at all of the possible wkhtmltopdf options by using the command:
-
-    $ wkhtmltopdf --extended-help
-
-Your meta tags should use the following naming conventions. 
-
-* For each option, replace the double-dashes '--' before the option with +pdfkit-+ and change single-dashes '-' to an underscore +_+.
-    --page-size
-
-    becomes
-
-    <meta name="pdfkit-page_size" content="Letter" />
-
-* For options that do not require an additional parameter/value, you still need to include the content attribute, but keep it blank.
-    --grayscale
-
-    becomes
-
-    <meta name="pdfkit-grayscale" content="" />
+http://www.princexml.com/doc/8.0/
 
 == Example Book
 
@@ -260,6 +221,9 @@ The default directory structure of a generated bookshop project:
 
     |-- book/                 # Source files for your book
         |--book.html.erb      # The master file
+        |--frontmatter/       # Content at the front of the book (cover, title, preface, etc.)
+        |--bodymatter/        # Main content of book (chapters, sections, etc.)
+        |--backmatter/        # Content at the back of the book (appendix, index, etc.)
         |--assets/
             |--css/
                 |--stylesheet.css
@@ -339,7 +303,6 @@ We would like to thank:
 * The Ruby/Rubygems Team www.ruby-lang.org/
 * The Thor Team - https://github.com/wycats/thor
 * Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
-* The WKHTMLTOPDF team http://code.google.com/p/wkhtmltopdf/
 
 A List of Our Contributors:
 https://github.com/blueheadpublishing/bookshop/blob/master/CONTRIBUTORS.md

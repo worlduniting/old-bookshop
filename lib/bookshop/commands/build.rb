@@ -2,7 +2,6 @@ require 'thor/group'
 require 'erb'
 require 'fileutils'
 require 'yaml'
-require 'pdfkit'
 
 require 'bookshop/commands/yaml/book'
 # require 'bookshop/commands/epub/epub_build'
@@ -97,18 +96,9 @@ module Bookshop
         FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
 
 
-        # PDFKit.new takes the HTML and any options for wkhtmltopdf
-        # run `wkhtmltopdf --extended-help` for a full list of options
-        kit = PDFKit.new(File.new('builds/html/book.html'))
-
-        # Git an inline PDF
-        pdf = kit.to_pdf
-
-        # Save the PDF to a file
-        file = kit.to_file('builds/pdf/book.pdf')
-        
-      # when 'epub'
-      #   Bookshop::Commands::EpubBuild.new
+        # Builds the pdf from builds/html/book.html
+        puts "Building new pdf at builds/pdf/book.pdf from new html build"
+        cmd = %x[prince builds/html/book.html -o builds/pdf/book.pdf]
 
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)

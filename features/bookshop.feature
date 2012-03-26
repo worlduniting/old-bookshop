@@ -10,9 +10,8 @@ Feature: We can create a new book project and build books
 		Then the following files should exist:
 		| book/book.html.erb |
 		| book/assets/images/canvas.jpg |
-		| book/toc.html.erb |
+		| book/frontmatter/toc.html.erb |
 		| config/book.yml |
-		| config/toc.yml |
 		| README.rdoc |
 		| script/bookshop |
 		And the following directories should exist:
@@ -26,7 +25,10 @@ Feature: We can create a new book project and build books
 		Given a file named "test_book/script/bookshop" should exist		
 		When I cd to "test_book"
 		And I run `bookshop build pdf`
+		Then the output should contain "Building new pdf"
+		Then the output should not contain "error"
 		And a file named "builds/pdf/book.pdf" should exist
+		And the file "builds/html/book.html" should match /stylesheet.pdf.css/
 	
 	@no-clobber
 	Scenario: Build a new html book
@@ -38,7 +40,7 @@ Feature: We can create a new book project and build books
 		| builds/html/book.html |
 		| builds/html/assets/css/stylesheet.html.css |
 		| builds/html/assets/images/canvas.jpg |
-		And the file "builds/html/book.html" should match /HTML version/
+		And the file "builds/html/book.html" should match /stylesheet.html.css/
 		
 #	@no-clobber
 #	Scenario: Build a new epub book

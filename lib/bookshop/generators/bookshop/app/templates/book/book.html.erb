@@ -3,36 +3,25 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-	<meta name="pdfkit-orientation" content="Portrait" />
-	<meta name="pdfkit-page_height" content="9in" />
-	<meta name="pdfkit-page_width" content="6in" />
 	<title>how-to bookshop</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/stylesheet.<%= @output %>.css" />
-	<% if @output != :pdf %>
 		<link rel="stylesheet" type="application/vnd.adobe-page-template+xml" href="assets/css/page-template.xpgt"/>
-	<% end %>
 </head>
 <body>
-<p><a name="title">New Title:</a> 
-	<% if @output == :html %>
-		<%= @book.html.title %>
-	<% elsif @output == :pdf %>
-		<%= @book.pdf.title %>
-	<% elsif @output == :epub %>
-		<%= @book.epub.title %>
-	<% end %></p>
-<p>Subtitle: <%= @book.subtitle %></p>
-<p>ISBN: <%= @book.isbn %></p>
 
 
-<%= import('cover.html.erb')%>
-<%= import('toc.html.erb')%>
-<%= import('preface.html.erb')%>
+<%= import('frontmatter/cover.html.erb')%>
+<%= import('frontmatter/title.html.erb')%>
+<%= import('frontmatter/toc.html.erb')%>
+<%= import('frontmatter/preface.html.erb')%>
 
 <!-- Chapter 01 has additional imports included inside of it -->
-<%= import('ch01/ch01.html.erb')%>
+<%= import('bodymatter/ch01/ch01.html.erb')%>
 
-<!-- Chapter 01 has additional imports included inside of it -->
-<%= import('ch02/ch02.html.erb')%>
+<!-- Chapter 02 has additional imports included inside of it -->
+<%= import('bodymatter/ch02/ch02.html.erb')%>
+
+
+<%= import('backmatter/index.html.erb')%>
 
 </body></html>
