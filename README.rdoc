@@ -16,7 +16,7 @@ bookshop hopes to simplify the process by:
 
 === System Requirements
 
-* Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads
+* Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads/
 
 == Installation
 
@@ -26,9 +26,9 @@ bookshop hopes to simplify the process by:
 
 === Install PrinceXML
 
-1. Go to PrinceXML website and following instructions
+1. Go to PrinceXML website and follow the install instructions
 
-http://www.princexml.com/download
+http://www.princexml.com/download/
 
 == Using bookshop
 
@@ -85,7 +85,7 @@ You can import a file by using the import() function, for example:
 
     <%= import('a_whole_chapter.html.erb') %>
 
-This would import the file +book/a_whole_chapter.html+ 
+This would import the file +book/a_whole_chapter.html.erb+ 
 
 You can also create sub-folders and group your files there. For example, in your book.html.erb file you could import:
 
@@ -99,7 +99,7 @@ So in your +book/book.html.erb+
 
     <%= import('bodymatter/ch01/ch01.html.erb') %>
 
-and in the +ch01/ch01.html.erb+ you could import more files
+and in the +bodymatter/ch01/ch01.html.erb+ you could import more files
 
     <%= import('bodymatter/ch01/first_section.html.erb') %>
     <%= import('bodymatter/ch01/second_section.html.erb') %>
@@ -201,7 +201,7 @@ To build a pdf format of your book from the ERB source:
 
 We recommend consulting PrinceXML's documentation concerning PDF options.
 
-http://www.princexml.com/doc/8.0
+http://www.princexml.com/doc/8.0/
 
 == Example Book
 
