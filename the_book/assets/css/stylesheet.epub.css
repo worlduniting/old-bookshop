@@ -145,8 +145,8 @@ table.lined td, table.lined th {
 
 
 @page {
-  margin: 27mm 25mm 27mm 25mm;
-  size: 6in 9in;
+  margin: 27mm 16mm 27mm 16mm;
+  size: 7in 9.25in;
 
   @footnotes {
     border-top: thin solid black;
@@ -208,7 +208,7 @@ table.lined td, table.lined th {
   }
 }
 
-@page cover { margin: 0; background-color: grey;}
+@page cover { margin: 0; }
 
 @page frontmatter :right {
   @top-right {
