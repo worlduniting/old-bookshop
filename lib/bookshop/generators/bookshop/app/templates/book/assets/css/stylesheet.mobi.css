@@ -268,7 +268,7 @@ table.lined td, table.lined th {
    A book consists of different types of sections. We propose to use
    DIV elements with these class names:
 
-    frontcover:				cover for the work
+    frontcover:				cover art/design for the work
 
     frontmatter:			front section of book, should be used as DIV for frontmatter not listed below
 			acknowledgment:	acknowledges those who contributed to the creation of the book, usually part of preface
@@ -296,10 +296,10 @@ table.lined td, table.lined th {
 			postscript:			a piece of writing after the work
 			references: 		contains list of references
 	    appendix/addendum: supplemental addition to a given main work 
-	    bibliography:		cites others used in the body
+	    bibliography:		cites others works used in the body
 	    glossary:				consists of a set of definitions of words of importance to the work
-	    index:					used to find terms used in the text
-	    colophon: describes how the book was produced
+	    index:					used to find items of interest in the work
+	    colophon: 			describes how the book was produced
 	
     backcover:				back cover for the work
 
