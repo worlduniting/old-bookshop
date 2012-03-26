@@ -1,3 +1,16 @@
+## Bookshop 0.1.0 ##
+
+### Features ###
+* Moved from wkhtmltopdf to PrinceXML
+* Restructed book example generation with front/body/backmatter folders
+* Reformatted CSS back to original boom.css
+* Updated cucumber testing features
+* dropped PDFKit since no longer using wkhtmltopdf
+* dropped config/toc.yml
+
+### Documentation ###
+* Updated README for PrinceXML
+
 ## Bookshop 0.0.22 ##
 
 ### Features ###
