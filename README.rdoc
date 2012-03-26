@@ -16,7 +16,7 @@ bookshop hopes to simplify the process by:
 
 === System Requirements
 
-* Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads/
+* Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads
 
 == Installation
 
@@ -28,7 +28,7 @@ bookshop hopes to simplify the process by:
 
 1. Go to PrinceXML website and following instructions
 
-http://www.princexml.com/download/
+http://www.princexml.com/download
 
 == Using bookshop
 
@@ -201,7 +201,7 @@ To build a pdf format of your book from the ERB source:
 
 We recommend consulting PrinceXML's documentation concerning PDF options.
 
-http://www.princexml.com/doc/8.0/
+http://www.princexml.com/doc/8.0
 
 == Example Book
 
@@ -268,7 +268,7 @@ config
 	
 == Copyright (MIT-LICENSE)
 
-Copyright (C) 2010, 2011 by BlueHead Publishing, Inc (http://blueheadpublishing.com)
+Copyright (C) 2011, 2012 by BlueHead Publishing, Inc (http://blueheadpublishing.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
