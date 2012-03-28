@@ -364,34 +364,42 @@ div.titlepage p, div.halftitlepage p {
   margin: 0; padding: 0;
 }
 
+/* imprint */
+div.imprint p {
+	text-indent: 0;
+	margin-bottom: 1em;
+}
+div.imprint img {
+	width: 200px; height: 157px;
+}
 
 /* TOC */
 
-ul.toc, ul.toc ul { 
+ol.toc, ol.toc ol { 
   list-style-type: none;
   margin: 0; padding: 0;
 }
-ul.toc ul {
+ol.toc ol {
   margin-left: 1em;
   font-weight: normal;
 }
-ul.toc > li { 
+ol.toc > li { 
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-ul.toc a::after {
+ol.toc a::after {
   content: leader('.') target-counter(attr(href), page);
   font-style: normal;
 }
-ul.toc > li.frontmatter a::after {
+ol.toc > li.frontmatter a::after {
   content: leader('.') target-counter(attr(href), page, lower-roman);
   font-style: normal;
 }
-ul.toc > li.endmatter a::after {
+ol.toc > li.backmatter a::after {
   content: leader('.') target-counter(attr(href), page);
   font-style: normal;
 }
-ul.toc > li.chapter::before {
+ol.toc > li.chapter::before {
   content: "Chapter " counter(toc-chapter, decimal);
   display: block;
   margin: 1em 0 0.1em -2.5cm;
@@ -422,7 +430,7 @@ div.chapter h1 { string-set: header "Chapter " counter(chapter) ": " content(); 
 
 /* index */
 
-ul.index { 
+ol.index { 
   list-style-type: none;
   margin: 0; padding: 0;
   column-count: 2;

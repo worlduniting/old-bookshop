@@ -13,19 +13,30 @@
 title: Bookshop
 subtitle: An HTML-to-PDF/(e)Book Publishing Framework
 isbn: 1234567891011     # ISBN-13
+creator:
+publisher: World Uniting Press
+contributor:
+date:
+type:
+format:
+identifier:
+source:
+language:
+relation:
+coverage:
+rights:
+
 
 
 # Place the pdf specific settings here. Use whatever you want.
 # You can use these settings in your source layouts by using a tag
 #   in book.html.erb you could use <%= book.pdf.title %>
 pdf:
-  version: 0.0.1
   title: Bookshop (PDF Version)
 
 
 # Place the epub specific settings here.
 epub:
-  version: 0.0.1
   title: Bookshop ePub Version
 
 

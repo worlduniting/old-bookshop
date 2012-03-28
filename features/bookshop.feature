@@ -20,7 +20,7 @@ Feature: We can create a new book project and build books
 		| builds/pdf |
 		| builds/mobi |
 	
-	@no-clobber
+  @no-clobber
 	Scenario: Build a new pdf book
 		Given a file named "test_book/script/bookshop" should exist		
 		When I cd to "test_book"
@@ -29,7 +29,7 @@ Feature: We can create a new book project and build books
 		Then the output should not contain "error"
 		And a file named "builds/pdf/book.pdf" should exist
 		And the file "builds/html/book.html" should match /stylesheet.pdf.css/
-	
+
 	@no-clobber
 	Scenario: Build a new html book
 		Given a file named "test_book/script/bookshop" should exist
@@ -42,18 +42,24 @@ Feature: We can create a new book project and build books
 		| builds/html/assets/images/canvas.jpg |
 		And the file "builds/html/book.html" should match /stylesheet.html.css/
 		
-#	@no-clobber
-#	Scenario: Build a new epub book
-#		Given a file named "test_book/script/bookshop" should exist
-#		When I cd to "test_book"
-#		And I run `bookshop build epub`
-#		Then the following files should exist:
-#		| builds/epub/mimetype |
-#		| builds/epub/META-INF/container.xml |
-#		| builds/epub/OEBPS/css/page-template.xpgt |
-#		| builds/epub/OEBPS/css/stylesheet.css |
-#		| builds/epub/OEBPS/images/canvas.jpg |
-#		| builds/epub/OEBPS/css/stylesheet.css |
-#		And the file "builds/epub/OEBPS/book.html" should match /ePub Version/
-#		Then a file named "builds/epub/OEBPS/toc.ncx" should exist
+  @no-clobber
+  Scenario: Build a new epub book
+  	Given a file named "test_book/script/bookshop" should exist
+  	When I cd to "test_book"
+  	And I run `bookshop build epub`
+		Then the output should contain "Deleting any old builds"
+		Then the output should contain "Generating new html from erb"
+		Then the output should contain "Generating new content.opf from erb"
+		Then the output should contain "Generating new toc.ncx from erb"
+		Then the output should contain "Zipping up into epub"
+  	Then the following files should exist:
+  	| builds/epub/mimetype |
+  	| builds/epub/META-INF/container.xml |
+  	| builds/epub/OEBPS/assets/css/page-template.xpgt |
+  	| builds/epub/OEBPS/assets/images/canvas.jpg |
+  	| builds/epub/OEBPS/assets/css/stylesheet.epub.css |
+  	| builds/epub/OEBPS/toc.ncx |
+  	| builds/epub/book.epub |
+		And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
+		And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
 		

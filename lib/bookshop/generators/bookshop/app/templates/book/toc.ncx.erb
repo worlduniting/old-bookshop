@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ncx xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+  <head>
+    <meta name="dtb:uid" content="<%= @book.isbn %>"/>
+    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text><%= @book.epub.title %></text>
+  </docTitle>
+  
+  <navMap>
+    <navPoint id="navPoint-0" playOrder="1">
+      <navLabel>
+        <text>Chapter One: Chapter One Title</text>
+      </navLabel>
+      <content src="book.html"/>
+    </navPoint>
+  </navMap>
+</ncx>
