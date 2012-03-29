@@ -2,11 +2,11 @@
 #
 # in book/book.html.erb
 #
-#      <p><b>Version:</b> <%= book.epub.version %></p>
+#      <p><b>Version:</b> <%= @book.epub.version %></p>
 #
 #   or
 #
-#      <% if book.epub.version == '1.0.0' %>
+#      <% if @book.epub.version == '1.0.0' %>
 #        <p>Whew! We made it!</p>
 #      <% end %>
 
@@ -30,7 +30,7 @@ rights:
 
 # Place the pdf specific settings here. Use whatever you want.
 # You can use these settings in your source layouts by using a tag
-#   in book.html.erb you could use <%= book.pdf.title %>
+#   in book.html.erb you could use <%= @book.pdf.title %>
 pdf:
   title: Cascading Style Sheets
 
@@ -38,6 +38,7 @@ pdf:
 # Place the epub specific settings here.
 epub:
   title: Cascading Style Sheets
+  version: 0.1.1
 
 
 # Place the html specific settings here
@@ -50,4 +51,4 @@ html:
 # foo:
 #   bar: foobar
 #
-#   in book.html.erb you can then use <%= foo.bar %>  # --> foobar
+#   in book.html.erb you can then use <%= @book.foo.bar %>  # --> foobar
