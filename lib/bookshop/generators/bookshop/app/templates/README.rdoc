@@ -48,6 +48,12 @@ http://www.princexml.com/download/
               |--stylesheet.css
           |--images/
           |--js/
+      |--epub               # Folder holding epub specific files
+          |--META-INF
+          |--mimetype
+          |--OEBPS
+              |--content.opf.erb  # Main description file for the epub format
+              |--toc.ncs    # Table of Contents description file
 
   |-- builds/               # All the builds are created here
       |--epub/
@@ -251,6 +257,12 @@ The default directory structure of a generated bookshop project:
                 |--stylesheet.css
             |--images/
             |--js/
+        |--epub               # Folder holding epub specific files
+            |--META-INF
+            |--mimetype
+            |--OEBPS
+                |--content.opf.erb  # Main description file for the epub format
+                |--toc.ncs    # Table of Contents description file
 
     |-- builds/               # All the builds are created here
         |--epub/
