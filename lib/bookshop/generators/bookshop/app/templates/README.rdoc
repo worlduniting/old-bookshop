@@ -48,12 +48,12 @@ http://www.princexml.com/download/
               |--stylesheet.css
           |--images/
           |--js/
-      |--epub               # Folder holding epub specific files
-          |--META-INF
+      |--epub/              # epub specific files and contents
+          |--META-INF/
           |--mimetype
-          |--OEBPS
-              |--content.opf.erb  # Main description file for the epub format
-              |--toc.ncs    # Table of Contents description file
+          |--OEBPS/
+              |--content.opf.erb
+              |--toc.ncx.erb
 
   |-- builds/               # All the builds are created here
       |--epub/
@@ -247,31 +247,31 @@ You can then build the book into whatever format you like.
 
 The default directory structure of a generated bookshop project:
 
-    |-- book/                 # Source files for your book
-        |--book.html.erb      # The master file
-        |--frontmatter/       # Content at the front of the book (cover, title, preface, etc.)
-        |--bodymatter/        # Main content of book (chapters, sections, etc.)
-        |--backmatter/        # Content at the back of the book (appendix, index, etc.)
-        |--assets/
-            |--css/
-                |--stylesheet.css
-            |--images/
-            |--js/
-        |--epub               # Folder holding epub specific files
-            |--META-INF
-            |--mimetype
-            |--OEBPS
-                |--content.opf.erb  # Main description file for the epub format
-                |--toc.ncs    # Table of Contents description file
+  |-- book/                 # Source files for your book
+      |--book.html.erb      # The master file
+      |--frontmatter/       # Content at the front of the book (cover, title, preface, etc.)
+      |--bodymatter/        # Main content of book (chapters, sections, etc.)
+      |--backmatter/        # Content at the back of the book (appendix, index, etc.)
+      |--assets/
+          |--css/
+              |--stylesheet.css
+          |--images/
+          |--js/
+      |--epub/              # epub specific files and contents
+          |--META-INF/
+          |--mimetype
+          |--OEBPS/
+              |--content.opf.erb
+              |--toc.ncx.erb
 
-    |-- builds/               # All the builds are created here
-        |--epub/
-        |--html/
-        |--mobi/
-        |--pdf/
+  |-- builds/               # All the builds are created here
+      |--epub/
+      |--html/
+      |--mobi/
+      |--pdf/
 
-    |-- config/               # Your config and data settings
-        |--book.yml           # Settings/Data for your book
+  |-- config/               # Your config and data settings
+      |--book.yml           # Settings/Data for your book
 
 book
   Holds all the manuscript html code/files. This is where your master manuscript lives from which everything is built.
