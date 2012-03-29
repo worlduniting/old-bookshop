@@ -77,31 +77,52 @@ module Bookshop
       when 'epub'
         # Clean up any old builds
         puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/epub/OEBPS/*')
-        FileUtils.rm %w( builds/epub/book.epub )
+        FileUtils.rm_r Dir.glob('builds/epub/*')
 
         @output = :epub
+
+        FileUtils.cp_r('book/epub/META-INF', 'builds/epub/', :verbose => true)
+        FileUtils.mkdir 'builds/epub/OEBPS'
+        FileUtils.cp_r('book/epub/mimetype', 'builds/epub/', :verbose => true)
+        
         erb = import(BOOK_SOURCE)
         puts "Generating new html from erb"
         File.open("builds/epub/OEBPS/book.html", 'a') do |f|
           f << erb
         end
         
+        # Generate the cover.html file
+        opf = import("frontmatter/cover.html.erb")
+        puts "Generating new cover.html from erb"
+        File.open("builds/epub/OEBPS/cover.html", 'a') do |f|
+          f << opf
+        end
+        
+        # Generate the nav.html file
+        opf = import("frontmatter/toc.html.erb")
+        puts "Generating new toc.html from erb"
+        File.open("builds/epub/OEBPS/toc.html", 'a') do |f|
+          f << opf
+        end
+
         # Generate the OPF file
-        opf = import("content.opf.erb")
+        opf = import("epub/OEBPS/content.opf.erb")
         puts "Generating new content.opf from erb"
         File.open("builds/epub/OEBPS/content.opf", 'a') do |f|
           f << opf
         end
         
         # Generate the NCX file
-        ncx = import("toc.ncx.erb")
+        ncx = import("epub/OEBPS/toc.ncx.erb")
         puts "Generating new toc.ncx from erb"
         File.open("builds/epub/OEBPS/toc.ncx", 'a') do |f|
           f << ncx
         end
         
-        FileUtils.cp_r('book/assets/', 'builds/epub/OEBPS/', :verbose => true)
+        FileUtils.cp_r 'book/assets', 'builds/epub/OEBPS/assets/', :verbose => true
+        FileUtils.rm %w( builds/epub/OEBPS/assets/css/stylesheet.pdf.css
+                         builds/epub/OEBPS/assets/css/stylesheet.html.css
+                         builds/epub/OEBPS/assets/css/stylesheet.mobi.css )
         
         puts "Zipping up into epub"
         cmd = %x[cd builds/epub/ && zip -X0 "book.epub" mimetype && zip -rDX9 "book.epub" * -x "*.DS_Store" -x mimetype]

@@ -1,26 +1,62 @@
+<% if @output == (:pdf or :html) %>
 <div class="toc" id="toc-h-1">
-  <nav>
-    <h1>Table of Contents</h1>
+  <h1>Table of Contents</h1>
 
-    <ol class="toc">
-    <li class="frontmatter"><a href="#toc-h-1">Table of Contents</a></li>
-    <li class="frontmatter"><a href="#preface-h-1">Preface</a></li>
-    <li class="chapter"><a href="#html-h-1">The Web and HTML</a>
+  <ol class="toc">
+  <li class="frontmatter"><a href="#toc-h-1">Table of Contents</a></li>
+  <li class="frontmatter"><a href="#preface-h-1">Preface</a></li>
+  <li class="chapter"><a href="#html-h-1">The Web and HTML</a>
+    <ol>
+    <li class="section"><a href="#the-web">The Web</a>
       <ol>
-      <li class="section"><a href="#the-web">The Web</a>
-        <ol>
-        <li class="section"><a href="#development">Development of the Web</a></li>
-        <li class="section"><a href="#images">Adding images</a></li>
-        </ol>
-      </li>
+      <li class="section"><a href="#development">Development of the Web</a></li>
+      <li class="section"><a href="#images">Adding images</a></li>
       </ol>
     </li>
-    <li class="chapter"><a href="#css-h-1">CSS</a>
-      <ol>
-      <li class="section"><a href="#roles">Roles and Style Sheets</a></li>
-      </ol>
-    </li>
-    <li class="backmatter"><a href="#index-h-1">Index</a></li>
     </ol>
-  </nav>
+  </li>
+  <li class="chapter"><a href="#css-h-1">CSS</a>
+    <ol>
+    <li class="section"><a href="#roles">Rules and Style Sheets</a></li>
+    </ol>
+  </li>
+  <li class="backmatter"><a href="#index-h-1">Index</a></li>
+  </ol>
 </div>
+  
+<% else %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Table of Contents</title>
+</head>
+<body>
+<div class="toc" id="toc-h-1">
+  <h1>Table of Contents</h1>
+
+  <ol class="toc">
+  <li class="frontmatter"><a href="#toc-h-1">Table of Contents</a></li>
+  <li class="frontmatter"><a href="book.html#preface-h-1">Preface</a></li>
+  <li class="chapter"><a href="book.html#html-h-1">The Web and HTML</a>
+    <ol>
+    <li class="section"><a href="book.html#the-web">The Web</a>
+      <ol>
+      <li class="section"><a href="book.html#development">Development of the Web</a></li>
+      <li class="section"><a href="book.html#images">Adding images</a></li>
+      </ol>
+    </li>
+    </ol>
+  </li>
+  <li class="chapter"><a href="book.html#css-h-1">CSS</a>
+    <ol>
+    <li class="section"><a href="book.html#rules">Rules and Style Sheets</a></li>
+    </ol>
+  </li>
+  <li class="backmatter"><a href="book.html#index-h-1">Index</a></li>
+  </ol>
+</div>
+</body>
+</html>
+
+<% end %>

@@ -191,17 +191,39 @@ Please explore other creative ways to structure and enhance your book (we'd love
 
 To build an HTML format of your book from the ERB source:
 
-    $ bookshop build html   # -> find the output in builds/html/book_(date).html
+    $ bookshop build html   # -> find the output in builds/html/book.html
 
 To build a pdf format of your book from the ERB source:
 
-    $ bookshop build pdf    # -> find the output in builds/pdf/book_(date).pdf
+    $ bookshop build pdf    # -> find the output in builds/pdf/book.pdf
+
+To build an epub format of your book from the ERB source:
+
+    $ bookshop build epub    # -> find the output in builds/epub/book.pdf
 
 ==== Editing your pdf document options
 
 We recommend consulting PrinceXML's documentation concerning PDF options.
 
 http://www.princexml.com/doc/8.0/
+
+==== Editing you epub document and options
+
+http://idpf.org/epub/30 - For an overview of EPUB
+http://idpf.org/epub/30/spec/epub30-ocf.html - For the specs on the epub file structures and contents
+
+
+We recommend consulting the EPUB documentation for specifics.
+
+There are two main files (besides your actual book source) you will need to edit for the epub build are located in the +book/epub/OEBPS+ folder: content.opf (the Open Packaging Format) and the toc.ncx (the Navigation file).
+
+===== The *content.opf* file is the file which contains all of the primary information about your epub ebook (publisher, files included, date, etc.). 
+
+http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm - Specs on the .opf file
+
+===== The toc.ncx file is the file which contains the structural tree of your book's navigation.
+
+http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4.1.2 - Specs on the .ncx file.
 
 == Example Book
 

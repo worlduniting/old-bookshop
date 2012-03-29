@@ -10,18 +10,18 @@
 #        <p>Whew! We made it!</p>
 #      <% end %>
 
-title: Bookshop
-subtitle: An HTML-to-PDF/(e)Book Publishing Framework
+title: Cascading Style Sheets
+subtitle: Designing for the Web
 isbn: 1234567891011     # ISBN-13
-creator:
-publisher: World Uniting Press
-contributor:
-date:
+creator: 
+publisher: BlueHead Publishing
+contributor: 'H&#229;kon Wium Lie and Bert Bos'
+date: 2012-03-31
 type:
 format:
-identifier:
-source:
-language:
+identifier: 1234567891011
+source: 
+language: en
 relation:
 coverage:
 rights:
@@ -32,17 +32,17 @@ rights:
 # You can use these settings in your source layouts by using a tag
 #   in book.html.erb you could use <%= book.pdf.title %>
 pdf:
-  title: Bookshop (PDF Version)
+  title: Cascading Style Sheets
 
 
 # Place the epub specific settings here.
 epub:
-  title: Bookshop ePub Version
+  title: Cascading Style Sheets
 
 
 # Place the html specific settings here
 html:
-  title: Bookshop HTML version
+  title: Cascading Style Sheets
 
 
 # You can add any additional variables you want

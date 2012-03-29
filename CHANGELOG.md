@@ -1,3 +1,8 @@
+## Bookshop 0.1.1 ##
+
+## Features ##
+* Added epub build (which was left out in previous release, but meant to be a part of the 0.1.0 release)
+
 ## Bookshop 0.1.0 ##
 
 ### Features ###

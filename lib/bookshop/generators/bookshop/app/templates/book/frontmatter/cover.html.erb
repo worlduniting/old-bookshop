@@ -1,7 +1,26 @@
-<div class="frontcover">
-<img src="assets/images/canvas.jpg" />
-<h1>Cascading Style Sheets</h1>
-<h2>Designing for the Web</h2>
-<h3>Third Edition</h3>
-<p>Sample document</p>
-</div>
+<% if @output == (:pdf or :html) %>
+
+  <div class="frontcover">
+    <img src="assets/images/canvas.jpg" />
+    <h1>Cascading Style Sheets</h1>
+    <h2>Designing for the Web</h2>
+    <h3>Third Edition</h3>
+    <p>Sample document</p>
+  </div>
+
+<% else %>
+
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <title>Cover</title>
+  <style type="text/css"> img { max-width: 600px; } </style>
+  </head>
+  <body>
+    <div id="cover-image">
+      <img src="assets/images/cover.png" alt="Cascade Styling Sheets"/>
+    </div>
+  </body>
+  </html>
+
+<% end %>

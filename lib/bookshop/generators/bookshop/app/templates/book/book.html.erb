@@ -1,18 +1,25 @@
-<!--?xml version="1.0" encoding="iso-8859-1"?-->
+<!--?xml version="1.0" encoding="UTF-8"?-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-	<title>how-to bookshop</title>
+	<title>Cascading Style Sheets</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/stylesheet.<%= @output %>.css" />
 		<link rel="stylesheet" type="application/vnd.adobe-page-template+xml" href="assets/css/page-template.xpgt"/>
 </head>
 <body>
 
 
-<%= import('frontmatter/cover.html.erb')%>
+<% if @output == (:pdf or :html) %>
+  <%= import('frontmatter/cover.html.erb')%>
+<% end %>
+
 <%= import('frontmatter/title.html.erb')%>
-<%= import('frontmatter/toc.html.erb')%>
+
+<% if @output == (:pdf or :html) %>
+  <%= import('frontmatter/toc.html.erb')%>
+<% end %>
+
 <%= import('frontmatter/preface.html.erb')%>
 
 <!-- Chapter 01 has additional imports included inside of it -->
