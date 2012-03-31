@@ -1,4 +1,4 @@
-=== http://blueheadpublishing.github.com/bookshop/assets/logo.png
+=== http://3.bp.blogspot.com/-gYebAHHXpXs/T3aSYFIj6KI/AAAAAAAAACo/Rdo3WOqbihM/s320/bookshop_logo.png
 
     "a book publishing framework for today's publishing world"
 

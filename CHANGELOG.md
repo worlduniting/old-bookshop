@@ -1,6 +1,15 @@
+## Bookshop 0.1.2 ##
+
+### Bug Fixes ###
+* Fixed bug causing 'build pdf' to generate html files into the builds/html dir
+
+### Documentation ###
+* Updated with new platform specific setup link
+* Reworked tutorial with additional functionality
+
 ## Bookshop 0.1.1 ##
 
-## Features ##
+### Features ###
 * Added epub build (which was left out in previous release, but meant to be a part of the 0.1.0 release)
 
 ## Bookshop 0.1.0 ##
