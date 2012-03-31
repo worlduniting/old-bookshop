@@ -200,6 +200,10 @@ Please explore other creative ways to structure and enhance your book (we'd love
 
 === Building Your First Book
 
+Each time you build a new book format, the source .erb files in your *book/* folder are built and copied to the build target folder. Then the final book format is generated from those newly generated files. For example, if you issue "bookshop build epub", the .erb source files are built and the resulting book.html and all the assets/ are saved to the *builds/epub/* folder. Then the target epub book format is generated from the *builds/epub* folder and saved back in the same folder.
+
+The great thing about this is that you can easily view the resulting book.html file in a browser to get a quick peak at the generated look and feel.
+
 To build an HTML format of your book from the ERB source:
 
     $ bookshop build html   # -> find the output in builds/html/book.html
@@ -222,7 +226,7 @@ http://www.princexml.com/doc/8.0/
 
 There are two main files (besides your actual book source) you will need to edit for the epub build are located in the +book/epub/OEBPS+ folder: content.opf (the Open Packaging Format) and the toc.ncx (the Navigation file).
 
-During the build process, the entire contents of the +book/epub/+ folder will be used, along with your book source files, to create your epub book format. You can add or edit any of the files in that folder if you like. Generally speaking, you will probably only ever edit the content.opf.erb adn the toc.ncs.erb files.
+During the build process, the entire contents of the +book/epub/+ folder will be used, along with your book source files, to create your epub book format. You can add or edit any of the files in that folder if you like. Generally speaking, you will probably only ever edit the content.opf.erb and the toc.ncs.erb files.
 
 http://idpf.org/epub/30 - For an overview of EPUB
 http://idpf.org/epub/30/spec/epub30-ocf.html - For the specs on the epub file structures and contents

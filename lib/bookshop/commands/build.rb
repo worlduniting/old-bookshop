@@ -134,23 +134,22 @@ module Bookshop
         # Clean up any old builds
         puts "Deleting any old builds"
         FileUtils.rm_r Dir.glob('builds/pdf/*')
-        FileUtils.rm_r Dir.glob('builds/html/*')
         
         @output = :pdf
         erb = import(BOOK_SOURCE)
         # Generate the html from ERB
         puts "Generating new html from erb"
-        File.open('builds/html/book.html', 'a') do |f|
+        File.open('builds/pdf/book.html', 'a') do |f|
           f << erb
         end
 
         # Copy over html assets
-        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
+        FileUtils.cp_r('book/assets/', 'builds/pdf/', :verbose => true)
 
 
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[prince builds/html/book.html -o builds/pdf/book.pdf]
+        cmd = %x[prince builds/pdf/book.html -o builds/pdf/book.pdf]
 
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
@@ -160,6 +159,7 @@ module Bookshop
       The most common build commands are:
        pdf          Builds a new pdf at /builds/pdf/book.pdf
        html         Builds a new html at /builds/html/book.html
+       epub         Builds a new epub at /builds/epub/book.epub
 
       All commands can be run with -h for more information.
         EOT
