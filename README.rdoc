@@ -32,9 +32,9 @@ https://github.com/blueheadpublishing/bookshop/wiki/Setting-Up-Your-bookshop-Env
 
 === Install PrinceXML
 
-1. Go to PrinceXML website and follow the install instructions
+Go to PrinceXML website and follow the install instructions
 
-http://www.princexml.com/download/
+http://www.princexml.com/download
 
 == Using bookshop
 
