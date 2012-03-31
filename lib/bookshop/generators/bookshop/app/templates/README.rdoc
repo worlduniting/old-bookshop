@@ -347,6 +347,7 @@ We would like to thank:
 * The Ruby/Rubygems Team www.ruby-lang.org/
 * The Thor Team - https://github.com/wycats/thor
 * Hakon Wium Lie and Bert Bos for developing the book microformat http://www.alistapart.com/articles/boom
+* The PrinceXML Team - http://www.princexml.com/company/
 
 A List of Our Contributors:
 https://github.com/blueheadpublishing/bookshop/blob/master/CONTRIBUTORS.md
