@@ -18,7 +18,14 @@ bookshop hopes to simplify the process by:
 
 * Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads/
 
+(not required, but recommended for using other tools)
+* Java 1.5 or higher http://www.java.com/en/
+
 == Installation
+
+For detailed instructions for your particular platform, please see this link:
+
+https://github.com/blueheadpublishing/bookshop/wiki/Setting-Up-Your-bookshop-Environment
 
 === Install bookshop
 
@@ -36,7 +43,7 @@ http://www.princexml.com/download/
 
     $ bookshop new my_new_book
 
-	This will create a new bookshop book in /path/to/my_new_book with the following structure:
+	This will create a new bookshop book project in /path/to/my_new_book with the following structure:
 
   |-- book/                 # Source files for your book
       |--book.html.erb      # The master file
@@ -67,7 +74,11 @@ http://www.princexml.com/download/
 
 === Editing Your New Book
 
-==== Where does my Book really live?
+==== Editing your book source
+
+Currently, when you create a new bookshop project, it will generate the example book source for you. You can use this as a template, replacing the text with your own. But make sure to utilize the correct CSS microformat markup.
+
+For an explanation of the example, please see this article. - http://www.alistapart.com/articles/boom
 
 All of the source documents and assets for your book are stored in the +book/+ folder. So your stylesheets, images, text - everything used for building your book - lives here. Ideally, you should only every edit files in your +book/+ folder (with the exception of your config/book.yml file).
 
@@ -79,11 +90,11 @@ The source files are all in ERB. ERB is a templating language for the Ruby progr
 
 More information on ERB - http://www.ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html
 
-==== One File to Rule Them All!
+==== The master file book.html.erb
 
-Your master file (which is used to build everything) is the +book.html.erb+ file (remember that we are in the +book/+ folder). You could of course just use this file and put all of your book contents here, making one enormous file, but we don't recommend it... 
+Your master file (from which everything is built) is the +book.html.erb+ file (remember that we are in the +book/+ folder). You could of course just use this file and put all of your book contents here, making one enormous file, but we don't recommend it... 
 
-==== The Magic of import()
+==== Import files into your master file
 
 Are you writing another "War and Peace"? We've created a nice way to make your epic book easier to manage. Rather than putting everything in the +book.html.erb+ file, you can +import+ files. This allows you to break your book up into smaller, more manageable pieces. This makes it soooooo much easier to manage your book. And others will thank you for it..
 
@@ -110,27 +121,21 @@ and in the +bodymatter/ch01/ch01.html.erb+ you could import more files
     <%= import('bodymatter/ch01/first_section.html.erb') %>
     <%= import('bodymatter/ch01/second_section.html.erb') %>
 
-==== Output-based Content
+==== Use the @output tag to create content based on output (pdf/html/epub/etc.)
 
-So what if you want to create content for certain builds only? Let's say you want to have a different title for the pdf then you do for the epub version of the book.
+So what if you want to create content for certain builds only? Let's say you want a certain section of your book to only be included in the pdf version of your book.
 
 No worries. We've created the handy Output Variable (@output) for you to use in this case... aren't we special?
 
 Currently we have three attributes you can call with @output - :html, :pdf, and :epub.
 
-Let's generate titles that change depending on the build, using a conditional statement (remember, everything is ERB, so we can use Ruby):
+Let's generate a section that will only be displayed in the pdf version of your book, using a conditional statement (remember, everything is ERB, so we can use Ruby):
     
-    <p>
-      <% if @output == :html %>
-        HTML Title
-      <% elsif @output == :pdf %>
-        PDF Title
-      <% elsif @output == :epub %>
-        EPUB Title
-      <% end %>
-    </p>
+    <% if @output == :pdf %>
+      <p>This is a pdf-only section</p>
+    <% end %>
 
-==== Book Variables -  The +config/book.yml+ file
+==== Use @book tags to reuse content throughout all book formats (the +config/book.yml+ file)
 
 Gosh, wouldn't it be cool to have a way to store bits of information that we use repeatedly throughout the book, like the ISBN, or the title? And then it would be great to be able to reference them from within the book source. That way we can change them once, in one place, rather than having to go looking for them throughout the entire book.
 
@@ -159,7 +164,7 @@ You can then use these Book Variables in your book source file:
     <p>The html title is <%= @book.html.title %></p>
     <p>The epub pub_date is <%= @book.epub.pub_date %></p>
 
-Note that you can construct and/or nest variables however you want to:
+Note that you can also construct and/or nest variables however you want to:
 
     # book.yml
     
@@ -170,7 +175,7 @@ Note that you can construct and/or nest variables however you want to:
 
 Then call it in your source file with the variable:
 
-    <p>My made up friend's name is <%= @book.my.madeup.friend.name %>
+    <p>My made up friend's name is <%= @book.my.madeup.friend.name %></p>
 
 More info about YAML:
 
@@ -215,13 +220,14 @@ http://www.princexml.com/doc/8.0/
 
 ==== Editing you epub document and options
 
+There are two main files (besides your actual book source) you will need to edit for the epub build are located in the +book/epub/OEBPS+ folder: content.opf (the Open Packaging Format) and the toc.ncx (the Navigation file).
+
+During the build process, the entire contents of the +book/epub/+ folder will be used, along with your book source files, to create your epub book format. You can add or edit any of the files in that folder if you like. Generally speaking, you will probably only ever edit the content.opf.erb adn the toc.ncs.erb files.
+
 http://idpf.org/epub/30 - For an overview of EPUB
 http://idpf.org/epub/30/spec/epub30-ocf.html - For the specs on the epub file structures and contents
 
-
 We recommend consulting the EPUB documentation for specifics.
-
-There are two main files (besides your actual book source) you will need to edit for the epub build are located in the +book/epub/OEBPS+ folder: content.opf (the Open Packaging Format) and the toc.ncx (the Navigation file).
 
 ===== The *content.opf* file is the file which contains all of the primary information about your epub ebook (publisher, files included, date, etc.). 
 
