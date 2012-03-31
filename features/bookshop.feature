@@ -28,7 +28,7 @@ Feature: We can create a new book project and build books
   	Then the output should contain "Building new pdf"
   	Then the output should not contain "error"
   	And a file named "builds/pdf/book.pdf" should exist
-  	And the file "builds/html/book.html" should match /stylesheet.pdf.css/
+  	And the file "builds/pdf/book.html" should match /stylesheet.pdf.css/
 
   @no-clobber
   Scenario: Build a new html book

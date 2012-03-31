@@ -1,14 +1,13 @@
 === http://blueheadpublishing.github.com/bookshop/assets/logo.png
 
     "a book publishing framework for today's publishing world"
-	
-bookshop is a book publishing framework for building pdf/(e)books based on HTML, CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by favoring convention over configuration, setting them up with best-practices, standards and tools from the start.
+
+Bookshop is a an open-source book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, PDF, mobi, ePub, etc.).
 
 bookshop hopes to simplify the process by:
 * using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (princexml, kindlegen, epubcheck)
-* sticking with open-source tools to encourage community development
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
 
