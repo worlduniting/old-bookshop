@@ -7,7 +7,19 @@ Bookshop is a an open-source book development and publishing framework for autho
 A conceptual overview of bookshop: http://blueheadblog.blogspot.com/2012/03/announcing-bookshop-html-to-pdf-ebook.html
 
 bookshop hopes to simplify the process by:
+A Separation of Concerns
+To begin, let's take a look at the basic parts that make up any book. 
+Content
+the actual words, grammar, parts-of-speech
+Structure
+preface, chapters, sections, etc.
+Style
+the layout, design, art, typeset
+Format
+the end result, client usable format, print-pdf, mobi, epub
+
 * using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
+* separating the "book" into its logical parts: Content via HTML (words, grammar, tense), Structure via microformat (chapters, sections), Style via css (layout, design, typeset), and Format (pdf, mobi, epub, html)
 * providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (princexml, kindlegen, epubcheck)
 * giving the developer a set of scripts to automate the redundant stuff
