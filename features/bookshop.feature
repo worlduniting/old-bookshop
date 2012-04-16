@@ -14,6 +14,9 @@ Feature: We can create a new book project and build books
 		| config/book.yml |
 		| README.rdoc |
 		| script/bookshop |
+		| script/epubcheck-1.2.jar |
+		| script/lib/jing.jar |
+		| script/lib/saxon.jar |
 		And the following directories should exist:
 		| builds/epub |
 		| builds/html |
@@ -47,11 +50,13 @@ Feature: We can create a new book project and build books
   	Given a file named "test_book/script/bookshop" should exist
   	When I cd to "test_book"
   	And I run `bookshop build epub`
-		Then the output should contain "Deleting any old builds"
-		Then the output should contain "Generating new html from erb"
-		Then the output should contain "Generating new content.opf from erb"
-		Then the output should contain "Generating new toc.ncx from erb"
-		Then the output should contain "Zipping up into epub"
+  	Then the output should contain "Deleting any old builds"
+  	Then the output should contain "Generating new html from erb"
+  	Then the output should contain "Generating new content.opf from erb"
+  	Then the output should contain "Generating new toc.ncx from erb"
+  	Then the output should contain "Zipping up into epub"
+  	Then the output should contain "Validating with epubcheck"
+  	Then the output should contain "No errors or warnings detected"
   	Then the following files should exist:
   	| builds/epub/mimetype |
   	| builds/epub/META-INF/container.xml |
@@ -60,6 +65,6 @@ Feature: We can create a new book project and build books
   	| builds/epub/OEBPS/assets/css/stylesheet.epub.css |
   	| builds/epub/OEBPS/toc.ncx |
   	| builds/epub/book.epub |
-		And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
-		And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+  	And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
+  	And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
 		

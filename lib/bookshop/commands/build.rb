@@ -127,6 +127,9 @@ module Bookshop
         puts "Zipping up into epub"
         cmd = %x[cd builds/epub/ && zip -X0 "book.epub" mimetype && zip -rDX9 "book.epub" * -x "*.DS_Store" -x mimetype]
         
+        puts "Validating with epubcheck"
+        cmd  = %x[cd builds/epub/ && java -jar script/epubcheck-1.2.jar book.epub]
+        
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
       when 'pdf'
