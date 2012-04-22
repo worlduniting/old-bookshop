@@ -14,9 +14,9 @@ Feature: We can create a new book project and build books
 		| config/book.yml |
 		| README.rdoc |
 		| script/bookshop |
-		| script/epubcheck-1.2.jar |
-		| script/lib/jing.jar |
-		| script/lib/saxon.jar |
+		| script/epubcheck/epubcheck.jar |
+		| script/epubcheck/lib/jing.jar |
+		| script/epubcheck/lib/saxon.jar |
 		And the following directories should exist:
 		| builds/epub |
 		| builds/html |
@@ -24,14 +24,15 @@ Feature: We can create a new book project and build books
 		| builds/mobi |
 
   @no-clobber
-  Scenario: Build a new pdf book
-  	Given a file named "test_book/script/bookshop" should exist		
-  	When I cd to "test_book"
-  	And I run `bookshop build pdf`
-  	Then the output should contain "Building new pdf"
-  	Then the output should not contain "error"
-  	And a file named "builds/pdf/book.pdf" should exist
-  	And the file "builds/pdf/book.html" should match /stylesheet.pdf.css/
+    Scenario: Build a new pdf book
+    	Given a file named "test_book/script/bookshop" should exist		
+    	When I cd to "test_book"
+    	And I run `bookshop build pdf`
+    	Then the output should contain "Building new pdf"
+    	And the output should contain "prince: Loading document"
+    	And the output should not contain "error"
+    	And a file named "builds/pdf/book.pdf" should exist
+    	And the file "builds/pdf/book.html" should match /stylesheet.pdf.css/
 
   @no-clobber
   Scenario: Build a new html book
@@ -44,19 +45,17 @@ Feature: We can create a new book project and build books
   	| builds/html/assets/css/stylesheet.html.css |
   	| builds/html/assets/images/canvas.jpg |
   	And the file "builds/html/book.html" should match /stylesheet.html.css/
-		
+
   @no-clobber
   Scenario: Build a new epub book
   	Given a file named "test_book/script/bookshop" should exist
   	When I cd to "test_book"
   	And I run `bookshop build epub`
-  	Then the output should contain "Deleting any old builds"
-  	Then the output should contain "Generating new html from erb"
-  	Then the output should contain "Generating new content.opf from erb"
-  	Then the output should contain "Generating new toc.ncx from erb"
-  	Then the output should contain "Zipping up into epub"
-  	Then the output should contain "Validating with epubcheck"
-  	Then the output should contain "No errors or warnings detected"
+		Then the output should contain "Deleting any old builds"
+		Then the output should contain "Generating new html from erb"
+		Then the output should contain "Generating new content.opf from erb"
+		Then the output should contain "Generating new toc.ncx from erb"
+		Then the output should contain "Zipping up into epub"
   	Then the following files should exist:
   	| builds/epub/mimetype |
   	| builds/epub/META-INF/container.xml |
@@ -65,6 +64,32 @@ Feature: We can create a new book project and build books
   	| builds/epub/OEBPS/assets/css/stylesheet.epub.css |
   	| builds/epub/OEBPS/toc.ncx |
   	| builds/epub/book.epub |
-  	And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
-  	And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+		And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
+		And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+  	
+  @no-clobber
+  Scenario: Build a new mobi book
+  	Given a file named "test_book/script/bookshop" should exist
+  	Given a file named "test_book/script/kindlegen/kindlegen_mac" should exist
+  	When I cd to "test_book"
+  	And I run `bookshop build mobi`
+  	Then the output should contain "Deleting any old builds"
+  	Then the output should contain "Generating new html from erb"
+  	Then the output should contain "Generating new content.opf from erb"
+  	Then the output should contain "Generating new toc.ncx from erb"
+  	Then the output should contain "Zipping up into epub"
+  	Then the output should contain "Epubcheck Version"
+  	And the output should not contain "ERROR"
+  	Then the output should contain "Amazon.com"
+  	Then the following files should exist:
+  	| builds/mobi/mimetype |
+  	| builds/mobi/META-INF/container.xml |
+  	| builds/mobi/OEBPS/assets/css/page-template.xpgt |
+  	| builds/mobi/OEBPS/assets/images/canvas.jpg |
+  	| builds/mobi/OEBPS/assets/css/stylesheet.mobi.css |
+  	| builds/mobi/OEBPS/toc.ncx |
+  	| builds/mobi/book.epub |
+  	| builds/mobi/book.mobi |
+  	And the file "builds/mobi/OEBPS/book.html" should match /stylesheet.mobi.css/
+  	And the file "builds/mobi/OEBPS/content.opf" should match /stylesheet.mobi.css/
 		

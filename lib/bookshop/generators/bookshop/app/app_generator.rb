@@ -27,11 +27,15 @@ module Bookshop
       #   directory "tools/", "#{app_path}/tools/"
       # end
 
-      # Change the permissions so tools are executable 
-      # def chmod_tools
-      #  chmod "#{app_path}/tools/epubcheck-1.2.jar", 0755
-      #  chmod "#{app_path}/tools/kindlegen", 0755
-      # end
+      #Change the permissions so tools are executable 
+      def chmod_tools
+        chmod "#{app_path}/script/epubcheck/epubcheck.jar", 0755
+        chmod "#{app_path}/script/epubcheck/lib/jing.jar", 0755
+        chmod "#{app_path}/script/epubcheck/lib/saxon.jar", 0755
+        chmod "#{app_path}/script/kindlegen/kindlegen.exe", 0755
+        chmod "#{app_path}/script/kindlegen/kindlegen_mac", 0755
+        chmod "#{app_path}/script/kindlegen/kindlegen_linux", 0755
+      end
 
     protected
 

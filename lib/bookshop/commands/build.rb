@@ -128,7 +128,76 @@ module Bookshop
         cmd = %x[cd builds/epub/ && zip -X0 "book.epub" mimetype && zip -rDX9 "book.epub" * -x "*.DS_Store" -x mimetype]
         
         puts "Validating with epubcheck"
-        cmd  = %x[cd builds/epub/ && java -jar script/epubcheck-1.2.jar book.epub]
+        cmd  = cmd = system("java -jar script/epubcheck/epubcheck.jar builds/epub/book.epub")
+        
+      when 'mobi'
+        # Clean up any old builds
+        puts "Deleting any old builds"
+        FileUtils.rm_r Dir.glob('builds/mobi/*')
+
+        @output = :mobi
+
+        FileUtils.cp_r('book/epub/META-INF', 'builds/mobi/', :verbose => true)
+        FileUtils.mkdir 'builds/mobi/OEBPS'
+        FileUtils.cp_r('book/epub/mimetype', 'builds/mobi/', :verbose => true)
+        
+        erb = import(BOOK_SOURCE)
+        puts "Generating new html from erb"
+        File.open("builds/mobi/OEBPS/book.html", 'a') do |f|
+          f << erb
+        end
+        
+        # Generate the cover.html file
+        opf = import("frontmatter/cover.html.erb")
+        puts "Generating new cover.html from erb"
+        File.open("builds/mobi/OEBPS/cover.html", 'a') do |f|
+          f << opf
+        end
+        
+        # Generate the nav.html file
+        opf = import("frontmatter/toc.html.erb")
+        puts "Generating new toc.html from erb"
+        File.open("builds/mobi/OEBPS/toc.html", 'a') do |f|
+          f << opf
+        end
+
+        # Generate the OPF file
+        opf = import("epub/OEBPS/content.opf.erb")
+        puts "Generating new content.opf from erb"
+        File.open("builds/mobi/OEBPS/content.opf", 'a') do |f|
+          f << opf
+        end
+        
+        # Generate the NCX file
+        ncx = import("epub/OEBPS/toc.ncx.erb")
+        puts "Generating new toc.ncx from erb"
+        File.open("builds/mobi/OEBPS/toc.ncx", 'a') do |f|
+          f << ncx
+        end
+        
+        FileUtils.cp_r 'book/assets', 'builds/mobi/OEBPS/assets/', :verbose => true
+        FileUtils.rm %w( builds/mobi/OEBPS/assets/css/stylesheet.pdf.css
+                         builds/mobi/OEBPS/assets/css/stylesheet.html.css
+                         builds/mobi/OEBPS/assets/css/stylesheet.epub.css )
+        
+        puts "Zipping up into epub"
+        cmd = %x[cd builds/mobi/ && zip -X0 "book.epub" mimetype && zip -rDX9 "book.epub" * -x "*.DS_Store" -x mimetype]
+        
+        puts "Validating with epubcheck"
+        
+        # using exec so we can return the command results back to the terminal output
+        cmd  = system("java -jar script/epubcheck/epubcheck.jar builds/mobi/book.epub")
+        
+        puts "Generating mobi file with KindleGen"
+        if RUBY_PLATFORM =~ /linux/
+          cmd = system("script/kindlegen/kindlegen_linux builds/mobi/book.epub")
+        elsif RUBY_PLATFORM =~ /darwin/
+          cmd = system("script/kindlegen/kindlegen_mac builds/mobi/book.epub")
+        elsif RUBY_PLATFORM =~ /mswin32/
+          cmd = system("script/kindlegen/kindlegen.exe builds/mobi/book.epub")
+        else
+          raise "We can't seem to execute the version of kindle specific to your platform."
+        end
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
@@ -152,7 +221,7 @@ module Bookshop
 
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = %x[prince builds/pdf/book.html -o builds/pdf/book.pdf]
+        cmd = system("prince -v builds/pdf/book.html -o builds/pdf/book.pdf")
 
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
@@ -160,9 +229,10 @@ module Bookshop
       Usage: bookshop build [ARGS]
 
       The most common build commands are:
-       pdf          Builds a new pdf at /builds/pdf/book.pdf
+       pdf          Builds a new pdf  at /builds/pdf/book.pdf
        html         Builds a new html at /builds/html/book.html
        epub         Builds a new epub at /builds/epub/book.epub
+       mobi         Builds a new mobi at /builds/mobi/book.mobi
 
       All commands can be run with -h for more information.
         EOT
