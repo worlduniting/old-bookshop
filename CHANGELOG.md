@@ -1,5 +1,6 @@
 ## Bookshop 0.1.3 ##
 ### Features ###
+* Added 'bookshop build mobi' for kindle support
 * Added Kindlegen for building mobi files from epub
 * Added EpubCheck libraries and functionality to validate epub builds
 * Added new verbose output for PrinceXML
