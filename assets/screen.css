@@ -7,6 +7,8 @@ h1 {
   font-size: 2em;
   font-weight: normal;
   letter-spacing: -.05em;
+	color: #999;
+	text-align: center;
 }
 h2 {
   margin: .5em 0;
