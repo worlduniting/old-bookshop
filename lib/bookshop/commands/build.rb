@@ -40,8 +40,6 @@ module Bookshop
                 
         FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
       end
-
-      
       
       def self.build_epub
         clean_builds('epub')
@@ -103,7 +101,6 @@ module Bookshop
         puts "Generating new toc.html from erb"
         generate_file("frontmatter/toc.html.erb", "builds/mobi/OEBPS/toc.html")
        
-
         # Generate the OPF file
         puts "Generating new content.opf from erb"
         generate_file("epub/OEBPS/content.opf.erb","builds/mobi/OEBPS/content.opf")
@@ -167,11 +164,10 @@ module Bookshop
       build = ARGV.shift
       build = aliases[build] || build
       
-
+      
       # Define arguments and options
       argument :type
       class_option :test_framework, :default => :test_unit
-
 
       # Define source root of application
       def self.source_root
@@ -196,24 +192,19 @@ module Bookshop
       end
 
       case build
-      
       # 'build html' generates a html version of the book from the
       #    book/book.html.erb source file
       # @output variable is set to "html" for access as a conditional
       #   in the source erb's
       when 'html'
-        build_html
-                
+        build_html        
       when 'epub'
         build_epub
-        
       when 'mobi'
         build_mobi
       when 'pdf'
         build_pdf
-        
-
-
+    
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
         puts <<-EOT
@@ -228,11 +219,6 @@ module Bookshop
       All commands can be run with -h for more information.
         EOT
       end
-
-
-      
-      
-
     end
   end
 end
