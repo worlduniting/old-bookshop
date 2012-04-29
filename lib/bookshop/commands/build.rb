@@ -92,39 +92,25 @@ module Bookshop
         FileUtils.mkdir 'builds/mobi/OEBPS'
         FileUtils.cp_r('book/epub/mimetype', 'builds/mobi/', :verbose => true)
         
-        erb = import(BOOK_SOURCE)
         puts "Generating new html from erb"
-        File.open("builds/mobi/OEBPS/book.html", 'a') do |f|
-          f << erb
-        end
-        
+        generate_file(BOOK_SOURCE, "builds/mobi/OEBPS/book.html")
+                
         # Generate the cover.html file
-        opf = import("frontmatter/cover.html.erb")
         puts "Generating new cover.html from erb"
-        File.open("builds/mobi/OEBPS/cover.html", 'a') do |f|
-          f << opf
-        end
-        
+        generate_file("frontmatter/cover.html.erb","builds/mobi/OEBPS/cover.html")
+              
         # Generate the nav.html file
-        opf = import("frontmatter/toc.html.erb")
         puts "Generating new toc.html from erb"
-        File.open("builds/mobi/OEBPS/toc.html", 'a') do |f|
-          f << opf
-        end
+        generate_file("frontmatter/toc.html.erb", "builds/mobi/OEBPS/toc.html")
+       
 
         # Generate the OPF file
-        opf = import("epub/OEBPS/content.opf.erb")
         puts "Generating new content.opf from erb"
-        File.open("builds/mobi/OEBPS/content.opf", 'a') do |f|
-          f << opf
-        end
-        
+        generate_file("epub/OEBPS/content.opf.erb","builds/mobi/OEBPS/content.opf")
+    
         # Generate the NCX file
-        ncx = import("epub/OEBPS/toc.ncx.erb")
         puts "Generating new toc.ncx from erb"
-        File.open("builds/mobi/OEBPS/toc.ncx", 'a') do |f|
-          f << ncx
-        end
+        generate_file("epub/OEBPS/toc.ncx.erb","builds/mobi/OEBPS/toc.ncx")
         
         FileUtils.cp_r 'book/assets', 'builds/mobi/OEBPS/assets/', :verbose => true
         FileUtils.rm %w( builds/mobi/OEBPS/assets/css/stylesheet.pdf.css
@@ -158,18 +144,13 @@ module Bookshop
       def self.build_pdf
         # Clean up any old builds
         clean_builds("pdf") 
-        
         @output = :pdf
-        erb = import(BOOK_SOURCE)
         # Generate the html from ERB
         puts "Generating new html from erb"
-        File.open('builds/pdf/book.html', 'a') do |f|
-          f << erb
-        end
-
+        generate_file(BOOK_SOURCE, 'builds/pdf/book.html')
+        
         # Copy over html assets
         FileUtils.cp_r('book/assets/', 'builds/pdf/', :verbose => true)
-
 
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
