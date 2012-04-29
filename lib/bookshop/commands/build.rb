@@ -8,117 +8,69 @@ require 'bookshop/commands/yaml/book'
 module Bookshop
   module Commands
 
+    
     # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
-      
+       
       BOOK_SOURCE = 'book.html.erb'
       
       def initialize
         @book = []
       end
-      
-      ARGV << '--help' if ARGV.empty?
 
-      aliases = {
-        "p"  => "pdf"
-      }
-
-      build = ARGV.shift
-      build = aliases[build] || build
-      
-
-      # Define arguments and options
-      argument :type
-      class_option :test_framework, :default => :test_unit
-
-      # Define source root of application
-      def self.source_root
-        File.dirname(__FILE__)
-      end
-
-      # Load YAML files
-      def self.load_yaml_files
-        # Load the book.yml into the Book object
-        @book = Book.new(YAML.load_file('config/book.yml'))
-        # @toc = Toc.new(YAML.load_file('config/toc.yml'))
-      end
-
-      # Renders <%= import(source.html.erb) %> files with ERB
-      # 
-      # When a new import() is encountered within source files it is
-      #    processed with this method and the result is added to 'erb'
-      def self.import(file)
-        load_yaml_files
-        # Parse the source erb file
-        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
-      end
-
-      case build
-      
-      # 'build html' generates a html version of the book from the
-      #    book/book.html.erb source file
-      # @output variable is set to "html" for access as a conditional
-      #   in the source erb's
-      when 'html'
-        # Clean up any old builds
+      def self.clean_builds(build_type)
         puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/html/*')
-        
-        @output = :html
-        erb = import(BOOK_SOURCE)
-        puts "Generating new html from erb"
-        File.open("builds/html/book.html", 'a') do |f|
-          f << erb
+        FileUtils.rm_r Dir.glob('builds/#{build_type}/*')
+      end
+
+      def self.generate_file(src, dest)
+        src= import(src)
+        File.open(dest, 'a') do |f|
+          f << src
         end
-        
-        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
-        
-      when 'epub'
-        # Clean up any old builds
-        puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/epub/*')
+      end
 
+      def self.build_html 
+        clean_builds( 'html' )  
+        @output = :html
+        
+        puts "Generating new html from erb"
+        generate_file(BOOK_SOURCE, "builds/html/book.html")
+                
+        FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
+      end
+
+      
+      
+      def self.build_epub
+        clean_builds('epub')
+        
         @output = :epub
 
         FileUtils.cp_r('book/epub/META-INF', 'builds/epub/', :verbose => true)
         FileUtils.mkdir 'builds/epub/OEBPS'
         FileUtils.cp_r('book/epub/mimetype', 'builds/epub/', :verbose => true)
         
-        erb = import(BOOK_SOURCE)
         puts "Generating new html from erb"
-        File.open("builds/epub/OEBPS/book.html", 'a') do |f|
-          f << erb
-        end
-        
+        generate_file(BOOK_SOURCE, "builds/epub/OEBPS/book.html")
+                
         # Generate the cover.html file
-        opf = import("frontmatter/cover.html.erb")
         puts "Generating new cover.html from erb"
-        File.open("builds/epub/OEBPS/cover.html", 'a') do |f|
-          f << opf
-        end
-        
+        generate_file("frontmatter/cover.html.erb", "builds/epub/OEBPS/cover.html")
+                
         # Generate the nav.html file
-        opf = import("frontmatter/toc.html.erb")
         puts "Generating new toc.html from erb"
-        File.open("builds/epub/OEBPS/toc.html", 'a') do |f|
-          f << opf
-        end
-
+        generate_file("frontmatter/toc.html.erb", "builds/epub/OEBPS/toc.html")
+        
         # Generate the OPF file
-        opf = import("epub/OEBPS/content.opf.erb")
         puts "Generating new content.opf from erb"
-        File.open("builds/epub/OEBPS/content.opf", 'a') do |f|
-          f << opf
-        end
-        
+        generate_file("epub/OEBPS/content.opf.erb", "builds/epub/OEBPS/content.opf")
+               
         # Generate the NCX file
-        ncx = import("epub/OEBPS/toc.ncx.erb")
         puts "Generating new toc.ncx from erb"
-        File.open("builds/epub/OEBPS/toc.ncx", 'a') do |f|
-          f << ncx
-        end
-        
+        generate_file("epub/OEBPS/toc.ncx.erb", "builds/epub/OEBPS/toc.ncx")
+                
         FileUtils.cp_r 'book/assets', 'builds/epub/OEBPS/assets/', :verbose => true
         FileUtils.rm %w( builds/epub/OEBPS/assets/css/stylesheet.pdf.css
                          builds/epub/OEBPS/assets/css/stylesheet.html.css
@@ -129,12 +81,11 @@ module Bookshop
         
         puts "Validating with epubcheck"
         cmd  = cmd = system("java -jar script/epubcheck/epubcheck.jar builds/epub/book.epub")
-        
-      when 'mobi'
-        # Clean up any old builds
-        puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/mobi/*')
 
+      end
+
+      def self.build_mobi
+        clean_builds('mobi')
         @output = :mobi
 
         FileUtils.cp_r('book/epub/META-INF', 'builds/mobi/', :verbose => true)
@@ -201,11 +152,12 @@ module Bookshop
         
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
-      when 'pdf'
-        
+
+      end
+
+      def self.build_pdf
         # Clean up any old builds
-        puts "Deleting any old builds"
-        FileUtils.rm_r Dir.glob('builds/pdf/*')
+        clean_builds("pdf") 
         
         @output = :pdf
         erb = import(BOOK_SOURCE)
@@ -222,6 +174,64 @@ module Bookshop
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
         cmd = system("prince -v builds/pdf/book.html -o builds/pdf/book.pdf")
+        
+      end
+
+      ARGV << '--help' if ARGV.empty?
+
+      aliases = {
+        "p"  => "pdf"
+      }
+
+      build = ARGV.shift
+      build = aliases[build] || build
+      
+
+      # Define arguments and options
+      argument :type
+      class_option :test_framework, :default => :test_unit
+
+
+      # Define source root of application
+      def self.source_root
+        File.dirname(__FILE__)
+      end
+
+      # Load YAML files
+      def self.load_yaml_files
+        # Load the book.yml into the Book object
+        @book = Book.new(YAML.load_file('config/book.yml'))
+        # @toc = Toc.new(YAML.load_file('config/toc.yml'))
+      end
+
+      # Renders <%= import(source.html.erb) %> files with ERB
+      # 
+      # When a new import() is encountered within source files it is
+      #    processed with this method and the result is added to 'erb'
+      def self.import(file)
+        load_yaml_files
+        # Parse the source erb file
+        ERB.new(File.read('book/'+file)).result(binding).gsub(/\n$/,'')
+      end
+
+      case build
+      
+      # 'build html' generates a html version of the book from the
+      #    book/book.html.erb source file
+      # @output variable is set to "html" for access as a conditional
+      #   in the source erb's
+      when 'html'
+        build_html
+                
+      when 'epub'
+        build_epub
+        
+      when 'mobi'
+        build_mobi
+      when 'pdf'
+        build_pdf
+        
+
 
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
@@ -237,6 +247,11 @@ module Bookshop
       All commands can be run with -h for more information.
         EOT
       end
+
+
+      
+      
+
     end
   end
 end
