@@ -133,11 +133,8 @@ module Bookshop
           raise "We can't seem to execute the version of kindle specific to your platform."
         end
         
-      # 'build pdf' generates a pdf version of the book from the builds/html/book.html
-      #    which is generated from the book/book.html.erb source file
-
       end
-
+      
       def self.build_pdf
         # Clean up any old builds
         clean_builds("pdf") 
@@ -192,16 +189,19 @@ module Bookshop
       end
 
       case build
+      
+      when 'html'
       # 'build html' generates a html version of the book from the
       #    book/book.html.erb source file
       # @output variable is set to "html" for access as a conditional
       #   in the source erb's
-      when 'html'
         build_html        
       when 'epub'
         build_epub
       when 'mobi'
         build_mobi
+      # 'build pdf' generates a pdf version of the book from the builds/html/book.html
+      #    which is generated from the book/book.html.erb source file
       when 'pdf'
         build_pdf
     
