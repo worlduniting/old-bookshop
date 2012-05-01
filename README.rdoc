@@ -2,15 +2,15 @@
 
     "a book publishing framework for today's publishing world"
 
-Bookshop is a an open-source book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, PDF, mobi, ePub, etc.).
+Bookshop is a an open-source agile book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, PDF, mobi, ePub, etc.).
 
-A conceptual overview of bookshop: http://blueheadblog.blogspot.com/2012/03/announcing-bookshop-html-to-pdf-ebook.html
+A conceptual overview of bookshop: http://blueheadpublishing.com/images/bookshop_hero.jpg
 
-bookshop hopes to simplify the process by:
+bookshop hopes to simplify the book publishing toolchain by:
 
-* using common tools like HTML/CSS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
-* separating the "book" into its logical parts: Content via HTML (words, grammar, tense), Structure via microformat (chapters, sections), Style via css (layout, design, typeset), and Format (pdf, mobi, epub, html)
-* providing a Ruby Gem to make building a book in HTML as easy as 'gem install bookshop'
+* using industry standards tools like HTML5, CSS, and JS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
+* separating the "book" into its logical parts: *Content* via HTML (words, grammar, tense), *Structure* via microformat (chapters, sections), *Style* via css (layout, design, typeset), and *Format* (pdf, mobi, epub, html)
+* providing a Ruby Gem to make the building your book as easy as 'gem install bookshop'
 * pulling all the html-to-pdf/(e)book tools together into one place (princexml, kindlegen, epubcheck)
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
@@ -20,8 +20,6 @@ bookshop hopes to simplify the process by:
 === System Requirements
 
 * Ruby v1.8.7 or higher http://www.ruby-lang.org/en/downloads/
-
-(not required, but recommended for using other tools)
 * Java 1.5 or higher http://www.java.com/en/
 
 == Installation
@@ -55,7 +53,7 @@ http://www.princexml.com/download
       |--backmatter/        # Content at the back of the book (appendix, index, etc.)
       |--assets/
           |--css/
-              |--stylesheet.css
+              |--stylesheet.pdf.css
           |--images/
           |--js/
       |--epub/              # epub specific files and contents
