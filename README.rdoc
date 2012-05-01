@@ -1,10 +1,10 @@
-=== http://3.bp.blogspot.com/-gYebAHHXpXs/T3aSYFIj6KI/AAAAAAAAACo/Rdo3WOqbihM/s320/bookshop_logo.png
+=== http://blueheadpublishing.com/images/bookshop_hero.jpg
 
     "a book publishing framework for today's publishing world"
 
 Bookshop is a an open-source agile book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, PDF, mobi, ePub, etc.).
 
-A conceptual overview of bookshop: http://blueheadpublishing.com/images/bookshop_hero.jpg
+A conceptual overview of bookshop: http://blueheadblog.blogspot.com/2012/03/announcing-bookshop-html-to-pdf-ebook.html
 
 bookshop hopes to simplify the book publishing toolchain by:
 
