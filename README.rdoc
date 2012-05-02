@@ -1,14 +1,18 @@
 === http://blueheadpublishing.com/images/bookshop_hero.jpg
-Bookshop is a an open-source agile book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, PDF, mobi, ePub, etc.).
+Bookshop is a an open-source agile book development and publishing framework for authors, editors, publishers and coders in today's publishing industry. Bookshop provides best-practices for developing your books in HTML/CSS/JS, allowing them to be transformed into potentially any book format (Print-PDF, Online-PDF, mobi, ePub, etc.).
 
 A conceptual overview of bookshop: http://blueheadblog.blogspot.com/2012/03/announcing-bookshop-html-to-pdf-ebook.html
 
 bookshop hopes to simplify the book publishing toolchain by:
 
 * using industry standards tools like HTML5, CSS, and JS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
-* separating the "book" into its logical parts: *Content* via HTML (words, grammar, tense), *Structure* via microformat (chapters, sections), *Style* via css (layout, design, typeset), and *Format* (pdf, mobi, epub, html)
-* providing a Ruby Gem to make the building your book as easy as 'gem install bookshop'
-* pulling all the html-to-pdf/(e)book tools together into one place (princexml, kindlegen, epubcheck)
+* separating the "book" into its logical parts: 
+** *Content* via HTML5 (the actual words, grammar, tense, etc.)
+** *Structure* via Boom! Microformat (chapters, sections, dedication, preface, etc.)
+** *Style* via CSS3 and JS (layout, design, typeset)
+** *Format* (pdf, mobi, epub, html)
+* providing a Ruby Gem to make the building of your book as easy as +gem install bookshop+
+* pulling all the publishing tools together into one place (princexml, kindlegen, epubcheck)
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
 
