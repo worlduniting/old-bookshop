@@ -22,8 +22,8 @@ Feature: We can create a new book project and build books
 		| builds/html |
 		| builds/pdf |
 		| builds/mobi |
-
-  @no-clobber
+     
+    @no-clobber
     Scenario: Build a new pdf book
     	Given a file named "test_book/script/bookshop" should exist		
     	When I cd to "test_book"
@@ -93,3 +93,12 @@ Feature: We can create a new book project and build books
   	And the file "builds/mobi/OEBPS/book.html" should match /stylesheet.mobi.css/
   	And the file "builds/mobi/OEBPS/content.opf" should match /stylesheet.mobi.css/
 		
+
+  @usage-error
+    Scenario: Run bookshop without arguments
+      When I run `bookshop`
+      Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
+   @usage-error
+     Scenario: Run bookshop new without path
+       When I run `bookshop new`
+       Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
