@@ -7,11 +7,11 @@ bookshop hopes to simplify the book publishing toolchain by:
 
 * using industry standards tools like HTML5, CSS, and JS to make the creation of your book comfortable and familiar, greatly reducing the learning curve for your developers, authors, agents, and other team members
 * separating the "book" into its logical parts: 
-** *Content* via HTML5 (the actual words, grammar, tense, etc.)
-** *Structure* via Boom! Microformat (chapters, sections, dedication, preface, etc.)
-** *Style* via CSS3 and JS (layout, design, typeset)
-** *Format* (pdf, mobi, epub, html)
-* providing a Ruby Gem to make the building of your book as easy as +gem install bookshop+
+  * *Content* via HTML5 (the actual words, grammar, tense, etc.)
+  * *Structure* via Boom! Microformat (chapters, sections, dedication, preface, etc.)
+  * *Style* via CSS3 and JS (layout, design, typeset)
+  * *Format* (pdf, mobi, epub, html)
+* providing a Ruby Gem to make the building of your book as easy as _gem install bookshop_
 * pulling all the publishing tools together into one place (princexml, kindlegen, epubcheck)
 * giving the developer a set of scripts to automate the redundant stuff
 * providing an architecture/structure that follows best-practices and simplification (DRY... Don't Repeat Yourself)
