@@ -1,4 +1,5 @@
 require 'rbconfig'
+require 'bookshop/error'
 require 'bookshop/script_bookshop_loader'
 
 # If we are inside a Bookshop project this method performs an exec and thus
@@ -10,5 +11,8 @@ $:.unshift(bookshop_path) if File.directory?(bookshop_path) && !$:.include?(book
 
 require 'bookshop/ruby_version_check'
 Signal.trap("INT") { puts; exit }
-
+begin
 require 'bookshop/commands/application'
+rescue Bookshop::Error => e
+  puts e.message
+end
