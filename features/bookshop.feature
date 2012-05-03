@@ -23,16 +23,16 @@ Feature: We can create a new book project and build books
 		| builds/pdf |
 		| builds/mobi |
      
-    @no-clobber
-    Scenario: Build a new pdf book
-    	Given a file named "test_book/script/bookshop" should exist		
-    	When I cd to "test_book"
-    	And I run `bookshop build pdf`
-    	Then the output should contain "Building new pdf"
-    	And the output should contain "prince: Loading document"
-    	And the output should not contain "error"
-    	And a file named "builds/pdf/book.pdf" should exist
-    	And the file "builds/pdf/book.html" should match /stylesheet.pdf.css/
+  @no-clobber
+  Scenario: Build a new pdf book
+  	Given a file named "test_book/script/bookshop" should exist		
+  	When I cd to "test_book"
+  	And I run `bookshop build pdf`
+  	Then the output should contain "Building new pdf"
+  	And the output should contain "prince: Loading document"
+  	And the output should not contain "error"
+  	And a file named "builds/pdf/book.pdf" should exist
+  	And the file "builds/pdf/book.html" should match /stylesheet.pdf.css/
 
   @no-clobber
   Scenario: Build a new html book
@@ -98,7 +98,7 @@ Feature: We can create a new book project and build books
     Scenario: Run bookshop without arguments
       When I run `bookshop`
       Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
-   @usage-error
-     Scenario: Run bookshop new without path
-       When I run `bookshop new`
-       Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
+  @usage-error
+   Scenario: Run bookshop new without path
+     When I run `bookshop new`
+     Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
