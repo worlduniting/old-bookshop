@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.author      = 'Dave Thompson'
   s.email       = 'dave@blueheadpublishing.com'
   s.homepage    = 'http://blueheadpublishing.github.com/bookshop/'
-  s.summary     = 'A book publishing framework for building pdf/(e)books based on HTML, CSS, and JavaScript.'
-  s.description = 'bookshop is a book publishing framework for building pdf/(e)books based on HTML,
+  s.summary     = 'An agile book publishing framework for building pdf/(e)books based on HTML5, CSS, and JavaScript.'
+  s.description = 'bookshop is an agile book publishing framework for building pdf/(e)books based on HTML5,
                     CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors
                     quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by
                     favoring convention over configuration, setting them up with best-practices, standards
