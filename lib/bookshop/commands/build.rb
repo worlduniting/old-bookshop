@@ -75,7 +75,13 @@ module Bookshop
                          builds/epub/OEBPS/assets/css/stylesheet.mobi.css )
         
         puts "Zipping up into epub"
-        cmd = %x[cd builds/epub/ && zip -X0 "book.epub" mimetype && zip -rDX9 "book.epub" * -x "*.DS_Store" -x mimetype]
+        if RUBY_PLATFORM =~ /linux/
+          cmd = system("script/kindlegen/kindlegen_linux builds/epub/book.epub")
+        elsif RUBY_PLATFORM =~ /darwin/
+          cmd = system("script/kindlegen/kindlegen_mac builds/epub/book.epub")
+        elsif RUBY_PLATFORM =~ /mingw|mswin32|cygwin/
+          cmd = system("cd builds/epub/ & ..\..\script\zip\zip.exe -X0 'book.epub' mimetype & ..\..\script\zip\zip.exe -rDX9 'book.epub' * -x mimetype")
+        end
         
         puts "Validating with epubcheck"
         cmd  = cmd = system("java -jar script/epubcheck/epubcheck.jar builds/epub/book.epub")
