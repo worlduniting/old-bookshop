@@ -1,3 +1,9 @@
+## Bookshop 0.1.4 ##
+### Features ###
+* Added zip functionality to windows for building epub and mobi
+* Added new error handling (thanks to Stratos Voukelatos) - issue #7
+* Refactoring of Build.rb (thanks to Stratos Voukelatos) - issue #38
+
 ## Bookshop 0.1.3 ##
 ### Features ###
 * Added 'bookshop build mobi' for kindle support
