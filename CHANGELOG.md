@@ -1,3 +1,8 @@
+## Bookshop 0.1.5 ##
+### Bug Fixes ###
+* Issue #48 fixed so that previous build is cleaned up before new one is built
+  * Added new cucumber feature to test that previous builds are cleaned up
+
 ## Bookshop 0.1.4 ##
 ### Features ###
 * Added zip functionality to windows for building epub and mobi

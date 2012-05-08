@@ -66,6 +66,28 @@ Feature: We can create a new book project and build books
   	| builds/epub/book.epub |
 		And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
 		And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+	
+	@no-clobber
+	Scenario: Ensure a clean build if epub has already been built before
+  	Given a file named "test_book/script/bookshop" should exist
+  	When I cd to "test_book"
+  	And I run `bookshop build epub`
+  	Then the output should contain "Deleting any old builds"
+  	Then the output should contain "Generating new html from erb"
+  	Then the output should contain "Generating new content.opf from erb"
+  	Then the output should contain "Generating new toc.ncx from erb"
+  	Then the output should contain "Zipping up into epub"
+  	Then the following files should exist:
+  	| builds/epub/mimetype |
+  	| builds/epub/META-INF/container.xml |
+  	| builds/epub/OEBPS/assets/css/page-template.xpgt |
+  	| builds/epub/OEBPS/assets/images/canvas.jpg |
+  	| builds/epub/OEBPS/assets/css/stylesheet.epub.css |
+  	| builds/epub/OEBPS/toc.ncx |
+  	| builds/epub/book.epub |
+  	And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
+  	And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+	  
   	
   @no-clobber
   Scenario: Build a new mobi book
@@ -93,11 +115,12 @@ Feature: We can create a new book project and build books
   	And the file "builds/mobi/OEBPS/book.html" should match /stylesheet.mobi.css/
   	And the file "builds/mobi/OEBPS/content.opf" should match /stylesheet.mobi.css/
 		
-
+  @no-clobber
   @usage-error
     Scenario: Run bookshop without arguments
       When I run `bookshop`
       Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
+  @no-clobber
   @usage-error
    Scenario: Run bookshop new without path
      When I run `bookshop new`
