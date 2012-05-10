@@ -87,6 +87,7 @@ header nav a.active {
 	text-align: center;
 	width: 100%;
 	padding-top: 10px;
+	padding-bottom: 10px;
 	background-color: #fff;
 	-moz-box-shadow: 0px -5px 15px #ccc;
 	-webkit-box-shadow: 0px -5px 15px #ccc;
