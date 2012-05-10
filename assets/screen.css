@@ -83,6 +83,7 @@ header nav a.active {
 	position: fixed;
 	color: #999;
 	font-size: .8em;
+	bottom:0px;
 	text-align: center;
 	width: 100%;
 	padding-top: 10px;
