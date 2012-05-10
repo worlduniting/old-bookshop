@@ -1,7 +1,13 @@
 ## Bookshop 0.1.5 ##
+### Features ###
+* Edited eBooks for greater compatibility with device standards
+* Added stout to Cuke features so the output is viewable during tests
+
 ### Bug Fixes ###
 * Issue #48 fixed so that previous build is cleaned up before new one is built
   * Added new cucumber feature to test that previous builds are cleaned up
+* Issue #47 fixed so ePub on iPad is displaying correctly
+ 
 
 ## Bookshop 0.1.4 ##
 ### Features ###

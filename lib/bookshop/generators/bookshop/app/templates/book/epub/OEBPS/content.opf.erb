@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE package PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="BlueHeadPublishing">
   <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:language>en</dc:language>
@@ -7,38 +8,38 @@
     <dc:date><%= @book.date %></dc:date>
     <dc:publisher><%= @book.publisher %></dc:publisher>
     <dc:rights><%= @book.rights %></dc:rights>
-    <dc:identifier id="BlueHeadPublishing" opf:scheme="ISBN"><%= @book.identifier %></dc:identifier>
+    <dc:identifier id="BlueHeadPublishing" opf:scheme="ISBN"><%= @book.isbn %></dc:identifier>
     <dc:subject><%= @book.subject %></dc:subject>
     <meta name="cover" content="cover-image"/>
   </metadata>
   <manifest>
-    <item id="css" href="assets/css/stylesheet.<%= @output %>.css" media-type="text/css"/>
-    <item id="pt" href="assets/css/page-template.xpgt" media-type="application/vnd.adobe-page-template+xml"/>
-    <item id="cover" href="cover.html" media-type="application/xhtml+xml"/>
-    <item id="cover-image" href="assets/images/cover.png" media-type="image/png"/>
-    <item id="toc" href="toc.html" media-type="application/xhtml+xml"/>
-    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    
+    <!-- Main Meta Items -->
+    <item media-type="text/css" href="assets/css/stylesheet.<%= @output %>.css" id="ebook-css" />
+    <item media-type="application/vnd.adobe-page-template+xml" href="assets/css/page-template.xpgt" id="pt" />
+    <% if @output != :mobi %><item media-type="application/xhtml+xml" href="cover.html" id="cover" /><% end %>
+    <item media-type="image/png" href="assets/images/cover.png" id="cover-image" />
+    <item media-type="application/xhtml+xml" href="toc.html" id="toc" />
+    <item media-type="application/x-dtbncx+xml" href="toc.ncx" id="ncx" />
     
     <!-- Book Contents -->
-    <item id="book"
-          href="book.html"
-          media-type="application/xhtml+xml" />
+    <item id="book" href="book.html" media-type="application/xhtml+xml" />
       
-    <!-- Assets -->
+    <!-- Additional Assets -->
     <item id="canvas-image" href="assets/images/canvas.jpg" media-type="image/jpeg"/>
     <item id="draft-image" href="assets/images/draft.png" media-type="image/png"/>
     <item id="html-image" href="assets/images/html-18.png" media-type="image/png"/>
-    
-    <!-- Fonts -->
-		<item id="font01" href="assets/fonts/EBGaramond-Regular.ttf" media-type="application/x-font-ttf"/>
+		
+		<!-- Fonts -->
 
   </manifest>
   <spine toc="ncx">
-    <itemref idref="cover" linear="no"/>
+    <% if @output != :mobi %><itemref idref="cover" linear="no"/><% end %>
     <itemref idref="toc" />
     <itemref idref="book" />
   </spine>
   <guide>
-    <reference type="cover" title="Cover" href="cover.html"/>
+    <% if @output != :mobi %><reference type="cover" title="Cover" href="cover.html"/><% end %>
+    <reference type="toc" title="Table of Contents" href="toc.html"/>
   </guide>
 </package>

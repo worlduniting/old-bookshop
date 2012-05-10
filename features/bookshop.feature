@@ -24,6 +24,7 @@ Feature: We can create a new book project and build books
 		| builds/mobi |
      
   @no-clobber
+	@announce-stdout
   Scenario: Build a new pdf book
   	Given a file named "test_book/script/bookshop" should exist		
   	When I cd to "test_book"
@@ -68,6 +69,7 @@ Feature: We can create a new book project and build books
 		And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
 	
 	@no-clobber
+	@announce-stdout
 	Scenario: Ensure a clean build if epub has already been built before
   	Given a file named "test_book/script/bookshop" should exist
   	When I cd to "test_book"
@@ -90,6 +92,7 @@ Feature: We can create a new book project and build books
 	  
   	
   @no-clobber
+	@announce-stdout
   Scenario: Build a new mobi book
   	Given a file named "test_book/script/bookshop" should exist
   	Given a file named "test_book/script/kindlegen/kindlegen_mac" should exist

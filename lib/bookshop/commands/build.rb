@@ -96,10 +96,6 @@ module Bookshop
         
         puts "Generating new html from erb"
         generate_file(BOOK_SOURCE, "builds/mobi/OEBPS/book.html")
-                
-        # Generate the cover.html file
-        puts "Generating new cover.html from erb"
-        generate_file("frontmatter/cover.html.erb","builds/mobi/OEBPS/cover.html")
               
         # Generate the nav.html file
         puts "Generating new toc.html from erb"
