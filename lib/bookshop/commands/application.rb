@@ -1,6 +1,6 @@
 require 'bookshop/version'
 if %w(--version -v).include? ARGV.first
-  puts "Bookshop #{Bookshop::VERSION::STRING}"
+  puts "Bookshop #{Bookshop::VERSION}"
   exit(0)
 end
 

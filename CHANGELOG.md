@@ -1,3 +1,10 @@
+## Bookshop 0.1.6 ##
+
+
+### Bug Fixes ###
+* Fixed bug with Kindle needing cover.html removed from manifest
+* Fixed issue #50 where bookshop -v failed
+
 ## Bookshop 0.1.5 ##
 ### Features ###
 * Edited eBooks for greater compatibility with device standards

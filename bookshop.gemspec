@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.author      = 'Dave Thompson'
   s.email       = 'dave@blueheadpublishing.com'
-  s.homepage    = 'http://blueheadpublishing.github.com/bookshop/'
+  s.homepage    = 'http://blueheadpublishing.com/products/bookshop/'
   s.summary     = 'An agile book publishing framework for building pdf/(e)books based on HTML5, CSS, and JavaScript.'
   s.description = 'bookshop is an agile book publishing framework for building pdf/(e)books based on HTML5,
                     CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors

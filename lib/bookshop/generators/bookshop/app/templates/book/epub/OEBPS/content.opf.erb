@@ -17,7 +17,10 @@
     <!-- Main Meta Items -->
     <item media-type="text/css" href="assets/css/stylesheet.<%= @output %>.css" id="ebook-css" />
     <item media-type="application/vnd.adobe-page-template+xml" href="assets/css/page-template.xpgt" id="pt" />
+    
+    <!-- Kindlegen does not like a separate cover.html and will complain -->
     <% if @output != :mobi %><item media-type="application/xhtml+xml" href="cover.html" id="cover" /><% end %>
+    
     <item media-type="image/png" href="assets/images/cover.png" id="cover-image" />
     <item media-type="application/xhtml+xml" href="toc.html" id="toc" />
     <item media-type="application/x-dtbncx+xml" href="toc.ncx" id="ncx" />
