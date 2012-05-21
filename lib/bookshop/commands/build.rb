@@ -114,12 +114,12 @@ module Bookshop
                          builds/mobi/OEBPS/assets/css/stylesheet.html.css
                          builds/mobi/OEBPS/assets/css/stylesheet.epub.css )
         
-       puts "Zipping up into epub"
-       if RUBY_PLATFORM =~ /linux|darwin|cygwin/
+        puts "Zipping up into epub"
+        if RUBY_PLATFORM =~ /linux|darwin|cygwin/
          cmd = system("cd builds/mobi/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
-       elsif RUBY_PLATFORM =~ /mingw|mswin32/
+        elsif RUBY_PLATFORM =~ /mingw|mswin32/
          cmd = system("cd builds/mobi/ & ..\..\script\zip\zip.exe -X0 'book.epub' mimetype & ..\..\script\zip\zip.exe -rDX9 'book.epub' * -x mimetype")
-       end
+        end
         
         puts "Validating with epubcheck"
         
@@ -199,16 +199,30 @@ module Bookshop
       #    book/book.html.erb source file
       # @output variable is set to "html" for access as a conditional
       #   in the source erb's
-        build_html        
+        build_html
+
+      # 'build epub' generates an epub version of the book from the builds/epub/book.epub
+      #    which is generated from the book/book.html.erb source file
       when 'epub'
         build_epub
+
+      # 'build mobi' generates an mobi version of the book from the builds/mobi/book.epub
+      #    which is generated from the book/book.html.erb source file
       when 'mobi'
         build_mobi
+
       # 'build pdf' generates a pdf version of the book from the builds/html/book.html
       #    which is generated from the book/book.html.erb source file
       when 'pdf'
         build_pdf
-    
+
+      # 'build all' generates all builds to all build folders
+      when 'all'
+        build_html
+        build_epub
+        build_mobi
+        build_pdf
+
       else
         puts "Error: Command not recognized" unless %w(-h --help).include?(build)
         puts <<-EOT
@@ -219,6 +233,7 @@ module Bookshop
        html         Builds a new html at /builds/html/book.html
        epub         Builds a new epub at /builds/epub/book.epub
        mobi         Builds a new mobi at /builds/mobi/book.mobi
+       all          Builds all formats above
 
       All commands can be run with -h for more information.
         EOT
