@@ -2,14 +2,14 @@ require File.expand_path("../lib/bookshop/version", __FILE__)
 require File.expand_path("../lib/bookshop/post_install", __FILE__)
 
 Gem::Specification.new do |s|
-  s.name        = "bookshop"
+  s.name        = 'bookshop'
   s.version     = Bookshop::VERSION
   s.platform    = Gem::Platform::RUBY
   s.author      = 'Dave Thompson'
   s.email       = 'dave@blueheadpublishing.com'
   s.homepage    = 'http://blueheadpublishing.com/products/bookshop/'
   s.summary     = 'An agile book publishing framework for building pdf/(e)books based on HTML5, CSS, and JavaScript.'
-  s.description = 'bookshop is an agile book publishing framework for building pdf/(e)books based on HTML5,
+  s.description = 'bookshop is an agile book publishing framework for building pdf and (e)books using HTML5,
                     CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors
                     quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by
                     favoring convention over configuration, setting them up with best-practices, standards
@@ -20,11 +20,11 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = 'bookshop'
   s.has_rdoc = true
 
-  s.files        = Dir['CHANGELOG.mc', 'README.rdoc', 'bin/**/*', 'lib/**/{*,.[a-z]*}']
+  s.files        = Dir['CHANGELOG.md', 'README.rdoc', 'bin/**/*', 'lib/**/{*,.[a-z]*}']
   s.require_path = 'lib'
   
   s.bindir       = 'bin'
-  s.executables  = ['bookshop']
+  s.executables  = ['bookshop', 'epubcheck.jar', 'kindlegen_linux', 'kindlegen_mac', 'kindlegen.exe', 'zip.exe']
   
   s.add_dependency 'thor', '>= 0.14.6'
   s.add_development_dependency 'bundler', '>= 1.0.0'
