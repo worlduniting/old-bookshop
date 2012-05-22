@@ -1,4 +1,5 @@
 ## Bookshop 0.1.6 ##
+### Features ###
 * Added new build command, 'bookshop build all' which builds all formats
 * Added aruba/cucumber tests for new build command
 
