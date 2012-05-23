@@ -1,0 +1,7 @@
+#!/usr/bin/ruby
+
+# parses 'epubcheck builds/epub/book.epub'
+book_epub = ARGV.shift
+epubcheck_jar = File.join(File.dirname(__FILE__), 'epubcheck_dir/epubcheck.jar')
+
+cmd = system("java -jar #{epubcheck_jar} #{book_epub}")
