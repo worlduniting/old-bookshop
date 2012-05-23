@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.author      = 'Dave Thompson'
   s.email       = 'dave@blueheadpublishing.com'
   s.homepage    = 'http://blueheadpublishing.com/products/bookshop/'
-  s.summary     = 'An agile book publishing framework for building pdf/(e)books based on HTML5, CSS, and JavaScript.'
+  s.summary     = 'An agile book publishing framework for building pdf and (e)books based on HTML5, CSS, and JavaScript.'
   s.description = 'bookshop is an agile book publishing framework for building pdf and (e)books using HTML5,
                     CSS, and JavaScript. The framework is optimized to help publishers, editors, and authors
                     quickly ramp-up, allowing them to jump in and develop their html-to-pdf/(e)book flows by
@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
   s.files        = Dir['CHANGELOG.md', 'README.rdoc', 'bin/**/*', 'lib/**/{*,.[a-z]*}']
   s.require_path = 'lib'
   
-  s.bindir       = 'bin'
-  s.executables  = ['bookshop', 'epubcheck.jar', 'kindlegen_linux', 'kindlegen_mac', 'kindlegen.exe', 'zip.exe']
+  s.bindir       = 'bin/'
+  s.executables  = ['bookshop', 'epubcheck', 'kindlegen_linux', 'kindlegen_mac', 'kindlegen.exe', 'zip.exe']
   
   s.add_dependency 'thor', '>= 0.14.6'
   s.add_development_dependency 'bundler', '>= 1.0.0'

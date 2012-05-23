@@ -78,11 +78,11 @@ module Bookshop
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
           cmd = system("cd builds/epub/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
         elsif RUBY_PLATFORM =~ /mingw|mswin32/
-          cmd = system("cd builds/epub/ & ..\..\script\zip\zip.exe -X0 'book.epub' mimetype & ..\..\script\zip\zip.exe -rDX9 'book.epub' * -x mimetype")
+          cmd = system("cd builds/epub/ & zip.exe -X0 'book.epub' mimetype & zip.exe -rDX9 'book.epub' * -x mimetype")
         end
         
         puts "Validating with epubcheck"
-        cmd  = cmd = system("java -jar script/epubcheck/epubcheck.jar builds/epub/book.epub")
+        cmd = system("epubcheck builds/epub/book.epub")
 
       end
 
@@ -118,21 +118,21 @@ module Bookshop
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
          cmd = system("cd builds/mobi/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
         elsif RUBY_PLATFORM =~ /mingw|mswin32/
-         cmd = system("cd builds/mobi/ & ..\..\script\zip\zip.exe -X0 'book.epub' mimetype & ..\..\script\zip\zip.exe -rDX9 'book.epub' * -x mimetype")
+         cmd = system("cd builds/mobi/ & zip.exe -X0 'book.epub' mimetype & zip.exe -rDX9 'book.epub' * -x mimetype")
         end
         
         puts "Validating with epubcheck"
         
-        # using exec so we can return the command results back to the terminal output
-        cmd  = system("java -jar script/epubcheck/epubcheck.jar builds/mobi/book.epub")
+        # using system so we can return the command results back to the terminal output
+        cmd  = system("epubcheck builds/mobi/book.epub")
         
         puts "Generating mobi file with KindleGen"
         if RUBY_PLATFORM =~ /linux/
-          cmd = system("script/kindlegen/kindlegen_linux builds/mobi/book.epub")
+          cmd = system("kindlegen_linux builds/mobi/book.epub")
         elsif RUBY_PLATFORM =~ /darwin/
-          cmd = system("script/kindlegen/kindlegen_mac builds/mobi/book.epub")
+          cmd = system("kindlegen_mac builds/mobi/book.epub")
         elsif RUBY_PLATFORM =~ /mswin32/
-          cmd = system("script/kindlegen/kindlegen.exe builds/mobi/book.epub")
+          cmd = system("kindlegen.exe builds/mobi/book.epub")
         else
           raise "We can't seem to execute the version of kindle specific to your platform."
         end
@@ -179,7 +179,6 @@ module Bookshop
       def self.load_yaml_files
         # Load the book.yml into the Book object
         @book = Book.new(YAML.load_file('config/book.yml'))
-        # @toc = Toc.new(YAML.load_file('config/toc.yml'))
       end
 
       # Renders <%= import(source.html.erb) %> files with ERB

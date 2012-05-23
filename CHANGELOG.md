@@ -1,6 +1,6 @@
 ## Bookshop 0.1.7 ##
 ### Features ###
-* Moved third-party binaries (kindlegen, epubcheck, zip-info) into gem /bin path so they are referenced from within the bookshop gem and do not need to be duplicated with each new book project
+* Moved third-party binaries (kindlegen, epubcheck.jar, zip-info) into gem /bin path so they are referenced from within the bookshop gem and do not need to be duplicated within each new book project
 
 ## Bookshop 0.1.6 ##
 ### Features ###
