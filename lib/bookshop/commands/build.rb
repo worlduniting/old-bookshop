@@ -121,21 +121,13 @@ module Bookshop
          cmd = system("cd builds/mobi/ & zip.exe -X0 'book.epub' mimetype & zip.exe -rDX9 'book.epub' * -x mimetype")
         end
         
+        # Validate with Epubcheck
         puts "Validating with epubcheck"
-        
-        # using system so we can return the command results back to the terminal output
         cmd  = system("epubcheck builds/mobi/book.epub")
         
+        # Convert Epub to Mobi with Kindlegen
         puts "Generating mobi file with KindleGen"
-        if RUBY_PLATFORM =~ /linux/
-          cmd = system("kindlegen_linux builds/mobi/book.epub")
-        elsif RUBY_PLATFORM =~ /darwin/
-          cmd = system("kindlegen_mac builds/mobi/book.epub")
-        elsif RUBY_PLATFORM =~ /mswin32/
-          cmd = system("kindlegen.exe builds/mobi/book.epub")
-        else
-          raise "We can't seem to execute the version of kindle specific to your platform."
-        end
+        cmd = system("kindlegen builds/mobi/book.epub")
         
       end
       

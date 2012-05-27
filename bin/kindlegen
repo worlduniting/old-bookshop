@@ -1,0 +1,18 @@
+#!/usr/bin/ruby
+
+# parses 'kindlegen builds/mobi/book.epub'
+book_mobi = ARGV.shift
+
+if RUBY_PLATFORM =~ /linux|cygwin/
+  executable = 'kindlegen_linux'
+elsif RUBY_PLATFORM =~ /darwin/
+  puts "its darwin"
+  executable = 'kindlegen_mac'
+elsif RUBY_PLATFORM =~ /mingw|mswin32/
+  executable = 'kindlegen.exe'
+else
+  raise "Invalid platform. Must be running linux, intel-based Mac OS, or Windows XP/7."
+end
+
+executable = File.join(File.dirname(__FILE__), executable)
+system(executable + " " + $*.join(" ") + book_mobi)

@@ -140,16 +140,21 @@ Feature: We can create a new book project and build books
     Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
   
   @no-clobber
-  Scenario: Call third-party binaries from command line
-    When I successfully run `kindlegen_mac`
+  @announce-stdout
+  Scenario: Call third-party kindlegen from command line
+    Given a file named "test_book/builds/epub/book.epub" should exist
+    When I cd to "test_book"
+    # I'm going to use builds/epub/book.epub so I'm not dependent on kindlegen for the source epub file
+    And I successfully run `kindlegen builds/epub/book.epub`
     Then the output should contain "Amazon.com"
+    Then the output should contain "Mobi file built successfully"
   
-    @no-clobber
-    @announce-stdout
-    Scenario: Call third-party epubcheck from command line
-      Given a file named "test_book/builds/epub/book.epub" should exist
-      When I cd to "test_book"
-      And I successfully run `epubcheck builds/epub/book.epub`
-      Then the output should contain "Epubcheck Version"
-      Then the output should contain "No errors or warnings detected"
+  @no-clobber
+  @announce-stdout
+  Scenario: Call third-party epubcheck from command line
+    Given a file named "test_book/builds/epub/book.epub" should exist
+    When I cd to "test_book"
+    And I successfully run `epubcheck builds/epub/book.epub`
+    Then the output should contain "Epubcheck Version"
+    Then the output should contain "No errors or warnings detected"
     

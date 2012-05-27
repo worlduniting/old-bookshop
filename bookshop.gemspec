@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   
   s.bindir       = 'bin/'
-  s.executables  = ['bookshop', 'epubcheck', 'kindlegen_linux', 'kindlegen_mac', 'kindlegen.exe', 'zip.exe']
+  s.executables  = ['bookshop', 'epubcheck', 'kindlegen', 'zip.exe']
   
   s.add_dependency 'thor', '>= 0.14.6'
   s.add_development_dependency 'bundler', '>= 1.0.0'
