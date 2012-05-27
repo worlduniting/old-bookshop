@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 require File.expand_path("../lib/bookshop/version", __FILE__)
 require File.expand_path("../lib/bookshop/post_install", __FILE__)
 

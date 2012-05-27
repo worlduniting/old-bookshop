@@ -55,7 +55,7 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
     Then the output should contain "Epubcheck Version"
-    And the output should not contain "ERROR"
+    Then the output should contain "No errors or warnings detected"
     Then the following files should exist:
     | builds/epub/mimetype |
     | builds/epub/META-INF/container.xml |
@@ -78,7 +78,7 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
     Then the output should contain "Epubcheck Version"
-    And the output should not contain "ERROR"
+    Then the output should contain "No errors or warnings detected"
     Then the following files should exist:
     | builds/epub/mimetype |
     | builds/epub/META-INF/container.xml |
@@ -101,7 +101,7 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
     Then the output should contain "Epubcheck Version"
-    And the output should not contain "ERROR"
+    Then the output should contain "No errors or warnings detected"
     Then the output should contain "Amazon.com"
     Then the following files should exist:
     | builds/mobi/mimetype |
@@ -151,4 +151,5 @@ Feature: We can create a new book project and build books
       When I cd to "test_book"
       And I successfully run `epubcheck builds/epub/book.epub`
       Then the output should contain "Epubcheck Version"
+      Then the output should contain "No errors or warnings detected"
     
