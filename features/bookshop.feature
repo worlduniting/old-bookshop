@@ -14,9 +14,6 @@ Feature: We can create a new book project and build books
     | config/book.yml |
     | README.rdoc |
     | script/bookshop |
-    | script/epubcheck/epubcheck.jar |
-    | script/epubcheck/lib/jing.jar |
-    | script/epubcheck/lib/saxon.jar |
     And the following directories should exist:
     | builds/epub |
     | builds/html |
@@ -57,6 +54,8 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new content.opf from erb"
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
+    Then the output should contain "Epubcheck Version"
+    Then the output should contain "No errors or warnings detected"
     Then the following files should exist:
     | builds/epub/mimetype |
     | builds/epub/META-INF/container.xml |
@@ -69,7 +68,6 @@ Feature: We can create a new book project and build books
     And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
   
   @no-clobber
-  @announce-stdout
   Scenario: Ensure a clean build if epub has already been built before
     Given a file named "test_book/script/bookshop" should exist
     When I cd to "test_book"
@@ -79,6 +77,8 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new content.opf from erb"
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
+    Then the output should contain "Epubcheck Version"
+    Then the output should contain "No errors or warnings detected"
     Then the following files should exist:
     | builds/epub/mimetype |
     | builds/epub/META-INF/container.xml |
@@ -91,10 +91,8 @@ Feature: We can create a new book project and build books
     And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
 
   @no-clobber
-  @announce-stdout
   Scenario: Build a new mobi book
     Given a file named "test_book/script/bookshop" should exist
-    Given a file named "test_book/script/kindlegen/kindlegen_mac" should exist
     When I cd to "test_book"
     And I run `bookshop build mobi`
     Then the output should contain "Deleting any old builds"
@@ -103,7 +101,7 @@ Feature: We can create a new book project and build books
     Then the output should contain "Generating new toc.ncx from erb"
     Then the output should contain "Zipping up into epub"
     Then the output should contain "Epubcheck Version"
-    And the output should not contain "ERROR"
+    Then the output should contain "No errors or warnings detected"
     Then the output should contain "Amazon.com"
     Then the following files should exist:
     | builds/mobi/mimetype |
@@ -140,3 +138,23 @@ Feature: We can create a new book project and build books
   Scenario: Run bookshop new without path
     When I run `bookshop new`
     Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
+  
+  @no-clobber
+  @announce-stdout
+  Scenario: Call third-party kindlegen from command line
+    Given a file named "test_book/builds/epub/book.epub" should exist
+    When I cd to "test_book"
+    # I'm going to use builds/epub/book.epub so I'm not dependent on kindlegen for the source epub file
+    And I successfully run `kindlegen builds/epub/book.epub`
+    Then the output should contain "Amazon.com"
+    Then the output should contain "Mobi file built successfully"
+  
+  @no-clobber
+  @announce-stdout
+  Scenario: Call third-party epubcheck from command line
+    Given a file named "test_book/builds/epub/book.epub" should exist
+    When I cd to "test_book"
+    And I successfully run `epubcheck builds/epub/book.epub`
+    Then the output should contain "Epubcheck Version"
+    Then the output should contain "No errors or warnings detected"
+    
