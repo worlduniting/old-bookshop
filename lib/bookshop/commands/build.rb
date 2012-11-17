@@ -78,7 +78,7 @@ module Bookshop
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
           cmd = system("cd builds/epub/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
         elsif RUBY_PLATFORM =~ /mingw|mswin32/
-          cmd = system("cd builds/epub/ & zip.exe -X0 'book.epub' mimetype & zip.exe -rDX9 'book.epub' * -x mimetype")
+          cmd = system("cd builds/epub/ & zip.exe -X0 book.epub mimetype & zip.exe -rDX9 book.epub * -x mimetype")
         end
         
         puts "Validating with epubcheck"
