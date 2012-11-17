@@ -1,3 +1,7 @@
+## Bookshop 0.1.8 ##
+### Bug Fixes ###
+* Fixed #60 which was outputting filename with single quotes around it
+
 ## Bookshop 0.1.7 ##
 ### Features ###
 * Moved third-party binaries (kindlegen, epubcheck.jar, zip-info) into gem /bin path so they are referenced from within the bookshop gem and do not need to be duplicated within each new book project
