@@ -2,7 +2,7 @@ Feature: We can create a new book project and build books
   We need to be able to create a new book project so we can manage
   the book's content/layout in one place and then convert it into many
   different types of print and/or (e)Books.
-    
+
   Scenario: Create a new book project
     When I successfully run `bookshop new test_book`
     Then the output should contain "config/book.yml"
@@ -19,11 +19,11 @@ Feature: We can create a new book project and build books
     | builds/html |
     | builds/pdf |
     | builds/mobi |
-     
+
   @no-clobber
   @announce-stdout
   Scenario: Build a new pdf book
-    Given a file named "test_book/script/bookshop" should exist   
+    Given a file named "test_book/script/bookshop" should exist
     When I cd to "test_book"
     And I run `bookshop build pdf`
     Then the output should contain "Building new pdf"
@@ -66,7 +66,30 @@ Feature: We can create a new book project and build books
     | builds/epub/book.epub |
     And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
     And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
-  
+
+  @no-clobber
+  Scenario: Build a new epub book with a custom filename
+    Given a file named "test_book/script/bookshop" should exist
+    When I cd to "test_book"
+    And I run `bookshop build epub mybook.epub`
+    Then the output should contain "Deleting any old builds"
+    Then the output should contain "Generating new html from erb"
+    Then the output should contain "Generating new content.opf from erb"
+    Then the output should contain "Generating new toc.ncx from erb"
+    Then the output should contain "Zipping up into epub"
+    Then the output should contain "Epubcheck Version"
+    Then the output should contain "No errors or warnings detected"
+    Then the following files should exist:
+    | builds/epub/mimetype |
+    | builds/epub/META-INF/container.xml |
+    | builds/epub/OEBPS/assets/css/page-template.xpgt |
+    | builds/epub/OEBPS/assets/images/canvas.jpg |
+    | builds/epub/OEBPS/assets/css/stylesheet.epub.css |
+    | builds/epub/OEBPS/toc.ncx |
+    | builds/epub/mybook.epub |
+    And the file "builds/epub/OEBPS/book.html" should match /stylesheet.epub.css/
+    And the file "builds/epub/OEBPS/content.opf" should match /stylesheet.epub.css/
+
   @no-clobber
   Scenario: Ensure a clean build if epub has already been built before
     Given a file named "test_book/script/bookshop" should exist
@@ -114,7 +137,7 @@ Feature: We can create a new book project and build books
     | builds/mobi/book.mobi |
     And the file "builds/mobi/OEBPS/book.html" should match /stylesheet.mobi.css/
     And the file "builds/mobi/OEBPS/content.opf" should match /stylesheet.mobi.css/
-  
+
   @no-clobber
   @announce-stdout
   Scenario: Build all book formats
@@ -126,7 +149,7 @@ Feature: We can create a new book project and build books
     | builds/epub/book.epub |
     | builds/html/book.html |
     | builds/pdf/book.pdf |
-    
+
   @no-clobber
   @usage-error
   Scenario: Run bookshop without arguments
@@ -138,7 +161,7 @@ Feature: We can create a new book project and build books
   Scenario: Run bookshop new without path
     When I run `bookshop new`
     Then the output should contain "Usage:\n  bookshop new BOOK_NAME [options]"
-  
+
   @no-clobber
   @announce-stdout
   Scenario: Call third-party kindlegen from command line
@@ -148,7 +171,7 @@ Feature: We can create a new book project and build books
     And I successfully run `kindlegen builds/epub/book.epub`
     Then the output should contain "Amazon.com"
     Then the output should contain "Mobi file built successfully"
-  
+
   @no-clobber
   @announce-stdout
   Scenario: Call third-party epubcheck from command line
@@ -157,4 +180,4 @@ Feature: We can create a new book project and build books
     And I successfully run `epubcheck builds/epub/book.epub`
     Then the output should contain "Epubcheck Version"
     Then the output should contain "No errors or warnings detected"
-    
+
