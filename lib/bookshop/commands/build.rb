@@ -42,6 +42,9 @@ module Bookshop
       end
 
       def self.build_epub
+        filename = ARGV[0].nil? ? "book.epub" : ARGV[0]
+        raise IOError, 'Filename must end in ".epub"' unless filename.end_with? '.epub'
+
         clean_builds('epub')
 
         @output = :epub
@@ -73,8 +76,6 @@ module Bookshop
         FileUtils.rm %w( builds/epub/OEBPS/assets/css/stylesheet.pdf.css
                          builds/epub/OEBPS/assets/css/stylesheet.html.css
                          builds/epub/OEBPS/assets/css/stylesheet.mobi.css )
-
-        filename = ARGV[0].empty? ? "book.epub" : ARGV[0]
 
         puts "Zipping up into epub"
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
