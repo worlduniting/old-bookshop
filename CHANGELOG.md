@@ -2,6 +2,12 @@
 ### Bug Fixes ###
 * Fixed #60 which was outputting filename with single quotes around it
 
+### Features In Template ###
+* Added cropmarks to demo functionality (helpful during development, but should be removed before sending to print)
+* Added PDF watermark to demo "draft" to each page (helpful during development, but should be removed before sending to print)
+* Added SVG folder and file, and corresponding failsafe PNG, to demo usage in template
+* Added OFLGoudy font (Open Source) to demo font-face usage
+
 ## Bookshop 0.1.7 ##
 ### Features ###
 * Moved third-party binaries (kindlegen, epubcheck.jar, zip-info) into gem /bin path so they are referenced from within the bookshop gem and do not need to be duplicated within each new book project

@@ -5,7 +5,7 @@
 
 html { 
   margin: 0;
-  font: 10pt/1.26 "Gill Sans", sans-serif;
+  font: 12pt/1.26 "OFLGoudy", sans-serif;
 }
 
 body { 
@@ -13,7 +13,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 { 
-  font-family: "Gill Sans", sans-serif;
+  font-family: "OFLGoudy", sans-serif;
   margin: 2em 0 0.5em 0;
   page-break-after: avoid;
 } 
@@ -143,10 +143,44 @@ table.lined td, table.lined th {
   padding-bottom: 0.2em;
 }
 
+/* Fonts */
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
 
 @page {
   margin: 27mm 16mm 27mm 16mm;
   size: 7in 9.25in;
+  /* Draft Watermark - use "background-image: none;" to remove watermark */
+  background: url("../images/draft.png") no-repeat center;
+  /* Cropmarks - Typically need to be deleted before sending to print */
+  marks: crop;
 
   @footnotes {
     border-top: thin solid black;
@@ -161,14 +195,14 @@ table.lined td, table.lined th {
 
 @page :left {
   @top-left {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: "Cascading Style Sheets";
     vertical-align: bottom;
     padding-bottom: 2em;
   }
 
   @bottom-left {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: counter(page);
     padding-top: 2em;
     vertical-align: top;
@@ -177,14 +211,14 @@ table.lined td, table.lined th {
 
 @page :right {
   @top-right {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: string(header, first); 
     vertical-align: bottom;
     padding-bottom: 2em; 
   }
 
   @bottom-right {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: counter(page);
     text-align: right;
     vertical-align: top;
@@ -194,14 +228,14 @@ table.lined td, table.lined th {
 
 @page frontmatter :left {
   @top-left {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: string(title);
     vertical-align: bottom;
     padding-bottom: 2em;
   }
 
   @bottom-left {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: counter(page, lower-roman);
     padding-top: 2em;
     vertical-align: top;
@@ -212,14 +246,14 @@ table.lined td, table.lined th {
 
 @page frontmatter :right {
   @top-right {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: string(header, first); 
     vertical-align: bottom;
     padding-bottom: 2em; 
   }
 
   @bottom-right {
-    font: 11pt "Gill Sans", serif;
+    font: 11pt "OFLGoudy", serif;
     content: counter(page, lower-roman);
     text-align: right;
     vertical-align: top;
@@ -375,31 +409,31 @@ div.imprint img {
 
 /* TOC */
 
-ol.toc, ol.toc ol { 
+ul.toc, ul.toc ul { 
   list-style-type: none;
   margin: 0; padding: 0;
 }
-ol.toc ol {
+ul.toc ul {
   margin-left: 1em;
   font-weight: normal;
 }
-ol.toc > li { 
+ul.toc > li { 
   font-weight: bold;
   margin-bottom: 0.5em;
 }
-ol.toc a::after {
+ul.toc a::after {
   content: leader('.') target-counter(attr(href), page);
   font-style: normal;
 }
-ol.toc > li.frontmatter a::after {
+ul.toc > li.frontmatter a::after {
   content: leader('.') target-counter(attr(href), page, lower-roman);
   font-style: normal;
 }
-ol.toc > li.backmatter a::after {
+ul.toc > li.endmatter a::after {
   content: leader('.') target-counter(attr(href), page);
   font-style: normal;
 }
-ol.toc > li.chapter::before {
+ul.toc > li.chapter::before {
   content: "Chapter " counter(toc-chapter, decimal);
   display: block;
   margin: 1em 0 0.1em -2.5cm;
@@ -427,6 +461,7 @@ div.frontcover h1::before, div.titlepage h1::before, div.halftitlepage h1::befor
 
 h1 { string-set: header content();}
 div.chapter h1 { string-set: header "Chapter " counter(chapter) ": " content(); }
+
 
 /* index */
 

@@ -81,7 +81,7 @@ http://www.princexml.com/download
 
 Currently, when you create a new bookshop project, it will generate the example book source for you. You can use this as a template, replacing the text with your own. But make sure to utilize the correct CSS microformat markup.
 
-For an explanation of the example, please see this article. - http://www.alistapart.com/articles/boom
+For an explanation of the example, please see this article. - http://www.alistapart.com/articles/boom BookShop uses the boom microformat - http://microformats.org/wiki/book-brainstorming
 
 All of the source documents and assets for your book are stored in the +book/+ folder. So your stylesheets, images, text - everything used for building your book - lives here. Ideally, you should only every edit files in your +book/+ folder (with the exception of your config/book.yml file).
 

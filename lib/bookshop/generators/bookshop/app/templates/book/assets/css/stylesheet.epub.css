@@ -129,6 +129,36 @@ table.lined td, table.lined th {
   padding-bottom: 0.2em;
 }
 
+/* Fonts */
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
 /* footnotes */
 
 .footnote {
@@ -210,17 +240,37 @@ div.imprint img {
 
 /* TOC */
 
-ol.toc, ol.toc ol { 
+ul.toc, ul.toc ul { 
   list-style-type: none;
   margin: 0; padding: 0;
 }
-ol.toc ol {
+ul.toc ul {
   margin-left: 1em;
   font-weight: normal;
 }
-ol.toc > li { 
+ul.toc > li { 
   font-weight: bold;
   margin-bottom: 0.5em;
+}
+ul.toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+ul.toc > li.frontmatter a::after {
+  content: leader('.') target-counter(attr(href), page, lower-roman);
+  font-style: normal;
+}
+ul.toc > li.endmatter a::after {
+  content: leader('.') target-counter(attr(href), page);
+  font-style: normal;
+}
+ul.toc > li.chapter::before {
+  content: "Chapter " counter(toc-chapter, decimal);
+  display: block;
+  margin: 1em 0 0.1em -2.5cm;
+  font-weight: normal;
+  counter-increment: toc-chapter;
+  page-break-after: avoid;
 }
 
 /* chapter numbers */
@@ -229,6 +279,7 @@ div.chapter { counter-increment: chapter; }
 
 h1::before {
   white-space: pre;
+  margin-left: -2.5cm;
   font-size: 50%;
   content: "\B0  \B0  \B0  \B0  \B0 \A";  /* ornaments */
 }
@@ -238,6 +289,9 @@ div.chapter h1::before { content: "Chapter " counter(chapter) " \A"; }
 div.frontcover h1::before, div.titlepage h1::before, div.halftitlepage h1::before {
   content: normal;                  /* that is, none */
 }
+
+h1 { string-set: header content();}
+div.chapter h1 { string-set: header "Chapter " counter(chapter) ": " content(); }
 
 /* index */
 

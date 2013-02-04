@@ -1,6 +1,11 @@
 <% if @output == :pdf %>
 <div class="halftitlepage">
 <h1 class="no-toc"><%= @book.title %></h1>
+<p>
+  <object data="assets/svgs/flourish.svg" type="image/svg+xml">
+    <img alt="flourish" src="assets/images/flourish.png" />
+  </object>
+</p>
 <h2 class="no-toc"><%= @book.subtitle %></h2>
 <h3 class="no-toc">Third Edition</h3>
 </div>

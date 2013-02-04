@@ -143,6 +143,36 @@ table.lined td, table.lined th {
   padding-bottom: 0.2em;
 }
 
+/* Fonts */
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: normal;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
+@font-face {
+    font-family: OFLGoudy;
+    font-style: italic;
+    font-weight: bold;
+    src: url("../fonts/OFLGoudyStM-Italic.otf")
+}
+
 
 @page {
   margin: 27mm 16mm 27mm 16mm;
