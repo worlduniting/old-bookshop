@@ -8,13 +8,13 @@ require 'bookshop/commands/yaml/book'
 module Bookshop
   module Commands
 
-    
+
     # Define build commands for bookshop command line
     class Build < Thor::Group
       include Thor::Actions
-       
+
       BOOK_SOURCE = 'book.html.erb'
-      
+
       def initialize
         @book = []
       end
@@ -31,58 +31,61 @@ module Bookshop
         end
       end
 
-      def self.build_html 
-        clean_builds( 'html' )  
+      def self.build_html
+        clean_builds( 'html' )
         @output = :html
-        
+
         puts "Generating new html from erb"
         generate_file(BOOK_SOURCE, "builds/html/book.html")
-                
+
         FileUtils.cp_r('book/assets/', 'builds/html/', :verbose => true)
       end
-      
+
       def self.build_epub
+        filename = ARGV[0].nil? ? "book.epub" : ARGV[0]
+        raise IOError, 'Filename must end in ".epub"' unless filename.end_with? '.epub'
+
         clean_builds('epub')
-        
+
         @output = :epub
 
         FileUtils.cp_r('book/epub/META-INF', 'builds/epub/', :verbose => true)
         FileUtils.mkdir 'builds/epub/OEBPS'
         FileUtils.cp_r('book/epub/mimetype', 'builds/epub/', :verbose => true)
-        
+
         puts "Generating new html from erb"
         generate_file(BOOK_SOURCE, "builds/epub/OEBPS/book.html")
-                
+
         # Generate the cover.html file
         puts "Generating new cover.html from erb"
         generate_file("frontmatter/cover.html.erb", "builds/epub/OEBPS/cover.html")
-                
+
         # Generate the nav.html file
         puts "Generating new toc.html from erb"
         generate_file("frontmatter/toc.html.erb", "builds/epub/OEBPS/toc.html")
-        
+
         # Generate the OPF file
         puts "Generating new content.opf from erb"
         generate_file("epub/OEBPS/content.opf.erb", "builds/epub/OEBPS/content.opf")
-               
+
         # Generate the NCX file
         puts "Generating new toc.ncx from erb"
         generate_file("epub/OEBPS/toc.ncx.erb", "builds/epub/OEBPS/toc.ncx")
-                
+
         FileUtils.cp_r 'book/assets', 'builds/epub/OEBPS/assets/', :verbose => true
         FileUtils.rm %w( builds/epub/OEBPS/assets/css/stylesheet.pdf.css
                          builds/epub/OEBPS/assets/css/stylesheet.html.css
                          builds/epub/OEBPS/assets/css/stylesheet.mobi.css )
-        
+
         puts "Zipping up into epub"
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
-          cmd = system("cd builds/epub/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
+          cmd = system("cd builds/epub/ && zip -X0 #{filename} mimetype && zip -rDX9 #{filename} * -x '*.DS_Store' -x mimetype")
         elsif RUBY_PLATFORM =~ /mingw|mswin32/
-          cmd = system("cd builds/epub/ & zip.exe -X0 book.epub mimetype & zip.exe -rDX9 book.epub * -x mimetype")
+          cmd = system("cd builds/epub/ & zip.exe -X0 #{filename} mimetype & zip.exe -rDX9 #{filename} * -x mimetype")
         end
-        
+
         puts "Validating with epubcheck"
-        cmd = system("epubcheck builds/epub/book.epub")
+        cmd = system("epubcheck builds/epub/#{filename}")
 
       end
 
@@ -93,59 +96,58 @@ module Bookshop
         FileUtils.cp_r('book/epub/META-INF', 'builds/mobi/', :verbose => true)
         FileUtils.mkdir 'builds/mobi/OEBPS'
         FileUtils.cp_r('book/epub/mimetype', 'builds/mobi/', :verbose => true)
-        
+
         puts "Generating new html from erb"
         generate_file(BOOK_SOURCE, "builds/mobi/OEBPS/book.html")
-              
+
         # Generate the nav.html file
         puts "Generating new toc.html from erb"
         generate_file("frontmatter/toc.html.erb", "builds/mobi/OEBPS/toc.html")
-       
+
         # Generate the OPF file
         puts "Generating new content.opf from erb"
         generate_file("epub/OEBPS/content.opf.erb","builds/mobi/OEBPS/content.opf")
-    
+
         # Generate the NCX file
         puts "Generating new toc.ncx from erb"
         generate_file("epub/OEBPS/toc.ncx.erb","builds/mobi/OEBPS/toc.ncx")
-        
+
         FileUtils.cp_r 'book/assets', 'builds/mobi/OEBPS/assets/', :verbose => true
         FileUtils.rm %w( builds/mobi/OEBPS/assets/css/stylesheet.pdf.css
                          builds/mobi/OEBPS/assets/css/stylesheet.html.css
                          builds/mobi/OEBPS/assets/css/stylesheet.epub.css )
-        
+
         puts "Zipping up into epub"
         if RUBY_PLATFORM =~ /linux|darwin|cygwin/
          cmd = system("cd builds/mobi/ && zip -X0 'book.epub' mimetype && zip -rDX9 'book.epub' * -x '*.DS_Store' -x mimetype")
         elsif RUBY_PLATFORM =~ /mingw|mswin32/
          cmd = system("cd builds/mobi/ & zip.exe -X0 'book.epub' mimetype & zip.exe -rDX9 'book.epub' * -x mimetype")
         end
-        
+
         # Validate with Epubcheck
         puts "Validating with epubcheck"
         cmd  = system("epubcheck builds/mobi/book.epub")
-        
+
         # Convert Epub to Mobi with Kindlegen
         puts "Generating mobi file with KindleGen"
         cmd = system("kindlegen builds/mobi/book.epub")
-        
+
       end
-      
+
       def self.build_pdf
         # Clean up any old builds
-        clean_builds("pdf") 
+        clean_builds("pdf")
         @output = :pdf
         # Generate the html from ERB
         puts "Generating new html from erb"
         generate_file(BOOK_SOURCE, 'builds/pdf/book.html')
-        
+
         # Copy over html assets
         FileUtils.cp_r('book/assets/', 'builds/pdf/', :verbose => true)
 
         # Builds the pdf from builds/html/book.html
         puts "Building new pdf at builds/pdf/book.pdf from new html build"
-        cmd = system("prince -v builds/pdf/book.html -o builds/pdf/book.pdf")
-        
+        system("prince -v builds/pdf/book.html -o builds/pdf/book.pdf")
       end
 
       ARGV << '--help' if ARGV.empty?
@@ -156,8 +158,8 @@ module Bookshop
 
       build = ARGV.shift
       build = aliases[build] || build
-      
-      
+
+
       # Define arguments and options
       argument :type
       class_option :test_framework, :default => :test_unit
@@ -174,7 +176,7 @@ module Bookshop
       end
 
       # Renders <%= import(source.html.erb) %> files with ERB
-      # 
+      #
       # When a new import() is encountered within source files it is
       #    processed with this method and the result is added to 'erb'
       def self.import(file)
@@ -184,7 +186,7 @@ module Bookshop
       end
 
       case build
-      
+
       when 'html'
       # 'build html' generates a html version of the book from the
       #    book/book.html.erb source file
